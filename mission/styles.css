@@ -1,0 +1,69 @@
+/* Base type and document defaults */
+html { font-size: 20px; } /* assignment spec */
+body {
+  font-family: "Times New Roman", Times, serif; /* spec: default font */
+  line-height: 1.5; /* spec: increased line-height */
+  margin: 0;
+  color: #111;
+  background: #fff;
+}
+
+/* Shared centering wrapper for header/footer */
+.wrap {
+  max-width: 600px;          /* spec: limit content width */
+  margin: 0 auto;            /* center the block */
+  padding: 0 1rem;           /* small side padding for narrow screens */
+  text-align: center;        /* titles centered */
+}
+
+/* Titles */
+.title {
+  margin: 2rem 0 0.25rem;
+  text-transform: uppercase; /* spec: all caps */
+  letter-spacing: 0.08em;    /* spec: spaced letters */
+  font-weight: 700;
+}
+
+.subtitle {
+  margin: 0 0 2rem;
+  color: #006EB6;            /* spec: subtitle color */
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+/* Main content area */
+.content {
+  display: grid;
+  place-items: center;
+  padding: 0 1rem 2rem;
+}
+
+/* Mission “card” box: centered container; paragraphs left-aligned */
+.card {
+  max-width: 600px;          /* spec */
+  border: 1px solid #d7d7d7; /* subtle frame */
+  background: #fff;
+  margin: 0 auto 2rem;       /* space outside the box (margin) */
+  padding: 1.5rem;           /* space inside the box (padding) */
+  text-align: left;          /* spec: paragraphs left-aligned */
+}
+
+.card p + p { margin-top: 1rem; }
+.intro { font-style: italic; } /* optional hierarchy; does not violate spec */
+
+/* Footer logo sizing per spec */
+.logo {
+  width: 150px;   /* spec: shrink image via CSS to 150px */
+  height: auto;
+  display: block;
+  margin: 0.5rem auto 3rem;
+}
+
+/* Accessibility helper for the section heading we don’t visually display */
+.visually-hidden {
+  position: absolute !important;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0);
+  white-space: nowrap; border: 0;
+}
