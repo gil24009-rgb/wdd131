@@ -1,0 +1,29 @@
+/* 기본 글자 모양 */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f5f5f5;
+  color: #333;
+}
+
+/* 윗부분 헤더 꾸미기 */
+header {
+  background-color: #4a90e2;
+  color: white;
+  text-align: center;
+  padding: 20px;
+}
+
+/* 메인 내용 */
+main {
+  padding: 20px;
+  text-align: center;
+}
+
+/* 아랫부분 푸터 */
+footer {
+  background-color: #ddd;
+  text-align: center;
+  padding: 10px;
+}
