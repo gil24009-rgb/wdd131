@@ -2,23 +2,43 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>"<div Sihyeon="" Gil=""></div>": WDD 131 Portfolio</title>
-  <meta name="description" content="This is my portfolio for WDD 131.">
-  <meta name="author" content="[Sihyeon Gil]">
+  <title>WDD 131 Portfolio — JUN</title>
+  <meta name="description" content="JUN's portfolio homepage for WDD 131 coursework, linking to individual assignments.">
+  <meta name="author" content="JUN">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="preload" href="style.css" as="style">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header>
-    <h1><div Sihyeon="" Gil=""></div>: WDD 131 Portfolio</h1>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <header class="site-header" role="banner">
+    <h1>JUN — WDD 131 Portfolio</h1>
+    <p class="subtitle">A curated collection of assignments and exercises</p>
   </header>
 
-  <main>
-    <p>Welcome to my portfolio website! 🌟</p>
+  <main id="main" class="container" role="main">
+    <section aria-labelledby="intro-title" class="intro">
+      <h2 id="intro-title" class="visually-hidden">Introduction</h2>
+      <p>Welcome! This homepage collects links to my WDD 131 projects.</p>
+    </section>
+
+    <nav aria-labelledby="work-title" class="work-nav">
+      <h2 id="work-title">Work</h2>
+      <ul class="link-list">
+        <li>
+          <a href="./mission/">
+            Mission Statement Part I
+            <span class="note"> (HTML/CSS mockup recreation)</span>
+          </a>
+        </li>
+        <!-- Add future assignments here as new <li> items -->
+      </ul>
+    </nav>
   </main>
 
-  <footer>
-    <p>&copy; 2025 [Your Name]</p>
-  </footer> 
+  <footer class="site-footer" role="contentinfo">
+    <p>&copy; 2025 JUN · WDD 131</p>
+  </footer>
 </body>
 </html>
-<li><a href="./mission/">Mission Statement Part I</a></li>
