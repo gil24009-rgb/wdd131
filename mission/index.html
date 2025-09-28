@@ -1,25 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Required head elements per assignment -->
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>BYU–Idaho Mission Statement</title>
-  <meta name="description" content="Re-creation of the BYU–Idaho Mission Statement using semantic HTML and CSS.">
-  <meta name="author" content="JUN">
-  <link rel="stylesheet" href="styles.css">
+  <meta name="description" content="Mission Statement with light/dark theme toggle." />
+  <link rel="stylesheet" href="styles.css" />
+  <script src="mission.js" defer></script>
 </head>
-<body>
+
+<!-- Per instructions, include the 'dark' class now (for development) -->
+<body class="dark">
   <header class="site-header" role="banner">
-    <div class="wrap">
+    <div class="container">
+      <label for="theme" class="visually-hidden">Theme</label>
+      <!-- Light listed first so it is the default option -->
+      <select id="theme" aria-label="Theme selector">
+        <option value="light">light</option>
+        <option value="dark">dark</option>
+      </select>
+
       <h1 class="title">BRIGHAM YOUNG UNIVERSITY–IDAHO</h1>
-      <p class="subtitle">Mission Statement</p>
+      <h2 class="subtitle">Mission Statement</h2>
     </div>
   </header>
 
   <main id="main-content" class="content" role="main">
-    <section class="mission card" aria-labelledby="mission-heading">
-      <h2 id="mission-heading" class="visually-hidden">University Mission</h2>
+    <section class="card" aria-labelledby="mission-heading">
+      <h3 id="mission-heading" class="visually-hidden">University Mission</h3>
 
       <p>
         Brigham Young University–Idaho was founded and is supported and guided by
@@ -41,9 +49,9 @@
   </main>
 
   <footer class="site-footer" role="contentinfo">
-    <div class="wrap">
-      <!-- Save the provided logo into this folder as byui-logo.png -->
-      <img class="logo" src="byui-logo.png" alt="BYU–Idaho logo">
+    <div class="container">
+      <!-- Start with white logo so it’s correct when body has 'dark' initially -->
+      <img id="logo" class="logo" src="byui-logo-white.png" alt="BYU–Idaho logo (white)" />
     </div>
   </footer>
 </body>
