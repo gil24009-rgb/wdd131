@@ -1,0 +1,195 @@
+/* Google Font for headlines (Mooli) */
+@import url("https://fonts.googleapis.com/css2?family=Mooli&display=swap");
+
+/* Design Tokens (CSS Custom Properties) */
+:root {
+  --primary-color: #52489c;
+  --secondary-color: #59c3c3;
+  --accent-color: #f45b69;
+  --text-dark: #333333;
+  --text-light: #ebebeb;
+
+  --primary-font: Arial, Helvetica, sans-serif;
+  --secondary-font: "Mooli", sans-serif;
+
+  --max-content-width: 1200px;
+  --gap: 1rem;
+}
+
+/* Global Resets + Base */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: var(--primary-font);
+  font-size: 1.2rem; /* increase base size as instructed */
+  line-height: 1.6;
+  color: var(--text-dark);
+  background: #fff;
+}
+
+img {
+  display: block;
+  max-width: 100%; /* responsive images */
+  height: auto;
+}
+
+/* Layout Containers */
+.site-header,
+.site-footer,
+#main {
+  padding: 1rem;
+}
+
+.site-header,
+.site-footer {
+  background: var(--primary-color);
+  color: var(--text-light);
+}
+
+.site-header {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: var(--gap);
+  align-items: center;
+}
+
+.brand h1 {
+  margin: 0;
+  font-family: var(--secondary-font);
+  font-weight: 600;
+  letter-spacing: 0.3px;
+}
+
+/* Navigation */
+.site-nav {
+  /* Mobile: start hidden as a vertical list; JS optional for Part 1 */
+}
+
+.site-nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.5rem;
+}
+
+.site-nav a:link,
+.site-nav a:visited {
+  color: var(--text-light);
+  text-decoration: none;
+  border-bottom: 2px solid transparent;
+}
+
+.site-nav a:hover,
+.site-nav a:focus {
+  border-color: var(--secondary-color);
+}
+
+/* “Menu” button should look like text, not a default button */
+.menu-toggle {
+  appearance: none;
+  border: none;
+  background: none;
+  color: var(--text-light);
+  font: inherit;
+  padding: 0.25rem 0.5rem;
+  cursor: pointer;
+  justify-self: end;
+}
+
+.menu-toggle:hover,
+.menu-toggle:focus {
+  outline: 2px solid var(--secondary-color);
+  outline-offset: 2px;
+}
+
+/* Main */
+#main {
+  margin-inline: auto;
+  max-width: var(--max-content-width);
+}
+
+.page-title {
+  margin: 1rem 0 1.5rem;
+  font-family: var(--secondary-font);
+  color: var(--primary-color);
+}
+
+/* Gallery Grid (mobile first: 1 column) */
+.gallery {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--gap);
+}
+
+/* Image treatment: square, cropped, non-distorted */
+.gallery img {
+  width: 250px;
+  height: 250px;
+  object-fit: cover; /* crop instead of distort */
+  border-radius: 8px;
+  box-shadow: 0 1px 6px rgba(0,0,0,0.08);
+  margin-inline: auto; /* center images in narrow view */
+}
+
+/* Footer */
+.site-footer p {
+  margin: 0.5rem 0;
+  text-align: center;
+}
+
+/* --------- Breakpoint 1: ~700px (two columns) ---------- */
+@media (min-width: 700px) {
+  .gallery {
+    grid-template-columns: repeat(2, 1fr);
+    justify-items: center;
+  }
+
+  .gallery img {
+    margin: 0;
+  }
+
+  /* Header layout can support nav below title neatly */
+  .site-header {
+    grid-template-columns: 1fr auto;
+    align-items: center;
+  }
+}
+
+/* --------- Breakpoint 2: ~1000px (three columns + horizontal nav) ---------- */
+@media (min-width: 1000px) {
+  .gallery {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  /* Horizontal nav; hide Menu button on wide screens */
+  .menu-toggle {
+    display: none; /* as required by instructions */
+  }
+
+  .site-header {
+    grid-template-columns: auto 1fr;
+    gap: 2rem;
+  }
+
+  .site-nav ul {
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-end;
+  }
+}
+
+/* Links (global accent color), outside nav too */
+a:link,
+a:visited {
+  color: var(--accent-color);
+}

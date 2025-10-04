@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Required metadata -->
+  <meta charset="utf-8" />
+  <title>Cool Pics 📷</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="A responsive photography gallery built for WDD 131 (Cool Pics - Part 1)." />
+  <meta name="author" content="Your Name" />
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="coolpics.css" />
+
+  <!-- JS (deferred) -->
+  <script src="coolpics.js" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="brand">
+      <h1>Cool Pics <span aria-hidden="true">📷</span></h1>
+    </div>
+
+    <!-- Mobile menu button (will be styled to look like text) -->
+    <button class="menu-toggle" aria-expanded="false" aria-controls="site-nav">Menu</button>
+
+    <nav id="site-nav" class="site-nav" aria-label="Primary">
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Collections</a></li>
+        <li><a href="#">About</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main">
+    <h2 class="page-title">Explore the Moments</h2>
+
+    <!-- Gallery -->
+    <section class="gallery" aria-label="Photo gallery">
+      <!-- 9 figures using the provided placeholder image -->
+      <figure>
+        <img src="norris-sm.jpeg" alt="Abstract landscape sample 1" width="250" height="250" />
+      </figure>
+      <figure>
+        <img src="norris-sm.jpeg" alt="Abstract landscape sample 2" width="250" height="250" />
+      </figure>
+      <figure>
+        <img src="norris-sm.jpeg" alt="Abstract landscape sample 3" width="250" height="250" />
+      </figure>
+      <figure>
+        <img src="norris-sm.jpeg" alt="Abstract landscape sample 4" width="250" height="250" />
+      </figure>
+      <figure>
+        <img src="norris-sm.jpeg" alt="Abstract landscape sample 5" width="250" height="250" />
+      </figure>
+      <figure>
+        <img src="norris-sm.jpeg" alt="Abstract landscape sample 6" width="250" height="250" />
+      </figure>
+      <figure>
+        <img src="norris-sm.jpeg" alt="Abstract landscape sample 7" width="250" height="250" />
+      </figure>
+      <figure>
+        <img src="norris-sm.jpeg" alt="Abstract landscape sample 8" width="250" height="250" />
+      </figure>
+      <figure>
+        <img src="norris-sm.jpeg" alt="Abstract landscape sample 9" width="250" height="250" />
+      </figure>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>©2023 Not a real site 😀</p>
+  </footer>
+</body>
+</html>
