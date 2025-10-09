@@ -1,8 +1,9 @@
 /**
  * WDD 131 - Cool Pics Part 2
  * - Menu toggle on small screens
- * - Window resize handling to prevent hidden menu at large sizes
+ * - Window resize handling
  * - <dialog>-based image viewer (modal) with template function
+ * - Anchor-wrapped thumbnails supported (prevents default navigation)
  */
 
 const BREAKPOINT = 1000;
@@ -57,7 +58,6 @@ function viewerTemplate(imgUrl, altText) {
   `;
 }
 
-// Gallery event delegation
 const gallery = document.querySelector('.gallery');
 let modal = null;
 
@@ -69,10 +69,20 @@ function computeFullImageSrcFromSmall(src) {
 
 function openViewer(event) {
   if (!gallery) return;
+
+  // If the click came from inside an anchor (<a>), prevent navigation
+  const anchor = event.target.closest('a');
+  if (anchor && gallery.contains(anchor)) {
+    event.preventDefault();
+  }
+
+  // Find the IMG that was clicked (works whether or not it's wrapped in <a>)
   const clickedImg = event.target.closest('img');
   if (!clickedImg || !gallery.contains(clickedImg)) return;
 
   const alt = clickedImg.getAttribute('alt') || '';
+
+  // Prefer data-full if provided; otherwise transform -sm → -full.
   const dataFull = clickedImg.getAttribute('data-full');
   const fullSrc = dataFull ? dataFull : computeFullImageSrcFromSmall(clickedImg.src);
 
@@ -91,7 +101,7 @@ function openViewer(event) {
     if (e.target === modal) closeViewer();
   });
 
-  // ESC handler (for consistent UX)
+  // ESC handler
   function onEsc(e) {
     if (e.key === 'Escape') closeViewer();
   }
@@ -102,7 +112,6 @@ function openViewer(event) {
   if (typeof modal.showModal === 'function') {
     modal.showModal();
   } else {
-    // Fallback for older browsers
     modal.setAttribute('open', '');
   }
 }
@@ -124,5 +133,6 @@ function closeViewer() {
 }
 
 if (gallery) {
-  gallery.addEventListener('click', openViewer, { passive: true });
+  // Delegate clicks from the gallery root
+  gallery.addEventListener('click', openViewer);
 }
