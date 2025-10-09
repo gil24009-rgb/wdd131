@@ -14,181 +14,215 @@
 
   --max-content-width: 1200px;
   --gap: 1rem;
+
+  /* Part 2 breakpoint */
+  --breakpoint: 1000px;
 }
 
-/* Global Resets + Base */
+/* Reset-ish */
 *,
 *::before,
-*::after {
-  box-sizing: border-box;
-}
+*::after { box-sizing: border-box; }
 
-html {
-  scroll-behavior: smooth;
+html, body {
+  margin: 0;
+  padding: 0;
 }
 
 body {
-  margin: 0;
   font-family: var(--primary-font);
-  font-size: 1.2rem; /* increase base size as instructed */
-  line-height: 1.6;
   color: var(--text-dark);
-  background: #fff;
+  background: white;
+  line-height: 1.6;
 }
 
-img {
-  display: block;
-  max-width: 100%; /* responsive images */
-  height: auto;
-}
-
-/* Layout Containers */
+/* Layout containers */
 .site-header,
 .site-footer,
-#main {
-  padding: 1rem;
+main {
+  max-width: var(--max-content-width);
+  margin: 0 auto;
+  padding: 0 1rem;
 }
 
-.site-header,
-.site-footer {
-  background: var(--primary-color);
-  color: var(--text-light);
-}
-
+/* Header */
 .site-header {
   display: grid;
   grid-template-columns: 1fr auto;
-  gap: var(--gap);
   align-items: center;
+  gap: var(--gap);
+  padding: 0.75rem 0;
+  border-bottom: 1px solid #e6e6e6;
+}
+
+.brand {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+}
+
+.brand .site-root {
+  text-decoration: none;
+  color: #555;
+  font-size: 0.9rem;
 }
 
 .brand h1 {
   margin: 0;
+  font-size: 1.5rem;
   font-family: var(--secondary-font);
-  font-weight: 600;
   letter-spacing: 0.3px;
 }
 
-/* Navigation */
-.site-nav {
-  /* Mobile: start hidden as a vertical list; JS optional for Part 1 */
-}
-
-.site-nav ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: grid;
-  gap: 0.5rem;
-}
-
-.site-nav a:link,
-.site-nav a:visited {
-  color: var(--text-light);
-  text-decoration: none;
-  border-bottom: 2px solid transparent;
-}
-
-.site-nav a:hover,
-.site-nav a:focus {
-  border-color: var(--secondary-color);
-}
-
-/* “Menu” button should look like text, not a default button */
-.menu-toggle {
-  appearance: none;
-  border: none;
-  background: none;
-  color: var(--text-light);
-  font: inherit;
-  padding: 0.25rem 0.5rem;
+/* Menu button (small screens) */
+.menu-button {
+  padding: 0.5rem 0.75rem;
+  border: 1px solid #ddd;
+  background: #fff;
+  border-radius: 6px;
   cursor: pointer;
-  justify-self: end;
 }
 
-.menu-toggle:hover,
-.menu-toggle:focus {
-  outline: 2px solid var(--secondary-color);
-  outline-offset: 2px;
+.menu-button:hover {
+  background: #f7f7f7;
 }
 
-/* Main */
-#main {
-  margin-inline: auto;
-  max-width: var(--max-content-width);
+/* Nav */
+.site-nav {
+  grid-column: 1 / -1;
 }
 
-.page-title {
-  margin: 1rem 0 1.5rem;
-  font-family: var(--secondary-font);
-  color: var(--primary-color);
+.nav-links {
+  list-style: none;
+  margin: 0.5rem 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
 }
 
-/* Gallery Grid (mobile first: 1 column) */
+.nav-links a {
+  text-decoration: none;
+  color: #333;
+  padding: 0.5rem 0.25rem;
+  border-radius: 6px;
+}
+
+.nav-links a:hover {
+  background: #f5f5f5;
+}
+
+/* Hide utility (Part 2 requirement) */
+.hide { display: none; }
+
+/* Gallery */
 .gallery {
   display: grid;
-  grid-template-columns: 1fr;
-  gap: var(--gap);
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  padding: 1rem 0 2rem;
 }
 
-/* Image treatment: square, cropped, non-distorted */
+.gallery figure {
+  margin: 0;
+  cursor: zoom-in; /* affordance for click-to-view */
+}
+
 .gallery img {
-  width: 250px;
-  height: 250px;
-  object-fit: cover; /* crop instead of distort */
+  width: 100%;
+  height: auto;
+  display: block;
   border-radius: 8px;
-  box-shadow: 0 1px 6px rgba(0,0,0,0.08);
-  margin-inline: auto; /* center images in narrow view */
+}
+
+.gallery figcaption {
+  font-size: 0.9rem;
+  color: #666;
+  margin-top: 4px;
 }
 
 /* Footer */
-.site-footer p {
-  margin: 0.5rem 0;
+.site-footer {
+  padding: 2rem 0;
   text-align: center;
+  color: #666;
+  border-top: 1px solid #eee;
 }
 
-/* --------- Breakpoint 1: ~700px (two columns) ---------- */
-@media (min-width: 700px) {
-  .gallery {
-    grid-template-columns: repeat(2, 1fr);
-    justify-items: center;
-  }
-
-  .gallery img {
-    margin: 0;
-  }
-
-  /* Header layout can support nav below title neatly */
-  .site-header {
-    grid-template-columns: 1fr auto;
-    align-items: center;
-  }
+/* ===== Modal / dialog styling (Part 3-4) ===== */
+dialog.image-viewer {
+  width: 100%;
+  height: 100%;
+  border: none;
+  padding: 0;
+  background-color: rgba(0, 0, 0, 0.6); /* 60% black per guidance */
+}
+dialog.image-viewer::backdrop {
+  background: transparent; /* using dialog as the backdrop layer */
 }
 
-/* --------- Breakpoint 2: ~1000px (three columns + horizontal nav) ---------- */
+/* Positioning wrapper for close button relative to image */
+.viewer-content {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+/* Center image on small devices */
+dialog.image-viewer img {
+  display: block;
+  width: 90%;
+  height: auto;
+  max-height: 100%;
+  margin: 20vh auto 0; /* from assignment */
+  border-radius: 10px;
+  object-fit: contain;
+  background: #fff; /* optional contrast layer */
+}
+
+/* Close button ("X") at top-right of the image */
+.close-viewer {
+  position: absolute;
+  top: 20vh; /* aligned with image top */
+  right: calc(5% - 0.5rem); /* tracks the 90% image width */
+  transform: translateX(50%);
+  border: none;
+  background: #ffffff;
+  color: #111;
+  font-size: 1.2rem;
+  padding: 0.35rem 0.6rem;
+  border-radius: 999px;
+  cursor: pointer;
+  box-shadow: 0 1px 8px rgba(0,0,0,0.25);
+}
+.close-viewer:hover { filter: brightness(0.95); }
+
+/* Medium screens: 3 columns */
+@media (min-width: 600px) {
+  .gallery { grid-template-columns: repeat(3, 1fr); }
+}
+
+/* Large screens: at/above the breakpoint */
 @media (min-width: 1000px) {
-  .gallery {
-    grid-template-columns: repeat(3, 1fr);
-  }
-
-  /* Horizontal nav; hide Menu button on wide screens */
-  .menu-toggle {
-    display: none; /* as required by instructions */
-  }
-
-  .site-header {
-    grid-template-columns: auto 1fr;
-    gap: 2rem;
-  }
-
-  .site-nav ul {
-    display: flex;
+  /* Hide the button and show horizontal nav */
+  .menu-button { display: none; }
+  .site-nav { grid-column: 2 / 3; }
+  .nav-links {
+    display: flex !important; /* ensure visible on large screens */
+    flex-direction: row;
     gap: 1rem;
-    justify-content: flex-end;
   }
+
+  /* Dialog image with less top margin and wider view */
+  dialog.image-viewer img {
+    margin: 8vh auto 0;
+    width: 80%;
+    max-height: 84vh;
+  }
+  .close-viewer { top: 8vh; right: calc(10% - 0.5rem); }
 }
 
-/* Links (global accent color), outside nav too */
+/* Global links (outside nav, too) */
 a:link,
 a:visited {
   color: var(--accent-color);

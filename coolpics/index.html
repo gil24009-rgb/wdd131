@@ -5,7 +5,7 @@
   <meta charset="utf-8" />
   <title>Cool Pics 📷</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="A responsive photography gallery built for WDD 131 (Cool Pics - Part 1)." />
+  <meta name="description" content="A responsive photography gallery built for WDD 131 (Cool Pics - Part 2)." />
   <meta name="author" content="Your Name" />
 
   <!-- CSS -->
@@ -17,59 +17,82 @@
 <body>
   <header class="site-header">
     <div class="brand">
-      <h1>Cool Pics <span aria-hidden="true">📷</span></h1>
+      <a href="../index.html" class="site-root">Home</a>
+      <h1>Cool Pics</h1>
     </div>
 
-    <!-- Mobile menu button (will be styled to look like text) -->
-    <button class="menu-toggle" aria-expanded="false" aria-controls="site-nav">Menu</button>
+    <!-- Accessible menu button for small screens -->
+    <button id="menuButton"
+            class="menu-button"
+            aria-controls="mainNav"
+            aria-expanded="false"
+            aria-label="Toggle navigation menu">
+      Menu
+    </button>
 
-    <nav id="site-nav" class="site-nav" aria-label="Primary">
-      <ul>
-        <li><a href="#">Home</a></li>
+    <nav class="site-nav" id="site-nav">
+      <!-- The UL (links container) that we hide/show on small screens -->
+      <ul id="mainNav" class="nav-links hide">
+        <li><a href="#">Gallery</a></li>
         <li><a href="#">Collections</a></li>
         <li><a href="#">About</a></li>
       </ul>
     </nav>
   </header>
 
-  <main id="main">
-    <h2 class="page-title">Explore the Moments</h2>
-
-    <!-- Gallery -->
+  <main>
+    <!-- Gallery: small images use -sm; prefer adding data-full for exact full image -->
     <section class="gallery" aria-label="Photo gallery">
-      <!-- 9 figures using the provided placeholder image -->
       <figure>
-        <img src="norris-sm.jpeg" alt="Abstract landscape sample 1" width="250" height="250" />
+        <img src="norris-sm.jpeg" alt="Norris Canyon" data-full="norris-full.jpeg" width="250" height="250" />
+        <figcaption>Norris Canyon</figcaption>
       </figure>
+
       <figure>
-        <img src="norris-sm.jpeg" alt="Abstract landscape sample 2" width="250" height="250" />
+        <img src="ocean-sm.jpeg" alt="Ocean rock at sunset" data-full="ocean-full.jpeg" width="250" height="250" />
+        <figcaption>Ocean rock at sunset</figcaption>
       </figure>
+
       <figure>
-        <img src="norris-sm.jpeg" alt="Abstract landscape sample 3" width="250" height="250" />
+        <img src="forest-sm.jpeg" alt="Misty morning forest" data-full="forest-full.jpeg" width="250" height="250" />
+        <figcaption>Misty morning forest</figcaption>
       </figure>
+
+      <!-- If you omit data-full, JS will transform "-sm" → "-full" automatically -->
       <figure>
-        <img src="norris-sm.jpeg" alt="Abstract landscape sample 4" width="250" height="250" />
+        <img src="mountain-sm.jpeg" alt="Mountain ridge at dawn" width="250" height="250" />
+        <figcaption>Mountain ridge at dawn</figcaption>
       </figure>
+
       <figure>
-        <img src="norris-sm.jpeg" alt="Abstract landscape sample 5" width="250" height="250" />
+        <img src="lake-sm.jpeg" alt="Lake mirror view" width="250" height="250" />
+        <figcaption>Lake mirror view</figcaption>
       </figure>
+
       <figure>
-        <img src="norris-sm.jpeg" alt="Abstract landscape sample 6" width="250" height="250" />
+        <img src="desert-sm.jpeg" alt="Desert dunes" width="250" height="250" />
+        <figcaption>Desert dunes</figcaption>
       </figure>
+
       <figure>
-        <img src="norris-sm.jpeg" alt="Abstract landscape sample 7" width="250" height="250" />
+        <img src="valley-sm.jpeg" alt="Green valley" width="250" height="250" />
+        <figcaption>Green valley</figcaption>
       </figure>
+
       <figure>
-        <img src="norris-sm.jpeg" alt="Abstract landscape sample 8" width="250" height="250" />
+        <img src="cliff-sm.jpeg" alt="Coastal cliff" width="250" height="250" />
+        <figcaption>Coastal cliff</figcaption>
       </figure>
+
       <figure>
-        <img src="norris-sm.jpeg" alt="Abstract landscape sample 9" width="250" height="250" />
+        <img src="trail-sm.jpeg" alt="Forest trail" width="250" height="250" />
+        <figcaption>Forest trail</figcaption>
       </figure>
     </section>
   </main>
 
   <footer class="site-footer">
-    <p>©2023 Not a real site 😀</p>
+    <p>&copy; 2025 Cool Pics</p>
   </footer>
 </body>
 </html>
