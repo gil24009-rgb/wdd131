@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Required head items -->
+  <meta charset="UTF-8" />
+  <title>Book Review Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="A simple, accessible book review blog with filters." />
+  <meta name="author" content="Your Name" />
+
+  <!-- Fonts: Headline uses Lora, Body uses system sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Lora:wght@600;700&display=swap" rel="stylesheet" />
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="./blog.css" />
+
+  <!-- JS reference (Part 2 will use this). Keep it at the end of body if you prefer. -->
+  <script src="./blog.js" defer></script>
+</head>
+<body>
+  <!-- Skip link for keyboard users -->
+  <div class="skiptocontent">
+    <a href="#maincontent">Skip to main content</a>
+  </div>
+
+  <header class="site-header" role="banner">
+    <div class="container">
+      <h1 class="site-title">Book Review Blog</h1>
+
+      <nav class="site-nav" aria-label="Primary">
+        <ul class="menu">
+          <li><a href="#">About</a></li>
+          <li><a href="#">Archive</a></li>
+          <li><a href="#">Search</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="maincontent" class="site-main container" role="main">
+    <!-- Main 2-column grid: articles (left) + filters (right) -->
+    <section class="articles" aria-label="Latest Reviews">
+      <!-- ARTICLE 1 -->
+      <article class="post" aria-labelledby="post-1-title">
+        <!-- Inner 2-column grid: details (left) + content (right) -->
+        <aside class="post-details">
+          <dl>
+            <div>
+              <dt>Author</dt>
+              <dd>Harper Lee</dd>
+            </div>
+            <div>
+              <dt>Published</dt>
+              <dd><time datetime="1960-07-11">July 11, 1960</time></dd>
+            </div>
+            <div>
+              <dt>Reviewer</dt>
+              <dd>Your Name</dd>
+            </div>
+            <div>
+              <dt>Rating</dt>
+              <dd aria-label="Rating 4 out of 5">★★★★☆</dd>
+            </div>
+          </dl>
+        </aside>
+
+        <div class="post-content">
+          <h2 id="post-1-title" class="post-title">To Kill a Mockingbird</h2>
+          <figure class="post-media">
+            <!-- Use a local optimized image you add into /blog/img/; give real width/height -->
+            <img src="./img/mockingbird.jpg" alt="Cover of To Kill a Mockingbird" width="600" height="400" loading="lazy" />
+            <figcaption>Classic novel exploring justice, empathy, and courage.</figcaption>
+          </figure>
+          <p class="post-excerpt">
+            A timeless narrative set in the American South, this book invites readers to confront prejudice and consider
+            moral courage through the eyes of Scout Finch. Clear prose, memorable characters, and enduring themes make it a foundational read.
+          </p>
+        </div>
+      </article>
+
+      <!-- ARTICLE 2 -->
+      <article class="post" aria-labelledby="post-2-title">
+        <aside class="post-details">
+          <dl>
+            <div>
+              <dt>Author</dt>
+              <dd>George Orwell</dd>
+            </div>
+            <div>
+              <dt>Published</dt>
+              <dd><time datetime="1949-06-08">June 8, 1949</time></dd>
+            </div>
+            <div>
+              <dt>Reviewer</dt>
+              <dd>Your Name</dd>
+            </div>
+            <div>
+              <dt>Rating</dt>
+              <dd aria-label="Rating 5 out of 5">★★★★★</dd>
+            </div>
+          </dl>
+        </aside>
+
+        <div class="post-content">
+          <h2 id="post-2-title" class="post-title">Nineteen Eighty-Four</h2>
+          <figure class="post-media">
+            <img src="./img/1984.jpg" alt="Cover of 1984 by George Orwell" width="600" height="400" loading="lazy" />
+            <figcaption>Dystopian classic about surveillance, truth, and control.</figcaption>
+          </figure>
+          <p class="post-excerpt">
+            Orwell’s dystopia remains shockingly relevant. Through Winston’s quiet defiance, the novel examines power,
+            propaganda, and the fragility of freedom—an essential text for modern readers.
+          </p>
+        </div>
+      </article>
+
+      <!-- TIP: For Part 1, enter real values from blog.js into the static HTML above.
+           Example fields in blog.js often include title, author, published, image, description.
+           Replace the placeholder data with those values now. -->
+    </section>
+
+    <aside class="filters" aria-label="Filter Reviews">
+      <h2 class="filters-title">Filters</h2>
+      <p class="filters-placeholder">Filter form will go here (added next unit).</p>
+    </aside>
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <p>&copy; <span id="year"></span> Book Review Blog</p>
+    </div>
+    <script>
+      // tiny progressive enhancement (not required, runs without blog.js)
+      document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+  </footer>
+</body>
+</html>
