@@ -47,24 +47,26 @@ html, body {
 
 /* Header & Footer */
 .site-header {
-  padding: 2rem 1rem 1rem;
+  padding: 2.25rem 1rem 1rem;
   max-width: 980px;
   margin-inline: auto;
+  text-align: left;                 /* ← left alignment */
 }
 .branding .course { color: var(--muted); font-size: .85rem; letter-spacing: .06em; text-transform: uppercase; }
-.branding .title { margin: .25rem 0 0; font-weight: 700; letter-spacing: .02em; }
-.branding .subtitle { margin: .25rem 0 0; color: var(--muted); }
+.branding .title { margin: .25rem 0 0; font-weight: 700; letter-spacing: .02em; text-align: left; }
+.branding .subtitle { margin: .25rem 0 0; color: var(--muted); text-align: left; }
 
 .breadcrumb {
   margin: .75rem 0 0;
   padding: 0; list-style: none; display: flex; gap: .5rem; color: var(--muted);
+  justify-content: flex-start;      /* ← left alignment */
 }
 .breadcrumb a { color: inherit; text-decoration-color: color-mix(in oklab, var(--muted), white 20%); }
 .breadcrumb li+li::before { content: "›"; margin-right: .5rem; }
 
 .site-footer {
   max-width: 980px;
-  margin: 2rem auto;
+  margin: 2.5rem auto 2rem;
   padding: 1rem;
   color: var(--muted);
   text-align: center;
@@ -74,27 +76,36 @@ html, body {
 .container {
   max-width: 980px;
   margin: 0 auto;
-  padding: 1rem;
+  padding: 0 1rem 2rem;
+  text-align: left;                 /* ← left alignment */
 }
 
 /* ===== Form: Outer grid that overlaps front/back and places button ===== */
-.card-form { margin-top: .5rem; }
+.card-form { margin-top: 1rem; }
 .form-grid {
   display: grid;
   grid-template-rows: auto auto;
   grid-template-columns: 1fr;
-  gap: 1.25rem;
+  gap: 2rem;                        /* ↑ more breathing room below the cards and to the button */
   position: relative;
+  margin-top: 1rem;                 /* ↑ extra spacing from header/breadcrumb */
 }
 
-/* Shared card face styles */
+/* Shared card face styles
+   — Now constrained to true credit-card ratio (ISO/ID-1 = 85.60 × 53.98mm ~ 1.586)
+   — Width clamped to avoid over-wide stretching on desktop
+*/
 .card {
   border-radius: var(--radius-lg);
   border: 1px solid rgba(255,255,255,.08);
   box-shadow: var(--shadow-lg);
-  padding: 1.25rem;
+  padding: 1rem;                    /* slightly tighter padding to fit within aspect */
   background: linear-gradient(160deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
   backdrop-filter: blur(6px);
+
+  width: clamp(320px, 52vw, 560px); /* ← prevent overly wide cards */
+  aspect-ratio: 85.6 / 53.98;       /* ← real credit-card ratio */
+  overflow: hidden;                  /* keep content tidy within rounded corners */
 }
 
 /* Put both cards in the same grid area to overlap; then offset via transforms */
@@ -108,16 +119,15 @@ html, body {
 .card--back {
   background: linear-gradient(160deg, var(--card-back), #050a17 70%);
   z-index: 0;
-  transform: translate(28%, 18%) rotate(-3deg);
+  transform: translate(20%, 12%) rotate(-3deg);    /* smaller offset so overlap reads well at new size */
   transform-origin: center;
-  min-height: 240px;
   position: relative;
 }
 .mag-strip {
-  height: 44px;
+  height: 14%;                                  /* proportional strip height inside the card */
   background: linear-gradient(90deg, #0f172a, #111827 40%, #0f172a);
   border-radius: var(--radius-sm);
-  margin: .5rem 0 1.25rem;
+  margin: 4% 0 6%;
   box-shadow: inset 0 0 0 1px rgba(255,255,255,.03);
 }
 
@@ -125,11 +135,13 @@ html, body {
 .back-grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: .75rem;
+  gap: .5rem;
+  align-items: start;
+  height: 100%;
 }
 .cvc-field {
   justify-self: end;
-  width: min(220px, 60%);
+  width: min(200px, 60%);
 }
 
 /* Front on top */
@@ -137,44 +149,45 @@ html, body {
   background: linear-gradient(160deg, var(--card-front), #0f1a2e 70%);
   z-index: 1;
   transform: translate(-6%, -6%) rotate(2deg);
-  min-height: 260px;
 }
 
-/* Front face inner grid */
+/* Front face inner grid: condensed to fit the aspect ratio comfortably */
 .front-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1rem 1.25rem;
+  grid-template-columns: 1fr;       /* stack fields vertically for fit/clarity */
+  gap: .6rem .9rem;
   align-items: end;
+  height: 100%;
 }
-.brand { grid-column: 1 / 2; align-self: start; }
-.card-image { display: block; height: 55px; width: auto; }
+.brand { align-self: start; margin-bottom: .25rem; }
+.card-image { display: block; height: 42px; width: auto; } /* slightly smaller logo */
 
-/* Field blocks */
+/* Field blocks: compact controls that still meet touch-target guidance */
 .field label {
   display: inline-block;
-  margin-bottom: .35rem;
+  margin-bottom: .25rem;
   font-weight: 600;
   letter-spacing: .01em;
 }
 .field input {
   width: 100%;
-  padding: .75rem .9rem;
+  padding: .6rem .8rem;             /* tighter to fit inside the new ratio */
   border-radius: .75rem;
   border: 1px solid rgba(255,255,255,.12);
   background: rgba(2,6,23,.6);
   color: var(--text);
   outline: none;
   box-shadow: inset 0 1px 0 rgba(255,255,255,.06);
+  font-size: .98rem;
 }
 .field input::placeholder { color: color-mix(in oklab, var(--muted), white 10%); }
 .field input:focus-visible { border-color: var(--accent); box-shadow: 0 0 0 4px rgba(59,130,246,.25); }
-.help { display: block; margin-top: .4rem; color: var(--muted); font-size: .85rem; }
+.help { display: block; margin-top: .35rem; color: var(--muted); font-size: .85rem; }
 
-/* Specific placement on the front grid */
-.field.holder { grid-column: 1 / 3; }
-.field.number { grid-column: 1 / 3; }
-.field.expiry { grid-column: 1 / 2; max-width: 220px; }
+/* Specific groupings */
+.field.holder,
+.field.number,
+.field.expiry { grid-column: 1 / 2; }
 
 /* Validation hints (HTML-driven) */
 input:required:user-invalid { border-color: var(--err); }
@@ -184,9 +197,10 @@ input:required:user-valid   { border-color: var(--ok); }
 .actions {
   grid-row: 2 / 3;
   display: grid;
-  justify-items: start;
-  gap: .5rem;
-  padding-top: 1.25rem;
+  justify-items: start;             /* ← left alignment */
+  gap: .75rem;
+  padding-top: .25rem;
+  margin-top: .25rem;
 }
 .btn {
   appearance: none;
@@ -207,16 +221,14 @@ input:required:user-valid   { border-color: var(--ok); }
 
 /* Responsive adjustments */
 @media (max-width: 720px) {
-  .card--back { transform: translate(12%, 16%) rotate(-2.5deg); }
+  .card { width: clamp(300px, 86vw, 520px); }   /* allow more width on small screens, ratio maintained */
+  .card--back { transform: translate(10%, 10%) rotate(-2.5deg); }
   .card--front { transform: translate(-4%, -6%) rotate(1.5deg); }
 }
 @media (max-width: 520px) {
-  .front-grid { grid-template-columns: 1fr; }
-  .field.holder,
-  .field.number,
-  .field.expiry { grid-column: 1 / 2; }
+  .card { width: min(92vw, 480px); }
   .cvc-field { width: 100%; }
-  .card--back { transform: translate(6%, 12%) rotate(-2deg); }
+  .card--back { transform: translate(6%, 10%) rotate(-2deg); }
   .card--front { transform: translate(-2%, -4%) rotate(1deg); }
 }
 
