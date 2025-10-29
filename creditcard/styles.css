@@ -1,15 +1,17 @@
-/* ===== creditcard/styles.css (cache-bust with ?v=2 if needed) ===== */
+/* ===== CSS: Clean, rubric-aligned, with requested refinements ===== */
 
+/* Base tokens */
 :root{
   --bg:#0f172a; --card-front:#1f2937; --card-back:#0b1224;
   --text:#e5e7eb; --muted:#94a3b8; --accent:#60a5fa; --accent-strong:#3b82f6;
+  --ok:#22c55e; --err:#ef4444;
   --radius-lg:20px; --radius-sm:10px;
   --shadow-lg:0 20px 40px rgba(0,0,0,.35); --shadow-md:0 12px 24px rgba(0,0,0,.25);
 }
 
 *,
 *::before,
-*::after{ box-sizing:border-box; }
+*::after { box-sizing:border-box; }
 
 html,body{
   margin:0; height:100%;
@@ -19,37 +21,38 @@ html,body{
 }
 
 /* Accessibility */
-.skip-link{ position:absolute; left:-9999px; }
+.skip-link{ position:absolute; left:-9999px; top:auto; width:1px; height:1px; overflow:hidden; }
 .skip-link:focus{ position:static; padding:.5rem 1rem; background:var(--accent-strong); color:#fff; border-radius:.5rem; }
 .visually-hidden{ position:absolute!important; width:1px; height:1px; overflow:hidden; clip:rect(1px,1px,1px,1px); white-space:nowrap; }
 
-/* --- Layout alignment: force left alignment across the page --- */
-.site-header, .container, .breadcrumb, .actions, header, main, nav{
-  text-align:left;
-}
+/* Header & page chrome (left-aligned) */
+.site-header{ padding:2rem 1rem .75rem; max-width:980px; margin-inline:auto; text-align:left; }
+.branding .course{ color:var(--muted); font-size:.85rem; letter-spacing:.06em; text-transform:uppercase; }
+.branding .title{ margin:.15rem 0 0; font-weight:700; letter-spacing:.02em; }       /* tighter title-subtitle gap */
+.branding .subtitle{ margin:.15rem 0 0; color:var(--muted); }                       /* ← #5 */
 
-/* Header spacing */
-.site-header{
-  max-width:980px; margin:0 auto; padding:2.25rem 1rem 1rem;
-}
-.site-header .course, .subtitle{ color:var(--muted); }
 .breadcrumb{
-  margin:.75rem 0 0; padding:0; list-style:none; display:flex; gap:.5rem; color:var(--muted);
-  justify-content:flex-start;
+  margin:.75rem 0 .65rem;  /* extra bottom margin to separate from cards → #6 */
+  padding:0; list-style:none; display:flex; gap:.5rem; color:var(--muted);
+  justify-content:flex-start; text-align:left;
 }
+.breadcrumb a{ color:inherit; text-decoration-color: color-mix(in oklab,var(--muted),white 20%); }
 .breadcrumb li+li::before{ content:"›"; margin-right:.5rem; }
 
-.container{ max-width:980px; margin:0 auto; padding:0 1rem 2.25rem; }
+.site-footer{ max-width:980px; margin:2.5rem auto 2rem; padding:1rem; color:var(--muted); text-align:center; }
 
-/* ---- FORM: outer grid (give more breathing room) ---- */
-.card-form{ margin-top:1.25rem; }
+.container{ max-width:980px; margin:0 auto; padding:0 1rem 2.25rem; text-align:left; }
+
+/* ===== Form: outer grid that overlaps front/back, plus actions ===== */
+.card-form{ margin-top:.5rem; }
 .form-grid{
   display:grid; grid-template-rows:auto auto; grid-template-columns:1fr;
-  gap:2rem;                      /* more space between cards and button */
-  position:relative; margin-top:1rem;
+  gap:2rem;                                     /* more room to the actions */
+  position:relative;
+  justify-items:center;                          /* center the cards → #2 */
 }
 
-/* ---- CARD FACES: real credit-card ratio + width clamp ---- */
+/* Shared card face styles (true ID-1 ratio) */
 .card{
   border-radius:var(--radius-lg);
   border:1px solid rgba(255,255,255,.08);
@@ -58,26 +61,53 @@ html,body{
   background:linear-gradient(160deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
   backdrop-filter:blur(6px);
 
-  width:clamp(320px, 52vw, 560px); /* prevents over-wide cards on desktop */
-  aspect-ratio:85.6 / 53.98;       /* ID-1 credit card ratio (~1.586) */
+  width:clamp(320px, 52vw, 560px);
+  aspect-ratio:85.6 / 53.98;    /* real credit-card ratio (~1.586) */
   overflow:hidden;
 }
 
-/* Overlap */
 .card--back, .card--front{ grid-row:1/2; grid-column:1/-1; }
 
-/* Back card */
+/* Back card (moved further right; space for CVC block) */
 .card--back{
   background:linear-gradient(160deg, var(--card-back), #050a17 70%);
   z-index:0;
-  transform:translate(20%, 12%) rotate(-3deg);
+  transform:translate(28%, 10%) rotate(-3deg); /* more to the right → #1 */
+  position:relative;
 }
+
+/* Magnetic strip: darker, full-width edge to edge (like mockup) → #4 */
 .mag-strip{
-  height:14%; border-radius:var(--radius-sm);
-  margin:4% 0 6%;
-  background:linear-gradient(90deg,#0f172a,#111827 40%,#0f172a);
-  box-shadow:inset 0 0 0 1px rgba(255,255,255,.03);
+  position:relative;
+  height:18%;                                    /* proportion like the reference */
+  margin:6% 0 6%;
+  background:#263044;                            /* darker than back */
+  border-radius:6px;
+  /* extend to the card edges by offsetting card padding (1rem) */
+  width:calc(100% + 2rem);
+  margin-left:-1rem;
+  margin-right:-1rem;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.04);
 }
+
+/* Back inner container becomes positioning context for CVC */
+.back-grid{
+  position:relative;
+  height:calc(100% - 18% - 12%); /* leave space already used by strip + margins */
+}
+
+/* CVC block fixed at lower-right of back card */
+.cvc-field{
+  position:absolute; right:1rem; bottom:1rem;           /* anchor */
+  width:min(220px, 48%);
+}
+.cvc-field label{ display:block; margin-bottom:.25rem; font-weight:700; letter-spacing:.02em; }
+.cvc-field input{
+  width:100%; padding:.6rem .8rem; border-radius:.75rem;
+  border:1px solid rgba(255,255,255,.12); background:rgba(2,6,23,.6); color:var(--text);
+  outline:none; box-shadow:inset 0 1px 0 rgba(255,255,255,.06);
+}
+#cvc-help{ display:block; color:var(--muted); font-size:.85rem; margin-top:.35rem; }
 
 /* Front card */
 .card--front{
@@ -86,7 +116,7 @@ html,body{
   transform:translate(-6%, -6%) rotate(2deg);
 }
 
-/* Inside-front layout: single column so content fits the ratio cleanly */
+/* Front layout: single column for a neat fit in the ratio */
 .front-grid{
   display:grid; grid-template-columns:1fr; gap:.6rem .9rem; align-items:end; height:100%;
 }
@@ -100,24 +130,29 @@ html,body{
   border:1px solid rgba(255,255,255,.12); background:rgba(2,6,23,.6); color:var(--text);
   outline:none; box-shadow:inset 0 1px 0 rgba(255,255,255,.06); font-size:.98rem;
 }
-.field input::placeholder{ color:color-mix(in oklab, #94a3b8, white 10%); }
+.field input::placeholder{ color:color-mix(in oklab, var(--muted), white 10%); }
 .field input:focus-visible{ border-color:var(--accent); box-shadow:0 0 0 4px rgba(59,130,246,.25); }
 .help{ display:block; margin-top:.35rem; color:var(--muted); font-size:.85rem; }
 
+/* Hide the “Format: 1234 …” helper below card number → #3 */
+#cardnumber-help{ display:none; }
+
 .field.holder, .field.number, .field.expiry{ grid-column:1/2; }
 
-/* Validation */
-input:required:user-invalid{ border-color:#ef4444; }
-input:required:user-valid{   border-color:#22c55e; }
+/* Validation colors (HTML-driven) stay intact */
+input:required:user-invalid{ border-color:var(--err); }
+input:required:user-valid{   border-color:var(--ok); }
 
-/* Actions (left aligned) with extra spacing from cards */
+/* Actions row (left-aligned), still under the cards */
 .actions{
-  grid-row:2/3; display:grid; justify-items:start; gap:.9rem;
+  grid-row:2/3;
+  display:grid; justify-items:start; gap:.9rem;
   padding-top:.25rem; margin-top:.25rem;
 }
 .btn{
   appearance:none; border:none; border-radius:999px; padding:.9rem 1.25rem;
-  font-weight:700; letter-spacing:.02em; background:linear-gradient(90deg, var(--accent), var(--accent-strong));
+  font-weight:700; letter-spacing:.02em;
+  background:linear-gradient(90deg, var(--accent), var(--accent-strong));
   color:#fff; cursor:pointer; box-shadow:var(--shadow-md);
   transition:transform .06s ease, box-shadow .2s ease, filter .2s ease;
 }
@@ -128,13 +163,16 @@ input:required:user-valid{   border-color:#22c55e; }
 /* Responsive */
 @media (max-width:720px){
   .card{ width:clamp(300px, 86vw, 520px); }
-  .card--back{ transform:translate(10%,10%) rotate(-2.5deg); }
-  .card--front{ transform:translate(-4%,-6%) rotate(1.5deg); }
+  .card--back{ transform:translate(14%, 10%) rotate(-2.5deg); }
+  .card--front{ transform:translate(-4%, -6%) rotate(1.5deg); }
 }
 @media (max-width:520px){
   .card{ width:min(92vw, 480px); }
-  .card--back{ transform:translate(6%,10%) rotate(-2deg); }
-  .card--front{ transform:translate(-2%,-4%) rotate(1deg); }
+  .cvc-field{ width:100%; right:1rem; bottom:1rem; }
+  .card--back{ transform:translate(8%, 10%) rotate(-2deg); }
+  .card--front{ transform:translate(-2%, -4%) rotate(1deg); }
 }
+
+/* Links */
 a{ color:#bfdbfe; text-decoration:underline; text-underline-offset:2px; }
 a:hover{ text-decoration-thickness:2px; }
