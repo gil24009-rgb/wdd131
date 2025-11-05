@@ -1,6 +1,6 @@
-/* ===== Credit Card Activity — refined for proportions & placement ===== */
+/* ===== Credit Card Activity — adjusted for example proportions, colors intact ===== */
 
-/* Design tokens */
+/* Design tokens (colors remain yours) */
 :root{
   --bg:#0f172a; --card-front:#1f2937; --card-back:#0b1224;
   --text:#e5e7eb; --muted:#94a3b8; --accent:#60a5fa; --accent-strong:#3b82f6;
@@ -10,7 +10,7 @@
   --shadow-md:0 12px 24px rgba(0,0,0,.25);
 }
 
-/* Reset-ish */
+/* Reset & base styles */
 *,*::before,*::after{ box-sizing:border-box; }
 html,body{
   margin:0; height:100%;
@@ -19,190 +19,148 @@ html,body{
   font:16px/1.5 system-ui,-apple-system,Segoe UI,Roboto,"Noto Sans",Arial,sans-serif;
 }
 
-/* Accessibility helpers */
-.skip-link{ position:absolute; left:-9999px; top:auto; width:1px; height:1px; overflow:hidden; }
-.skip-link:focus{ position:static; padding:.5rem 1rem; background:var(--accent-strong); color:#fff; border-radius:.5rem; }
-.visually-hidden{
-  position:absolute!important; width:1px; height:1px; overflow:hidden;
-  clip:rect(1px,1px,1px,1px); white-space:nowrap;
-}
-
-/* Page chrome — keep left aligned */
-.site-header{ max-width:980px; margin-inline:auto; padding:2rem 1rem .75rem; text-align:left; }
-.branding .course{ color:var(--muted); font-size:.85rem; letter-spacing:.06em; text-transform:uppercase; }
-.branding .title{ margin:.15rem 0 0; font-weight:700; letter-spacing:.02em; }
-.branding .subtitle{ margin:.15rem 0 0; color:var(--muted); }
-
-.breadcrumb{
-  /* ↑ Request ④: slightly larger gap below breadcrumb to the cards */
-  margin:.75rem 0 1.15rem;
-  padding:0; list-style:none; display:flex; gap:.5rem; color:var(--muted);
-  justify-content:flex-start; text-align:left;
-}
-.breadcrumb a{ color:inherit; text-decoration-color: color-mix(in oklab,var(--muted),white 20%); }
-.breadcrumb li+li::before{ content:"›"; margin-right:.5rem; }
-
-.container{ max-width:980px; margin:0 auto; padding:0 1rem 2.25rem; text-align:left; }
-.site-footer{ max-width:980px; margin:2.5rem auto 2rem; padding:1rem; color:var(--muted); text-align:center; }
-
-/* ===== FORM LAYOUT =================================================== */
+/* Card form container */
 .card-form{ margin-top:.25rem; }
-
 .form-grid{
   display:grid;
-  grid-template-rows:auto auto;    /* overlapped cards (row 1) + actions (row 2) */
+  grid-template-rows:auto auto;
   grid-template-columns:1fr;
-  gap:1.9rem;                       /* breathing room to the actions block */
-  position:relative;
-
-  /* Request ②: cards centered only */
-  justify-items:center;             /* centers cards */
+  gap:1.9rem;
+  justify-items:center;
 }
 
-/* ===== CARD FACES ==================================================== */
-/* True ID-1 credit card ratio; proportion & typography tuned like mockup */
+/* ===== CARD ===== */
 .card{
   border-radius:var(--radius-lg);
   border:1px solid rgba(255,255,255,.08);
   box-shadow:var(--shadow-lg);
-  padding:1.1rem;                   /* compact padding like the example */
+  padding:1.1rem;
   background:linear-gradient(160deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
   backdrop-filter:blur(6px);
 
-  width:clamp(320px, 52vw, 560px);
-  aspect-ratio:85.6 / 53.98;        /* ≈1.586 */
+  width:390px;           /* match example */
+  height:250px;          /* match example */
   overflow:hidden;
 
-  /* Request ①: scale down inner text slightly for better card:text ratio */
-  font-size:0.92rem;
-  line-height:1.35;
+  font-size:10px;        /* match example proportions */
+  line-height:1.4;
 }
 
-/* Overlap both faces in the same grid cell */
+/* Overlap faces */
 .card--back,.card--front{ grid-row:1/2; grid-column:1/-1; }
 
 /* BACK FACE */
 .card--back{
-  background:linear-gradient(160deg, var(--card-back), #050a17 70%);
+  background:var(--card-back);
   z-index:0;
-  /* push right to clear space for the CVC panel */
-  transform:translate(30%, 10%) rotate(-3deg);
+  transform:translate(16%, 10%) rotate(-2.5deg);
   position:relative;
-}
-
-/* Magnetic strip — darker & full-width to edges (like the example) */
-.mag-strip{
-  position:relative;
-  height:18%;
-  margin:7% 0 6%;
-  background:#2a3547;               /* darker than the back */
   border-radius:8px;
-  width:calc(100% + 2.2rem);        /* extend across the card edge-to-edge */
-  margin-left:-1.1rem;
-  margin-right:-1.1rem;
-  box-shadow:inset 0 0 0 1px rgba(255,255,255,.04);
+  padding:20px 30px 0;
 }
 
-/* Back inner area becomes the positioning context for CVC */
-.back-grid{ position:relative; height:calc(100% - 18% - 13%); }
+/* Magnetic strip */
+.mag-strip{
+  position:absolute;
+  top:40px;
+  right:0;
+  width:100%;
+  height:55px;
+  background-color:#3d5266;
+  border-radius:4px;
+}
 
-/* CVC/CVV block — raised into the yellow-box area (lower-right) */
+/* CVC container */
 .cvc-field{
   position:absolute;
-  right:1.1rem;
-  bottom:3.1rem;                    /* ↑ Request ②: raise it visibly */
-  width:min(240px, 54%);
+  right:-115px;
+  bottom:-10px;
+  width:110px;
+  padding-left:20px;
 }
 .cvc-field label{
-  display:block; margin-bottom:.28rem;
-  font-weight:700; letter-spacing:.02em;
-  text-transform:uppercase; font-size:.82rem; color:var(--text);
+  font-size:6px;
+  font-weight:300;
+  letter-spacing:.5px;
+  text-transform:uppercase;
+  color:var(--text);
 }
 .cvc-field input{
   width:100%;
-  padding:.58rem .78rem;
-  border-radius:.7rem;
-  border:1px solid rgba(255,255,255,.12);
-  background:rgba(2,6,23,.6);
+  height:30px;
+  padding:0 10px;
+  font-size:10px;
+  border-radius:4px;
+  background-color:rgba(2,6,23,.6);
   color:var(--text);
-  outline:none; box-shadow:inset 0 1px 0 rgba(255,255,255,.06);
-  font-size:.95rem;
+  border:none;
 }
-#cvc-help{ display:block; margin-top:.3rem; color:var(--muted); font-size:.78rem; }
 
 /* FRONT FACE */
 .card--front{
-  background:linear-gradient(160deg, var(--card-front), #0f1a2e 70%);
+  background:var(--card-front);
   z-index:1;
-  transform:translate(-6%, -6%) rotate(2deg);
+  transform:translate(-4%, -6%) rotate(1.5deg);
+  position:relative;
+  border-radius:8px;
+  padding:20px 30px 0;
 }
 
-/* Front content proportions like the example: compact stack */
+/* Front grid layout */
 .front-grid{
-  display:grid; grid-template-columns:1fr; align-items:end; height:100%;
-  gap:.55rem .85rem;
+  display:grid;
+  grid-template-columns:1fr;
+  gap:5px;
+  align-items:end;
+  height:100%;
 }
-.brand{ align-self:start; margin-bottom:.2rem; }
-.card-image{ display:block; height:38px; width:auto; } /* smaller logo to match ratio */
+.brand{ float:right; }
+.card-image{ height:100%; width:auto; }
 
-/* Fields — compact sizes to match example proportions */
+/* Input fields */
 .field label{
-  display:inline-block; margin-bottom:.22rem;
-  font-weight:700; letter-spacing:.02em;
-  text-transform:uppercase; font-size:.82rem;
+  display:block;
+  margin-bottom:7px;
+  font-weight:300;
+  letter-spacing:1px;
+  text-transform:uppercase;
+  font-size:10px;
 }
 .field input{
-  width:100%; padding:.58rem .78rem; border-radius:.7rem;
-  border:1px solid rgba(255,255,255,.12);
-  background:rgba(2,6,23,.6); color:var(--text);
-  outline:none; box-shadow:inset 0 1px 0 rgba(255,255,255,.06);
-  font-size:.95rem;
+  width:100%;
+  height:30px;
+  padding:0 10px;
+  font-size:10px;
+  border-radius:4px;
+  border:none;
+  background-color:rgba(2,6,23,.6);
+  color:var(--text);
+  outline:none;
 }
-.field input::placeholder{ color:color-mix(in oklab, var(--muted), white 10%); }
-.field input:focus-visible{ border-color:var(--accent); box-shadow:0 0 0 4px rgba(59,130,246,.25); }
-.help{ display:block; margin-top:.3rem; color:var(--muted); font-size:.78rem; }
 
-/* Place all fields on one column to fit the card comfortably */
+/* Place all fields on one column */
 .field.holder,.field.number,.field.expiry{ grid-column:1/2; }
 
-/* Hide the “Format: …” hint under the card number (Request ③) */
-#cardnumber-help{ display:none; }
-
-/* Validation hints (HTML-driven) */
-input:required:user-invalid{ border-color:var(--err); }
-input:required:user-valid{   border-color:var(--ok); }
-
-/* ===== ACTIONS (everything under the cards stays LEFT-aligned) ===== */
+/* ===== ACTIONS ===== */
 .actions{
   grid-row:2/3;
-  display:grid; justify-items:start; text-align:left;  /* Request ③ */
-  gap:.9rem; padding-top:.2rem; margin-top:.2rem;
+  display:grid;
+  justify-items:start;
+  gap:.9rem;
 }
 .btn{
-  appearance:none; border:none; border-radius:999px;
-  padding:.9rem 1.25rem; font-weight:700; letter-spacing:.02em;
-  background:linear-gradient(90deg, var(--accent), var(--accent-strong));
-  color:#fff; cursor:pointer; box-shadow:var(--shadow-md);
-  transition:transform .06s ease, box-shadow .2s ease, filter .2s ease;
+  border:none; border-radius:8px;
+  padding:12px 20px; font-weight:400; font-size:12px;
+  background-color:rgba(251,251,251,.8);
+  color:var(--accent);
+  cursor:pointer;
 }
-.btn:hover{ filter:brightness(1.05); }
-.btn:active{ transform:translateY(1px) scale(.995); }
-.disclaimer{ color:var(--muted); font-size:.9rem; }
+.btn:hover{ background-color:rgba(251,251,251,1); }
 
-/* ===== Responsive refinements ===== */
-@media (max-width:720px){
-  .card{ width:clamp(300px, 86vw, 520px); }
-  .card--back{ transform:translate(16%, 10%) rotate(-2.5deg); }
-  .card--front{ transform:translate(-4%, -6%) rotate(1.5deg); }
-  .cvc-field{ right:1rem; bottom:2.4rem; width:60%; }
-}
+/* Responsive adjustments */
 @media (max-width:520px){
-  .card{ width:min(92vw, 480px); }
+  .card{ width:92vw; height:auto; }
   .card--back{ transform:translate(9%, 10%) rotate(-2deg); }
   .card--front{ transform:translate(-2%, -4%) rotate(1deg); }
-  .cvc-field{ right:.9rem; bottom:2.1rem; width:100%; }
+  .cvc-field{ right:0; bottom:-10px; width:60px; }
 }
-
-/* Links */
-a{ color:#bfdbfe; text-decoration:underline; text-underline-offset:2px; }
-a:hover{ text-decoration-thickness:2px; }
