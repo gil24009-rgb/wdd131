@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <!-- Required metadata -->
+  <meta charset="utf-8" />
+  <title>Camp Registration | WDD 131</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Register youth participants for camp and submit household contact information." />
+  <meta name="author" content="Your Name" />
+
+  <!-- Favicon (replace with your own path if desired) -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⛺️</text></svg>">
+
+  <!-- Fonts / Styles -->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet"/>
+  <link rel="stylesheet" href="register.css"/>
+
+  <!-- Script -->
+  <script src="register.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <main id="main" class="testbox">
+    <h1>Camp Registration</h1>
+
+    <form id="registerForm" novalidate>
+      <!-- Participants -->
+      <fieldset class="participants" id="participantsFieldset" aria-describedby="participantsHelp">
+        <legend>Participant Information</legend>
+        <p id="participantsHelp" class="help">Add each youth participant. Fees are in USD.</p>
+
+        <!-- Participant 1 (base block) -->
+        <section class="participant" id="participant1" data-participant="1" aria-label="Participant 1">
+          <p class="participant-label">Participant 1</p>
+
+          <div class="item">
+            <label for="fname1">First Name <span aria-hidden="true">*</span></label>
+            <input id="fname1" name="fname1" type="text" autocomplete="given-name" required />
+          </div>
+
+          <div class="item activities">
+            <label for="activity1">Activity # <span aria-hidden="true">*</span></label>
+            <input id="activity1" name="activity1" type="text" inputmode="numeric" required />
+          </div>
+
+          <div class="item">
+            <label for="fee1">Fee ($) <span aria-hidden="true">*</span></label>
+            <input id="fee1" name="fee1" type="number" min="0" step="1" required />
+          </div>
+
+          <div class="item">
+            <label for="date1">Desired Date <span aria-hidden="true">*</span></label>
+            <input id="date1" name="date1" type="date" required />
+          </div>
+
+          <div class="item">
+            <label for="grade1">Grade</label>
+            <select id="grade1" name="grade1">
+              <option value="" selected disabled></option>
+              <option value="1">1st</option>
+              <option value="2">2nd</option>
+              <option value="3">3rd</option>
+              <option value="4">4th</option>
+              <option value="5">5th</option>
+              <option value="6">6th</option>
+              <option value="7">7th</option>
+              <option value="8">8th</option>
+              <option value="9">9th</option>
+              <option value="10">10th</option>
+              <option value="11">11th</option>
+              <option value="12">12th</option>
+            </select>
+          </div>
+        </section>
+
+        <!-- Add Participant Button (always last row) -->
+        <button type="button" id="add" class="add-btn" aria-label="Add another participant">Add Participant</button>
+      </fieldset>
+
+      <!-- Household / Adult Primary Contact -->
+      <fieldset>
+        <legend>Household / Adult Primary Contact</legend>
+        <div class="columns">
+          <div class="item">
+            <label for="adult_name">Name <span aria-hidden="true">*</span></label>
+            <input id="adult_name" name="adult_name" type="text" autocomplete="name" required />
+          </div>
+
+          <div class="item">
+            <label for="address1">Address 1 <span aria-hidden="true">*</span></label>
+            <input id="address1" name="address1" type="text" autocomplete="address-line1" required />
+          </div>
+
+          <div class="item">
+            <label for="city">City <span aria-hidden="true">*</span></label>
+            <input id="city" name="city" type="text" autocomplete="address-level2" required />
+          </div>
+
+          <div class="item">
+            <label for="state">State <span aria-hidden="true">*</span></label>
+            <input id="state" name="state" type="text" maxlength="2" placeholder="ID" required />
+          </div>
+
+          <div class="item">
+            <label for="eaddress">Email Address <span aria-hidden="true">*</span></label>
+            <input id="eaddress" name="eaddress" type="email" autocomplete="email" required />
+          </div>
+
+          <div class="item">
+            <label for="phone">Phone <span aria-hidden="true">*</span></label>
+            <input id="phone" name="phone" type="tel" autocomplete="tel" required />
+          </div>
+
+          <div class="item">
+            <label for="zip">Zip <span aria-hidden="true">*</span></label>
+            <input id="zip" name="zip" type="text" inputmode="numeric" pattern="[0-9]{5}" placeholder="83440" required />
+          </div>
+
+          <div class="question">
+            <label>Relationship to Participants:</label>
+            <div class="question-answer">
+              <div>
+                <input type="radio" value="self" id="rel_self" name="relationship" />
+                <label for="rel_self" class="radio"><span>Self</span></label>
+              </div>
+              <div>
+                <input type="radio" value="mother" id="rel_mother" name="relationship" />
+                <label for="rel_mother" class="radio"><span>Mother</span></label>
+              </div>
+              <div>
+                <input type="radio" value="father" id="rel_father" name="relationship" />
+                <label for="rel_father" class="radio"><span>Father</span></label>
+              </div>
+              <div>
+                <input type="radio" value="guardian" id="rel_guardian" name="relationship" />
+                <label for="rel_guardian" class="radio"><span>Guardian</span></label>
+              </div>
+              <div>
+                <input type="radio" value="other" id="rel_other" name="relationship" />
+                <label for="rel_other" class="radio"><span>Other</span></label>
+                <input type="text" aria-label="Specify other relationship" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </fieldset>
+
+      <!-- Submit -->
+      <div class="btn-block">
+        <button type="submit" id="submitButton">Submit</button>
+      </div>
+    </form>
+
+    <!-- Summary (hidden until success) -->
+    <section id="summary" class="summary" hidden></section>
+  </main>
+</body>
+</html>
