@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Find Your Major – Site Plan</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Site plan for the Find Your Major personal web application, including purpose, audience, dynamic elements, branding, assets, content, and wireframes.">
+  <link rel="stylesheet" href="styles/site-plan.css">
+</head>
+<body>
+  <header class="site-header">
+    <h1>Find Your Major – Site Plan</h1>
+    <p class="tagline">An interactive test to help students discover majors that fit their interests.</p>
+
+    <nav class="site-nav">
+      <a href="#overview">Overview</a>
+      <a href="#purpose-audience">Purpose &amp; Audience</a>
+      <a href="#dynamic-elements">Dynamic Elements</a>
+      <a href="#branding">Branding &amp; Assets</a>
+      <a href="#content">Content</a>
+      <a href="#wireframes">Wireframes</a>
+    </nav>
+  </header>
+
+  <main>
+    <!-- 01 Overview -->
+    <section id="overview" class="section">
+      <h2>Overview</h2>
+
+      <h3>Site Name</h3>
+      <p><strong>Find Your Major</strong></p>
+
+      <h3>Site Topic / Short Description</h3>
+      <p>
+        Find Your Major is a small web application that guides users through a short visual test to help them
+        discover which major categories fit their interests and strengths. The experience is built around
+        potato characters, simple questions, and a clear result screen with twelve major categories.
+      </p>
+    </section>
+
+    <!-- 03 Purpose and Audience -->
+    <section id="purpose-audience" class="section">
+      <h2>Purpose &amp; Audience</h2>
+
+      <h3>Purpose</h3>
+      <p>
+        The purpose of this site is to make choosing a major less overwhelming and more playful.
+        Through a sequence of ten questions and friendly potato characters, the site leads users to one of
+        twelve major categories and gives them a starting point for further exploration.
+      </p>
+      <p>
+        Instead of presenting a long list of majors, the site simplifies the decision-making process into clear
+        steps so that users can quickly see which areas might be a good fit and feel more confident about
+        their next academic and career decisions.
+      </p>
+
+      <h3>Intended Audience</h3>
+      <p>
+        The primary audience is high school students and first–year college students who are not sure which
+        major to choose yet. A secondary audience includes international students, parents, and academic
+        advisors who want an easy visual tool to talk about majors together.
+      </p>
+
+      <h3>Audience Scenarios</h3>
+      <ul>
+        <li>A student who likes drawing and design but is unsure whether to choose Graphic Design, UX, or Illustration.</li>
+        <li>A student who enjoys math and solving problems and wants to know the difference between Computer Science, Data Science, and Engineering.</li>
+        <li>An international student who wants a quick overview of majors that match their personality and long–term goals.</li>
+        <li>A parent or advisor who wants something simple to show during a conversation about possible majors.</li>
+      </ul>
+    </section>
+
+    <!-- 04 Dynamic Elements -->
+    <section id="dynamic-elements" class="section">
+      <h2>Dynamic Elements (JavaScript Plan)</h2>
+
+      <h3>Overall Flow</h3>
+      <p>
+        The site will use JavaScript to control the flow of the test:
+        a start screen with six potato characters, followed by ten questions, three loading-style screens,
+        and finally one of twelve result pages. All screens will be rendered dynamically in the same
+        main area, without reloading the page.
+      </p>
+
+      <h3>Question Structure</h3>
+      <ul>
+        <li>
+          <strong>Start Screen:</strong> A single start screen with the “Touch to START!” message and six potato characters.
+          When the user presses the start button, JavaScript moves to the first question.
+        </li>
+        <li>
+          <strong>Branch Questions (Q2–Q5):</strong>
+          These questions branch the user into different paths.
+          Question 2 has 2 versions, Question 3 has 4 versions, and Questions 4 and 5 each have 8 versions.
+          Question 4 is mainly used to deepen the branch but does not strongly affect the final result logic.
+        </li>
+        <li>
+          <strong>Common Questions (Q6–Q10):</strong>
+          Questions 6–10 are the same five questions for every branch.
+          The same five images and texts are reused, and JavaScript keeps track of the answers for scoring.
+        </li>
+        <li>
+          <strong>Loading / Transition Screens:</strong>
+          Between the last question and the result, three potato loading-style screens will be used.
+          A text like “Digging up potatoes...” will animate while the site calculates the result.
+        </li>
+        <li>
+          <strong>Result Pages:</strong>
+          At the end, the user sees one of twelve result pages. Each result represents a major category
+          (for example: Humanities &amp; Languages, Communication &amp; Media, Performing Arts, Computer Science &amp; Data,
+          Science &amp; Math, Engineering &amp; Applied Technology, Education, Business, Psychology &amp; Social Science, etc.).
+        </li>
+      </ul>
+
+      <h3>Planned JavaScript Features</h3>
+      <ul>
+        <li>
+          <strong>Data Structures:</strong>
+          Questions and results will be stored as JavaScript objects and arrays.
+          Each question node will include its id, step number, image path, and next question ids for “yes” and “no”.
+          Each result object will include its id, category name, description, example majors, and result image.
+        </li>
+        <li>
+          <strong>ES Modules and Functions:</strong>
+          The code will be organized into ES modules such as <em>questions.js</em>, <em>results.js</em>, and <em>quizFlow.js</em>.
+          Functions like <code>goToNextQuestion()</code>, <code>renderScreen()</code>, <code>calculateResult()</code>,
+          and <code>renderResult()</code> will keep the logic organized.
+        </li>
+        <li>
+          <strong>DOM Interaction &amp; Events:</strong>
+          JavaScript will select the main container and replace its HTML content when the user clicks “Yes”, “No”,
+          or “Next”. Event listeners will be attached to buttons on each screen so that the UI feels like a
+          continuous app instead of separate pages.
+        </li>
+        <li>
+          <strong>Conditional Branching:</strong>
+          The branching from Q2 to Q5 will use conditional logic to move along the correct path.
+          Each branch will eventually map to one of the twelve major categories, which will be used to render the result.
+        </li>
+        <li>
+          <strong>Arrays and Array Methods:</strong>
+          Arrays will be used to store the list of majors inside each category and to manage the list of result cards
+          on the child page. Methods like <code>forEach</code>, <code>map</code>, and <code>filter</code> will be used to
+          generate result cards, filter by interest tags, and prepare display data.
+        </li>
+        <li>
+          <strong>Optional Enhancement – Favorites:</strong>
+          Users will be able to “save” a result or major category to a small favorites list.
+          This data can be stored in <code>localStorage</code> so that the favorites appear again
+          when the user returns to the site.
+        </li>
+      </ul>
+    </section>
+
+    <!-- 05 Logo & key images -->
+    <section id="branding" class="section">
+      <h2>Branding &amp; Visual Assets</h2>
+
+      <h3>Logo Concept</h3>
+      <p>
+        The logo for “Find Your Major” is based on six potato characters gathered together with the title text.
+        The title (“Find your major”) and the “Touch to START!” text are separated into their own image assets
+        so they can be reused in different layouts.
+      </p>
+
+      <div class="image-row">
+        <figure>
+          <img src="images/Startpage_potatoes.png" alt="Six potato characters used on the start page">
+          <figcaption>Six potato characters – core logo element (Startpage_potatoes.png).</figcaption>
+        </figure>
+        <figure>
+          <img src="images/Title.png" alt="Find your major title text">
+          <figcaption>Title text for the logo (Title.png).</figcaption>
+        </figure>
+        <figure>
+          <img src="images/Touch to START!.png" alt="Touch to START! button text">
+          <figcaption>Start button text (Touch to START!.png).</figcaption>
+        </figure>
+      </div>
+
+      <h3>Color Palette</h3>
+      <p>
+        The color palette is designed to feel warm, approachable, and slightly playful, while still being
+        readable and suitable for an academic context. The vertical palette image is used in the prototype
+        to keep the main colors consistent.
+      </p>
+
+      <table class="color-table">
+        <thead>
+          <tr>
+            <th>Role</th>
+            <th>Sample</th>
+            <th>Hex (initial plan)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Primary (Buttons, key highlights)</td>
+            <td><span class="color-swatch color-primary"></span></td>
+            <td><code>#1B98E0</code></td>
+          </tr>
+          <tr>
+            <td>Secondary (Cards, accents)</td>
+            <td><span class="color-swatch color-secondary"></span></td>
+            <td><code>#59C3C3</code></td>
+          </tr>
+          <tr>
+            <td>Accent (Potato characters, callouts)</td>
+            <td><span class="color-swatch color-accent"></span></td>
+            <td><code>#E29B3B</code></td>
+          </tr>
+          <tr>
+            <td>Background</td>
+            <td><span class="color-swatch color-bg"></span></td>
+            <td><code>#FAF7F2</code></td>
+          </tr>
+          <tr>
+            <td>Text (Dark)</td>
+            <td><span class="color-swatch color-text"></span></td>
+            <td><code>#333333</code></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <figure class="palette-figure">
+        <img src="images/color.png" alt="Vertical color palette with blue, light blue, light yellow, beige, and white.">
+        <figcaption>
+          High–level color palette image used in the visual prototype (color.png).
+        </figcaption>
+      </figure>
+
+      <h3>Typography</h3>
+      <p>
+        The typography combines a round, friendly display font for headings with a clean sans-serif font for
+        long text and instructions.
+      </p>
+
+      <div class="font-samples">
+        <div class="font-sample font-heading">
+          <h4>Heading Font: Baloo 2 (rounded display font)</h4>
+          <p class="example">
+            “Find Your Major” – used for titles, main navigation, and result category names.
+          </p>
+        </div>
+        <div class="font-sample font-body">
+          <h4>Body Font: System Sans (Arial / Helvetica / sans-serif)</h4>
+          <p class="example">
+            Descriptions, question text, instructions, and result explanations will use a neutral sans-serif
+            typeface to keep the content easy to read on both mobile devices and desktops.
+          </p>
+        </div>
+      </div>
+
+      <h3>Major Category Potato Characters (Result Icons)</h3>
+      <p>
+        Each final result category is represented by a potato character. These icons will appear on the result
+        screen and in any “Explore categories” view.
+      </p>
+
+      <div class="character-grid">
+        <figure>
+          <img src="images/ART potato.png" alt="Art & Design potato character">
+          <figcaption>ART potato (Art &amp; Design related majors)</figcaption>
+        </figure>
+        <figure>
+          <img src="images/BIO potato.png" alt="Biology potato character">
+          <figcaption>BIO potato (Biology &amp; Life Science)</figcaption>
+        </figure>
+        <figure>
+          <img src="images/BUS potato.png" alt="Business potato character">
+          <figcaption>BUS potato (Business &amp; Management)</figcaption>
+        </figure>
+        <figure>
+          <img src="images/COMM potato.png" alt="Communication potato character">
+          <figcaption>COMM potato (Communication &amp; Media)</figcaption>
+        </figure>
+        <figure>
+          <img src="images/CSS potato.png" alt="Computer Science potato character">
+          <figcaption>CSS potato (Computer Science &amp; Data)</figcaption>
+        </figure>
+        <figure>
+          <img src="images/EDU potato.png" alt="Education potato character">
+          <figcaption>EDU potato (Education &amp; Teaching)</figcaption>
+        </figure>
+        <figure>
+          <img src="images/EGC potato.png" alt="Engineering potato character">
+          <figcaption>EGC potato (Engineering &amp; Applied Technology)</figcaption>
+        </figure>
+        <figure>
+          <img src="images/Engineer potato.png" alt="Engineering detail potato character">
+          <figcaption>Engineer potato (additional engineering illustration)</figcaption>
+        </figure>
+        <figure>
+          <img src="images/HUM potato.png" alt="Humanities potato character">
+          <figcaption>HUM potato (Humanities &amp; Languages)</figcaption>
+        </figure>
+        <figure>
+          <img src="images/MATH potato.png" alt="Math potato character">
+          <figcaption>MATH potato (Mathematics / Quantitative)</figcaption>
+        </figure>
+        <figure>
+          <img src="images/MUSC potato.png" alt="Music potato character">
+          <figcaption>MUSC potato (Music &amp; Performing Arts)</figcaption>
+        </figure>
+        <figure>
+          <img src="images/Psychology potato.png" alt="Psychology potato character">
+          <figcaption>Psychology potato (Psychology &amp; Social Science)</figcaption>
+        </figure>
+      </div>
+
+      <h3>Question Growth Illustration</h3>
+      <p>
+        To show visual growth from the first to the last question, two special images are prepared without text:
+        one for Question 1 and one for Question 10. These will be used in the test UI and as visual examples in
+        the site plan.
+      </p>
+
+      <div class="image-row">
+        <figure>
+          <img src="images/Q1.png" alt="Question 1 potato illustration without text">
+          <figcaption>Q1.png – first stage potato illustration.</figcaption>
+        </figure>
+        <figure>
+          <img src="images/Q10.png" alt="Question 10 potato illustration without text">
+          <figcaption>Q10.png – final stage potato illustration.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- 07 Content -->
+    <section id="content" class="section">
+      <h2>Content Plan</h2>
+
+      <h3>Pages</h3>
+      <ul>
+        <li>
+          <strong>Home Page:</strong>
+          Introduction to the test, brief explanation of how it works, the start screen with six potatoes, and a
+          clear “Start Test” button.
+        </li>
+        <li>
+          <strong>Test / Result Page (Child Page):</strong>
+          The interactive test itself (Questions 2–10, loading-like transitions) and the final result screen with the
+          major category. This page may also include a “See All Categories” section at the bottom.
+        </li>
+      </ul>
+
+      <h3>Home Page – Planned Content</h3>
+      <ul>
+        <li>Short hero message: “Not sure which major to choose? Start with a simple test.”</li>
+        <li>Explanation of the flow in three steps:
+          1) Answer ten questions, 2) Watch the potatoes dig, 3) See your major category.</li>
+        <li>Start page visual using:
+          <ul>
+            <li><code>Start page_background.png</code> as the main background,</li>
+            <li><code>Startpage_potatoes.png</code> for the six characters,</li>
+            <li><code>Title.png</code> and <code>Touch to START!.png</code> for the main call-to-action.</li>
+          </ul>
+        </li>
+        <li>Call-to-action button leading to the first test question.</li>
+      </ul>
+
+      <h3>Test &amp; Result Page – Planned Content</h3>
+      <ul>
+        <li>Question area showing the current question number (for example, “Question 3 / 10”).</li>
+        <li>Question text and illustration image for each question.
+          Q1 and Q10 will use <code>Q1.png</code> and <code>Q10.png</code> as base illustrations with text rendered in HTML.</li>
+        <li>Two large buttons for “Yes” and “No” (or similar responses) that move to the next question node.</li>
+        <li>Loading / transition sequence with the potato loading-style screens and the text “Digging up potatoes...”.</li>
+        <li>Result section with:
+          <ul>
+            <li>Result title (one of the twelve major categories) and the matching potato icon.</li>
+            <li>Result image: for example, <code>COMM_result.png</code> for the Communication &amp; Media category.</li>
+            <li>Short description of the category and example majors.</li>
+            <li>Optional button to “Restart the test” or “Explore all categories”.</li>
+          </ul>
+        </li>
+      </ul>
+
+      <h3>Sample Result Data Structure (JavaScript)</h3>
+      <pre class="code-block"><code>{
+  id: "communication",
+  name: "Communication &amp; Media",
+  description: "You enjoy expressing ideas, telling stories, and working with people.",
+  exampleMajors: ["Communication", "Broadcast Journalism", "Public Relations"],
+  strengths: ["Storytelling", "Empathy", "Presentation"],
+  image: "images/COMM_result.png"
+}</code></pre>
+      <p>
+        Each result category will be defined as an object like the example above. An array of these objects will
+        make it easy to render all twelve categories and reuse the same information in both the main result
+        screen and any additional “Explore categories” view.
+      </p>
+    </section>
+
+    <!-- 08 Wireframes -->
+    <section id="wireframes" class="section">
+      <h2>Wireframes / High-fidelity Mockups</h2>
+      <p>
+        The images below show the planned layout for the Home page and a sample Result page.
+        While they are close to high-fidelity designs, they also serve as wireframes for structure and hierarchy.
+      </p>
+
+      <div class="wireframes-grid">
+        <figure class="wireframe">
+          <img src="images/Start page.png" alt="High-fidelity mockup of the Find Your Major start page">
+          <figcaption>
+            Home Page (Start Screen): background illustration, six potato characters, title text, and
+            “Touch to START!” call-to-action.
+          </figcaption>
+        </figure>
+
+        <figure class="wireframe">
+          <img src="images/COMM_result.png" alt="High-fidelity mockup of the Communication &amp; Media result page">
+          <figcaption>
+            Sample Result Page: Communication &amp; Media category with potato character, description,
+            and example majors.
+          </figcaption>
+        </figure>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>Find Your Major – Personal Web Application Site Plan &bull; WDD 131</p>
+  </footer>
+</body>
+</html>
