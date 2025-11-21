@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Recipe Book – Dynamic Recipes | WDD 131</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="A dynamic recipe book that shows a random recipe on load and lets you search through all recipes.">
+  <meta name="author" content="Your Name">
+
+  <!-- Favicon -->
+  <link rel="icon" href="images/recipe-book.png" type="image/png">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="recipes.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="branding">
+      <img src="images/recipe-book.png" alt="Recipe book logo" class="branding__logo">
+      <div class="branding__text">
+        <p class="branding__tagline">Family Favorites</p>
+        <h1 class="branding__title">Recipe Book</h1>
+      </div>
+    </div>
+
+    <form class="search" id="search-form" role="search">
+      <label class="visually-hidden" for="search-input">Search recipes</label>
+      <input
+        id="search-input"
+        name="search"
+        type="search"
+        placeholder="Search by name, ingredient, or tag"
+        autocomplete="off"
+      >
+      <button type="submit" class="search__button">
+        Search
+      </button>
+      <!--
+      아이콘 버튼을 쓰고 싶다면 위 버튼 대신 아래 코드 사용 가능
+      <button type="submit" class="search__button">
+        <img src="images/search.svg" alt="" aria-hidden="true">
+        <span class="visually-hidden">Search</span>
+      </button>
+      -->
+    </form>
+  </header>
+
+  <main class="page-main" id="main-content">
+    <section class="results" aria-label="Recipe results">
+      <div class="results__header">
+        <h2 class="results__title">Featured Recipe</h2>
+        <p class="results__hint">
+          A random recipe is shown each time you load the page. Use the search bar to filter all recipes.
+        </p>
+      </div>
+
+      <!-- 레시피 카드들이 렌더링될 영역 -->
+      <div id="recipes-list" class="recipes-grid" aria-live="polite">
+        <!-- JavaScript will inject recipe cards here -->
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="social">
+      <!-- Social media icons provided under CC from https://www.iconfinder.com/AlfredoCreates  -->
+      <a href="#" aria-label="Instagram">
+        <img src="images/instagram_icon.svg" alt="Instagram icon">
+      </a>
+      <a href="#" aria-label="YouTube">
+        <img src="images/youtube_icon.svg" alt="YouTube icon">
+      </a>
+      <a href="#" aria-label="Pinterest">
+        <img src="images/pinterest_icon.svg" alt="Pinterest icon">
+      </a>
+    </div>
+
+    <p class="icon-credit">
+      <a href="https://www.flaticon.com/free-icons/recipe" title="recipe icons">
+        Recipe icons created by Freepik - Flaticon
+      </a>
+    </p>
+
+    <p class="footer__copy">
+      &copy; 2025 Recipe Book. All rights reserved.
+    </p>
+  </footer>
+
+  <!-- Part 2 main script: ES module -->
+  <script src="main.js" type="module"></script>
+</body>
+</html>
