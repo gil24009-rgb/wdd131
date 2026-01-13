@@ -1,0 +1,74 @@
+:root {
+  --page-bg: #d9d9d9;
+  --panel-bg: #d4d4d4;
+  --panel-border: #bdbdbd;
+
+  --text: #1f1f1f;
+  --accent: #1b6ea8;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--page-bg);
+  color: var(--text);
+  font-family: Georgia, "Times New Roman", Times, serif;
+}
+
+#content {
+  width: min(960px, calc(100% - 64px));
+  margin: 28px auto;
+  padding: 48px 56px 56px;
+  background: var(--panel-bg);
+  border: 1px solid var(--panel-border);
+  text-align: center;
+}
+
+h1 {
+  margin: 0;
+  font-size: 56px;
+  letter-spacing: 0.2px;
+}
+
+.subtitle {
+  margin: 14px 0 18px;
+  font-size: 28px;
+  color: var(--accent);
+}
+
+hr {
+  width: 78%;
+  margin: 18px auto 26px;
+  border: 0;
+  border-top: 4px solid var(--accent);
+}
+
+img {
+  display: block;
+  margin: 6px auto 18px;
+  max-width: 520px;
+  width: 100%;
+  height: auto;
+}
+
+#topics h2 {
+  margin: 18px 0 10px;
+  font-size: 40px;
+}
+
+.list {
+  list-style: none;
+  padding: 0;
+  margin: 0 auto 26px;
+  width: min(560px, 100%);
+  text-align: left;
+}
+
+.list li {
+  margin: 6px 0;
+  font-size: 22px;
+  line-height: 1.55;
+}
