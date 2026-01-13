@@ -1,0 +1,97 @@
+:root {
+  --page-bg: #f1f3f6;
+  --card-bg: #ffffff;
+  --text-main: #1f2937;
+  --text-muted: #4b5563;
+  --border: #e5e7eb;
+  --accent: #1f6fb2;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--page-bg);
+  color: var(--text-main);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  line-height: 1.6;
+}
+
+.page {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 32px 16px;
+}
+
+.card {
+  width: min(900px, 100%);
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+}
+
+.header {
+  text-align: center;
+  padding: 28px 24px 20px;
+  border-bottom: 1px solid var(--border);
+  background: linear-gradient(
+    180deg,
+    rgba(31, 111, 178, 0.1),
+    rgba(31, 111, 178, 0)
+  );
+}
+
+.logo {
+  width: 220px;
+  max-width: 70%;
+  height: auto;
+  display: block;
+  margin: 0 auto 16px;
+}
+
+.title {
+  margin: 0;
+  font-size: 34px;
+  letter-spacing: 0.3px;
+}
+
+.subtitle {
+  margin: 6px 0 0;
+  color: var(--accent);
+  font-size: 16px;
+}
+
+.content {
+  padding: 24px 28px 12px;
+}
+
+.content p {
+  margin: 0 0 16px;
+}
+
+.lead-in {
+  margin-top: 6px;
+  color: var(--text-muted);
+}
+
+.mission-list {
+  margin: 10px 0 0;
+  padding-left: 22px;
+}
+
+.mission-list li {
+  margin: 12px 0;
+}
+
+.footer {
+  padding: 16px 24px 18px;
+  border-top: 1px solid var(--border);
+  text-align: center;
+  font-size: 14px;
+  color: var(--text-muted);
+}
