@@ -1,144 +1,76 @@
 "use strict";
 
 /*
-  DOM Basics checklist used in this file
-  querySelector, getElementById, setAttribute, textContent, style,
-  className, classList add remove toggle, value
+Required DOM Basics items used here
+querySelector, getElementById, setAttribute, textContent, style,
+className, classList add remove toggle, value
 */
 
-const DEFAULTS = Object.freeze({
-  title: "HTML, CSS, and JS",
-  subtitle: "The foundational technologies that power websites and web applications",
-  imgSrc: "https://wddbyui.github.io/wdd131/images/trifecta.png",
-  imgAlt: "JS, CSS, and HTML logos",
-  heading: "HyperText Markup Language",
-  status: "Select a topic to see DOM updates."
-});
+const selectElem = document.getElementById("webdevlist");
+const titleElem = document.querySelector("h1");
+const topicTitle = document.getElementById("topicTitle");
+const topicList = document.getElementById("topicList");
+const img = document.getElementById("trifecta");
+const topicsBox = document.getElementById("topics");
 
-const TOPIC_DATA = Object.freeze({
+const data = {
   html: {
-    heading: "HyperText Markup Language",
-    status: "HTML selected. Updated heading, list, and image text.",
+    title: "HyperText Markup Language",
     imgAlt: "HTML logo focus",
     list: [
       "Defines the structure and content of a web page.",
-      "Gives the browser meaningful elements to render.",
-      "Provides semantic structure for accessibility and SEO."
+      "Without HTML there's nothing for the browser to display."
     ]
   },
   css: {
-    heading: "Cascading Style Sheets",
-    status: "CSS selected. Updated styles, list, and image text.",
+    title: "Cascading Style Sheets",
     imgAlt: "CSS styling focus",
     list: [
-      "Controls how HTML elements look and feel.",
-      "Handles layout, typography, spacing, and color.",
-      "Improves usability through visual hierarchy."
+      "Controls how the HTML elements look.",
+      "Without CSS pages look plain and unstyled."
     ]
   },
   js: {
-    heading: "JavaScript",
-    status: "JavaScript selected. Updated content and interactivity cues.",
+    title: "JavaScript",
     imgAlt: "JavaScript interactivity focus",
     list: [
       "Adds interactivity and dynamic behavior.",
-      "Responds to events like clicks, inputs, and changes.",
-      "Can update the DOM after the page loads."
+      "Without JavaScript nothing on the page responds dynamically to user actions."
     ]
   }
-});
+};
 
-function buildListItems(items) {
-  return items.map((text) => `<li>${text}</li>`).join("");
-}
-
-function setActiveTopic(topicKey) {
-  const content = document.getElementById("content");
-  const title = document.getElementById("pageTitle");
-  const subtitle = document.getElementById("subtitle");
-  const status = document.getElementById("status");
-  const topicHeading = document.getElementById("topicHeading");
-  const topicList = document.getElementById("topicList");
-  const img = document.getElementById("trifectaImg");
-
-  const firstList = document.querySelector("#topics ul.list");
-
-  if (!TOPIC_DATA[topicKey]) {
-    status.textContent = "Please choose a valid option.";
+function render(key) {
+  if (key === "choose") {
+    titleElem.style.color = "";
+    topicsBox.classList.remove("picked");
+    img.setAttribute("alt", "JS, CSS, and HTML logos");
+    topicTitle.textContent = "HyperText Markup Language";
+    topicList.className = "list";
+    topicList.innerHTML =
+      "<li>Defines the structure and content of a web page.</li>" +
+      "<li>Without HTML there's nothing for the browser to display.</li>";
     return;
   }
 
-  const data = TOPIC_DATA[topicKey];
+  const item = data[key];
+  if (!item) return;
 
-  status.textContent = data.status;
+  console.log(selectElem.value);
 
-  topicHeading.textContent = data.heading;
+  topicTitle.textContent = item.title;
 
-  topicList.innerHTML = buildListItems(data.list);
+  topicList.innerHTML = item.list.map((t) => `<li>${t}</li>`).join("");
 
-  img.setAttribute("alt", data.imgAlt);
+  img.setAttribute("alt", item.imgAlt);
 
-  title.style.color = "#035f9c";
+  titleElem.style.color = "#000";
 
-  subtitle.style.fontSize = "1.2em";
+  topicList.className = "list";
 
-  firstList.className = "list is-dimmed";
-
-  content.classList.add("is-highlighted");
-  content.classList.toggle("is-dimmed", false);
-
-  img.classList.remove("is-dimmed");
+  topicsBox.classList.toggle("picked", true);
 }
 
-function resetPage() {
-  const content = document.getElementById("content");
-  const title = document.getElementById("pageTitle");
-  const subtitle = document.getElementById("subtitle");
-  const status = document.getElementById("status");
-  const topicHeading = document.getElementById("topicHeading");
-  const topicList = document.getElementById("topicList");
-  const img = document.getElementById("trifectaImg");
-  const selectElem = document.getElementById("webdevlist");
-
-  title.textContent = DEFAULTS.title;
-  subtitle.textContent = DEFAULTS.subtitle;
-  status.textContent = DEFAULTS.status;
-
-  topicHeading.textContent = DEFAULTS.heading;
-
-  topicList.innerHTML = buildListItems([
-    "Defines the structure and content of a web page.",
-    "Without HTML there's nothing for the browser to display."
-  ]);
-
-  img.setAttribute("src", DEFAULTS.imgSrc);
-  img.setAttribute("alt", DEFAULTS.imgAlt);
-
-  title.style.color = "";
-  subtitle.style.fontSize = "";
-
-  content.classList.remove("is-highlighted");
-  content.classList.remove("is-dimmed");
-
-  document.querySelector("#topics ul.list").className = "list";
-
-  selectElem.value = "choose";
-}
-
-function init() {
-  const selectElem = document.getElementById("webdevlist");
-  const resetBtn = document.getElementById("resetBtn");
-
-  selectElem.addEventListener("change", () => {
-    const codeValue = selectElem.value;
-    if (codeValue === "choose") {
-      resetPage();
-      return;
-    }
-    setActiveTopic(codeValue);
-  });
-
-  resetBtn.addEventListener("click", resetPage);
-}
-
-init();
+selectElem.addEventListener("change", () => {
+  render(selectElem.value);
+});

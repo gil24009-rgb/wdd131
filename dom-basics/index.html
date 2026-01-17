@@ -4,39 +4,24 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>DOM Basics Ponder</title>
-  <link rel="stylesheet" href="dom-basics/styles/main.css" />
+  <link rel="stylesheet" href="styles/main.css" />
   <script src="scripts/main.js" defer></script>
 </head>
 <body>
-  <main id="content">
-    <header>
-      <h1 id="pageTitle">HTML, CSS, and JS</h1>
-      <p id="subtitle">The foundational technologies that power websites and web applications</p>
-    </header>
+  <div id="content">
+    <h1>HTML, CSS, and JS</h1>
 
+    <p>The foundational technologies that power websites and web applications</p>
     <hr />
 
     <img
-      id="trifectaImg"
       src="https://wddbyui.github.io/wdd131/images/trifecta.png"
       alt="JS, CSS, and HTML logos"
+      id="trifecta"
     />
 
-    <section class="controls" aria-label="DOM Controls">
-      <label for="webdevlist">Choose One:</label>
-      <select name="code" id="webdevlist">
-        <option value="choose">Choose One:</option>
-        <option value="html">HTML</option>
-        <option value="css">CSS</option>
-        <option value="js">JavaScript</option>
-      </select>
-
-      <p id="status" aria-live="polite">Select a topic to see DOM updates.</p>
-      <button id="resetBtn" type="button">Reset</button>
-    </section>
-
-    <section id="topics" aria-label="Topics">
-      <h2 id="topicHeading">HyperText Markup Language</h2>
+    <div id="topics">
+      <h2 id="topicTitle">HyperText Markup Language</h2>
       <ul class="list" id="topicList">
         <li>Defines the structure and content of a web page.</li>
         <li>Without HTML there's nothing for the browser to display.</li>
@@ -53,7 +38,16 @@
         <li>Adds interactivity and dynamic behavior.</li>
         <li>Without JavaScript nothing on the page responds dynamically to user actions.</li>
       </ul>
-    </section>
-  </main>
+    </div>
+
+    <div id="picker">
+      <select name="code" id="webdevlist" aria-label="Choose One">
+        <option value="choose" selected>Choose One:</option>
+        <option value="html">HTML</option>
+        <option value="css">CSS</option>
+        <option value="js">JavaScript</option>
+      </select>
+    </div>
+  </div>
 </body>
 </html>
