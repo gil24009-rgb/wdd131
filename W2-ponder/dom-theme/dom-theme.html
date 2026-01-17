@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DOM Theme Switcher</title>
+    <meta name="description" content="A simple DOM exercise: switch page themes using a select menu and JavaScript." />
+    <link rel="stylesheet" href="dom-theme.css" />
+    <script src="dom-theme.js" defer></script>
+  </head>
+  <body>
+    <main class="container">
+      <header class="header">
+        <h1>Pick a Theme</h1>
+        <p class="subtext">
+          Use the menu to change the background and font.
+        </p>
+      </header>
+
+      <section class="card" aria-label="Theme picker">
+        <label class="label" for="theme-select">Theme</label>
+        <select id="theme-select" name="theme">
+          <option value="">Select a theme</option>
+          <option value="ocean">Ocean</option>
+          <option value="forest">Forest</option>
+          <option value="desert">Desert</option>
+        </select>
+
+        <p id="status" class="status" role="status" aria-live="polite">
+          Current theme: Default
+        </p>
+      </section>
+
+      <section class="content" aria-label="Sample content">
+        <h2>Sample Content</h2>
+        <p>
+          This page demonstrates computational thinking in action:
+          break the problem down, identify repeated steps, then write
+          the steps as pseudocode and translate them into JavaScript.
+        </p>
+        <ul>
+          <li>Change background image</li>
+          <li>Change font</li>
+          <li>Update visible status text</li>
+        </ul>
+      </section>
+
+      <footer class="footer">
+        <img
+          class="logo"
+          src="https://wddbyui.github.io/wdd131/images/wdd131.png"
+          alt="WDD 131 Dynamic Web Fundamentals logo"
+          width="300"
+          height="84"
+          loading="lazy"
+        />
+      </footer>
+    </main>
+  </body>
+</html>
