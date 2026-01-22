@@ -12,7 +12,7 @@
 
   --title_accent: #b30059;
 
-  --radius: 12px;
+  --radius: 14px;
   --shadow: 0 10px 22px rgba(0, 0, 0, 0.08);
 
   --max: 980px;
@@ -176,8 +176,8 @@ button:focus-visible {
 }
 
 .movie_media img {
-  width: min(340px, 100%);
-  border-radius: 10px;
+  width: min(360px, 100%);
+  border-radius: 12px;
   border: 1px solid var(--card_border);
 }
 
@@ -188,9 +188,9 @@ button:focus-visible {
   gap: 10px;
 }
 
-.meta_block {
+.meta_row {
   margin: 0;
-  font-size: 0.95rem;
+  font-size: 0.98rem;
 }
 
 .meta_label {
@@ -209,6 +209,7 @@ button:focus-visible {
   padding: 14px 16px 18px 16px;
   color: var(--muted);
   border-top: 1px solid var(--card_border);
+  font-size: 1.02rem;
 }
 
 .site_footer {
@@ -222,8 +223,8 @@ button:focus-visible {
   text-align: center;
 }
 
-/* Large device card ratio matching the reference image */
-@media (min-width: 700px) {
+/* Large device ratio lock to match the target grid image */
+@media (min-width: 720px) {
   .header_inner {
     grid-template-columns: 1fr;
     justify-items: center;
@@ -246,12 +247,18 @@ button:focus-visible {
   }
 
   .movie_layout {
-    grid-template-columns: minmax(320px, 420px) 1fr;
+    grid-template-columns: 1.05fr 1fr;
     grid-template-areas:
       "poster title"
       "poster info"
       "desc desc";
-    align-items: start;
+
+    /* this row plan mirrors your grid guide */
+    grid-template-rows:
+      minmax(170px, auto)
+      minmax(360px, auto)
+      auto;
+    align-items: stretch;
   }
 
   .movie_media {
@@ -261,36 +268,41 @@ button:focus-visible {
 
   .movie_media img {
     width: 100%;
-    max-width: 420px;
+    max-width: 520px;
+    border-radius: 14px;
   }
 
   .movie_title_area {
-    padding: 22px 22px 12px 22px;
+    padding: 22px 22px 0 22px;
+    display: grid;
+    place-items: center;
   }
 
   .movie_title {
-    font-size: 2rem;
+    font-size: 2.1rem;
     line-height: 1.15;
     text-align: center;
+    max-width: 16ch;
   }
 
   .movie_info {
     padding: 0 22px 18px 22px;
     gap: 0;
+    align-content: start;
   }
 
-  .meta_block {
-    padding: 22px 0;
+  .meta_row {
+    padding: 24px 0;
     border-top: 1px solid var(--card_border);
-    font-size: 1rem;
+    font-size: 1.05rem;
   }
 
-  .meta_block:first-child {
+  .meta_row:first-child {
     border-top: none;
   }
 
   .movie_desc {
-    padding: 18px 22px 22px 22px;
-    font-size: 1.05rem;
+    padding: 20px 22px 24px 22px;
+    font-size: 1.15rem;
   }
 }
