@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Cool Pics gallery with a responsive menu and responsive image grid." />
+    <title>Cool Pics</title>
+    <link rel="stylesheet" href="styles/coolpics1.css" />
+    <script src="scripts/coolpics1.js" defer></script>
+  </head>
+
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="site-header">
+      <div class="header-inner">
+        <div class="brand">
+          <img
+            class="brand-logo"
+            src="images/byui-logo-white.png"
+            alt="BYU Idaho logo"
+            width="32"
+            height="32"
+            loading="eager"
+            decoding="async"
+          />
+          <div class="brand-text">
+            <h1 class="site-title">Cool Pics 📷</h1>
+            <p class="site-subtitle">Menu</p>
+          </div>
+        </div>
+
+        <button class="menu-button" type="button" aria-label="Menu" aria-controls="primary-nav" aria-expanded="false">
+          ☰
+        </button>
+
+        <nav id="primary-nav" class="primary-nav" aria-label="Primary">
+          <a href="#" aria-current="page">Home</a>
+          <a href="#">People</a>
+          <a href="#">Places</a>
+          <a href="#">Contact</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main" class="page">
+      <section class="content" aria-labelledby="current-work">
+        <h2 id="current-work" class="section-title">Current Work</h2>
+
+        <div class="gallery" role="list">
+          <figure class="card" role="listitem">
+            <img src="images/pic01.jpg" alt="Photo 1" loading="lazy" decoding="async" />
+          </figure>
+          <figure class="card" role="listitem">
+            <img src="images/pic02.jpg" alt="Photo 2" loading="lazy" decoding="async" />
+          </figure>
+          <figure class="card" role="listitem">
+            <img src="images/pic03.jpg" alt="Photo 3" loading="lazy" decoding="async" />
+          </figure>
+          <figure class="card" role="listitem">
+            <img src="images/pic04.jpg" alt="Photo 4" loading="lazy" decoding="async" />
+          </figure>
+          <figure class="card" role="listitem">
+            <img src="images/pic05.jpg" alt="Photo 5" loading="lazy" decoding="async" />
+          </figure>
+          <figure class="card" role="listitem">
+            <img src="images/pic06.jpg" alt="Photo 6" loading="lazy" decoding="async" />
+          </figure>
+          <figure class="card" role="listitem">
+            <img src="images/pic07.jpg" alt="Photo 7" loading="lazy" decoding="async" />
+          </figure>
+          <figure class="card" role="listitem">
+            <img src="images/pic08.jpg" alt="Photo 8" loading="lazy" decoding="async" />
+          </figure>
+          <figure class="card" role="listitem">
+            <img src="images/pic09.jpg" alt="Photo 9" loading="lazy" decoding="async" />
+          </figure>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>©2026 Not a real site 😄</p>
+    </footer>
+  </body>
+</html>
