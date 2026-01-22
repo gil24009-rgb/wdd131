@@ -1,0 +1,133 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;600;700&display=swap");
+
+/* base mobile first */
+:root {
+  --maxw: 1000px;
+  --border: 1px solid #ccc;
+  --bg: lightblue;
+  --cardbg: #fff;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Roboto, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.site-header,
+.content,
+.site-footer {
+  max-width: var(--maxw);
+  margin: 1rem auto;
+  border: var(--border);
+  padding: 1rem;
+  background-color: var(--bg);
+}
+
+h1 {
+  margin: 0;
+  text-align: center;
+}
+
+/* navigation mobile */
+.site-header {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.site-header h1 {
+  grid-column: 1 / 2;
+}
+
+.menu-btn {
+  grid-column: 2 / 3;
+  justify-self: end;
+  cursor: pointer;
+  border: none;
+  background: transparent;
+  padding: 0.25rem;
+}
+
+.menu-btn .bar {
+  display: block;
+  width: 30px;
+  height: 4px;
+  background-color: #000;
+  margin: 5px 0;
+}
+
+/* collapsed nav by default */
+.site-nav {
+  grid-column: 1 / -1;
+  display: none;
+}
+
+.site-nav a {
+  display: block;
+  padding: 0.75rem;
+  color: #000;
+  text-decoration: none;
+  background: rgba(255, 255, 255, 0.6);
+  border: var(--border);
+  margin-top: 0.5rem;
+}
+
+.site-nav a:hover {
+  color: #616061;
+}
+
+/* content cards */
+.content {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+.card {
+  padding: 20px;
+  background-color: var(--cardbg);
+  border: var(--border);
+}
+
+/* footer */
+.site-footer {
+  text-align: center;
+}
+
+/* JS toggled state */
+.site-nav.open {
+  display: block;
+}
+
+/* media queries should be at the bottom */
+@media screen and (min-width: 700px) {
+  .site-header {
+    grid-template-columns: 1fr;
+  }
+
+  .menu-btn {
+    display: none;
+  }
+
+  .site-nav {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+
+  .site-nav a {
+    margin-top: 0;
+    border: none;
+    background: transparent;
+  }
+
+  .content {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
