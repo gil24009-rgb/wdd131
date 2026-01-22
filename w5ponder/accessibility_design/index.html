@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Flick Picks movie reviews with responsive layout and accessibility focused design." />
+  <title>Flick Picks</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles/base.css" />
+  <script src="scripts/main.js" defer></script>
+</head>
+
+<body>
+  <a class="skip_link" href="#main_content">Skip to main content</a>
+
+  <header class="site_header">
+    <div class="header_inner">
+      <div class="brand" aria-label="Site name">
+        <h1 class="site_title">Flick Picks</h1>
+        <p class="site_tagline">Movie reviews with accessible design</p>
+      </div>
+
+      <button
+        class="nav_toggle"
+        type="button"
+        aria-label="Open menu"
+        aria-controls="site_nav"
+        aria-expanded="false">
+        <span aria-hidden="true">Menu</span>
+      </button>
+
+      <nav class="site_nav" id="site_nav" aria-label="Primary navigation">
+        <ul class="nav_list">
+          <li><a class="nav_link" href="#">Home</a></li>
+          <li><a class="nav_link" href="#">About</a></li>
+          <li><a class="nav_link" href="#">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main_content" class="main">
+    <section class="page_intro" aria-labelledby="page_heading">
+      <h2 id="page_heading">Movie Reviews</h2>
+      <p class="intro_text">
+        Browse reviews in a responsive grid. Keyboard users can tab through each card and use the menu button on small screens.
+      </p>
+    </section>
+
+    <section class="movie_grid" aria-label="Movie review list">
+      <article class="movie_card" aria-labelledby="m1_title">
+        <header class="movie_header">
+          <h3 id="m1_title" class="movie_title">Spider Man: Into the Spider Verse</h3>
+        </header>
+
+        <figure class="movie_media">
+          <img
+            src="images/spiderman.png"
+            alt="Miles Morales swinging through the city"
+            loading="lazy"
+            width="900"
+            height="600" />
+          <figcaption class="sr_only">Poster image for Spider Man: Into the Spider Verse</figcaption>
+        </figure>
+
+        <dl class="movie_meta">
+          <div class="meta_row">
+            <dt>Release date</dt>
+            <dd>Dec 14, 2018</dd>
+          </div>
+          <div class="meta_row">
+            <dt>Recommended age</dt>
+            <dd>10 plus</dd>
+          </div>
+          <div class="meta_row">
+            <dt>Genre</dt>
+            <dd>Action, Adventure</dd>
+          </div>
+          <div class="meta_row">
+            <dt>Rating</dt>
+            <dd>
+              <span class="stars" aria-label="5 out of 5 stars" role="img">★★★★★</span>
+            </dd>
+          </div>
+        </dl>
+
+        <p class="movie_desc">
+          Miles Morales becomes the Spider Man of his reality and crosses paths with others from the multiverse.
+        </p>
+      </article>
+
+      <article class="movie_card" aria-labelledby="m2_title">
+        <header class="movie_header">
+          <h3 id="m2_title" class="movie_title">The Other Side of Heaven</h3>
+        </header>
+
+        <figure class="movie_media">
+          <img
+            src="images/heaven.png"
+            alt="A young couple and missionaries in a row boat on the ocean"
+            loading="lazy"
+            width="900"
+            height="600" />
+          <figcaption class="sr_only">Poster image for The Other Side of Heaven</figcaption>
+        </figure>
+
+        <dl class="movie_meta">
+          <div class="meta_row">
+            <dt>Release date</dt>
+            <dd>Dec 14, 2001</dd>
+          </div>
+          <div class="meta_row">
+            <dt>Recommended age</dt>
+            <dd>10 plus</dd>
+          </div>
+          <div class="meta_row">
+            <dt>Genre</dt>
+            <dd>Drama, Religious</dd>
+          </div>
+          <div class="meta_row">
+            <dt>Rating</dt>
+            <dd>
+              <span class="stars" aria-label="4 out of 5 stars" role="img">★★★★☆</span>
+            </dd>
+          </div>
+        </dl>
+
+        <p class="movie_desc">
+          Based on the true story of Elder John H. Groberg, a missionary in Tonga in the 1950s, this film tells a story of faith, hardship, and miracles.
+        </p>
+      </article>
+
+      <article class="movie_card" aria-labelledby="m3_title">
+        <header class="movie_header">
+          <h3 id="m3_title" class="movie_title">Add Your Third Movie</h3>
+        </header>
+
+        <figure class="movie_media">
+          <img
+            src="images/placeholder.png"
+            alt="Placeholder poster for your third movie"
+            loading="lazy"
+            width="900"
+            height="600" />
+          <figcaption class="sr_only">Poster image for your third movie</figcaption>
+        </figure>
+
+        <dl class="movie_meta">
+          <div class="meta_row">
+            <dt>Release date</dt>
+            <dd>Update me</dd>
+          </div>
+          <div class="meta_row">
+            <dt>Recommended age</dt>
+            <dd>Update me</dd>
+          </div>
+          <div class="meta_row">
+            <dt>Genre</dt>
+            <dd>Update me</dd>
+          </div>
+          <div class="meta_row">
+            <dt>Rating</dt>
+            <dd>
+              <span class="stars" aria-label="3 out of 5 stars" role="img">★★★☆☆</span>
+            </dd>
+          </div>
+        </dl>
+
+        <p class="movie_desc">
+          Replace this card with the additional movie from your assignment, matching the expected screen layout.
+        </p>
+      </article>
+    </section>
+  </main>
+
+  <footer class="site_footer">
+    <p class="footer_text">© <span id="year"></span> Flick Picks</p>
+  </footer>
+</body>
+</html>
