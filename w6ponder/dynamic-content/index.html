@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Flick Picks movie reviews with responsive layout and accessibility focused design." />
+  <title>Flick Picks</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="styles/base.css" />
+  <script src="scripts/main.js" defer></script>
+</head>
+
+<body>
+  <a class="skip_link" href="#main_content">Skip to main content</a>
+
+  <header class="site_header">
+    <div class="header_inner">
+      <h1 class="site_title">Flick Picks</h1>
+
+      <button
+        class="nav_toggle"
+        type="button"
+        aria-label="Open menu"
+        aria-controls="site_nav"
+        aria-expanded="false">
+        <span aria-hidden="true">Menu</span>
+      </button>
+
+      <nav class="site_nav" id="site_nav" aria-label="Primary navigation">
+        <ul class="nav_list">
+          <li><a class="nav_link" href="#">Home</a></li>
+          <li><a class="nav_link" href="#">About</a></li>
+          <li><a class="nav_link" href="#">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main_content" class="main">
+    <section id="movie_list" class="movie_grid" aria-label="Movie reviews">
+      <!-- Movies are injected here by scripts/main.js -->
+    </section>
+  </main>
+
+  <footer class="site_footer">
+    <p class="footer_text">© <span id="year"></span> Flick Picks</p>
+  </footer>
+</body>
+</html>
