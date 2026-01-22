@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>WDD 131 Ponder Array Methods</title>
+    <meta name="description" content="Practice array methods and template literals with dynamic content and console output." />
+    <link rel="stylesheet" href="styles/base.css" />
+    <script type="module" src="scripts/main.js"></script>
+  </head>
+
+  <body>
+    <main class="page">
+      <header class="header">
+        <h1>Array Methods Ponder</h1>
+        <p class="sub">
+          This page shows some results on the page and prints additional output in the console.
+        </p>
+      </header>
+
+      <section class="grid">
+        <section class="card">
+          <h2>Console items</h2>
+          <ul class="bullets" id="consoleList" aria-label="Console items list"></ul>
+
+          <div class="meta">
+            <p class="hint">Open DevTools Console to see forEach, map, filter, reduce, and indexOf output.</p>
+          </div>
+        </section>
+
+        <section class="card">
+          <h2>Student roster</h2>
+          <div class="roster" id="studentRoster" aria-label="Student roster"></div>
+        </section>
+      </section>
+
+      <section class="card results">
+        <h2>On page output</h2>
+
+        <div class="resultRow">
+          <div class="resultLabel">Filtered words</div>
+          <div class="resultValue" id="filteredWords">Loading</div>
+        </div>
+
+        <div class="resultRow">
+          <div class="resultLabel">Grades</div>
+          <div class="resultValue" id="gradeSummary">Loading</div>
+        </div>
+
+        <div class="resultRow">
+          <div class="resultLabel">Average points</div>
+          <div class="resultValue" id="averagePoints">Loading</div>
+        </div>
+      </section>
+
+      <footer class="footer">
+        <p>Brigham Young University Idaho 2026</p>
+      </footer>
+    </main>
+  </body>
+</html>

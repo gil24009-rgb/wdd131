@@ -1,0 +1,158 @@
+:root {
+  --bg: #ffffff;
+  --ink: #111111;
+  --muted: #5a5a5a;
+  --line: #c9c9c9;
+  --card: #ffffff;
+  --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: Georgia, "Times New Roman", Times, serif;
+}
+
+.page {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 28px 18px 40px;
+}
+
+.header h1 {
+  margin: 0;
+  font-size: 32px;
+  letter-spacing: 0.3px;
+}
+
+.sub {
+  margin: 8px 0 0;
+  color: var(--muted);
+  line-height: 1.5;
+  max-width: 64ch;
+}
+
+.grid {
+  margin-top: 22px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.card {
+  background: var(--card);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 14px;
+  padding: 18px 18px 16px;
+  box-shadow: var(--shadow);
+}
+
+.card h2 {
+  margin: 0 0 12px;
+  font-size: 20px;
+}
+
+.bullets {
+  margin: 0;
+  padding-left: 18px;
+}
+
+.bullets li {
+  font-size: 22px;
+  line-height: 1.35;
+}
+
+.meta {
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.hint {
+  margin: 0;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.45;
+}
+
+.roster {
+  display: grid;
+  gap: 14px;
+  padding: 6px 0;
+}
+
+.studentCard {
+  text-align: center;
+  font-size: 30px;
+  padding: 8px 8px 12px;
+  position: relative;
+}
+
+.studentCard::after {
+  content: "";
+  display: block;
+  height: 2px;
+  background: var(--line);
+  margin: 14px 0 0;
+}
+
+.results {
+  margin-top: 16px;
+}
+
+.resultRow {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 12px;
+  padding: 10px 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.resultRow:first-of-type {
+  border-top: none;
+  padding-top: 0;
+}
+
+.resultLabel {
+  color: var(--muted);
+  font-size: 14px;
+  letter-spacing: 0.2px;
+}
+
+.resultValue {
+  font-size: 16px;
+  line-height: 1.45;
+}
+
+.footer {
+  margin-top: 18px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+@media (max-width: 820px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .studentCard {
+    font-size: 28px;
+  }
+
+  .resultRow {
+    grid-template-columns: 1fr;
+    gap: 6px;
+  }
+}
