@@ -1,138 +1,106 @@
-/**
- * WDD 131 - Cool Pics Part 2
- * - Menu toggle on small screens
- * - Window resize handling
- * - <dialog>-based image viewer (modal) with template function
- * - Anchor-wrapped thumbnails supported (prevents default navigation)
- */
+const MENU_BREAKPOINT = 900;
 
-const BREAKPOINT = 1000;
+const menuButton = document.querySelector("#menuButton");
+const nav = document.querySelector("#primary-nav");
+const gallery = document.querySelector(".gallery");
+const viewerRoot = document.querySelector("#viewerRoot");
 
-// ===== Menu elements =====
-const menuButton = document.querySelector('#menuButton');
-const navList = document.querySelector('#mainNav');
+function setMenuState(open) {
+  if (!menuButton || !nav) return;
 
-// Keep ARIA in sync
-function updateAriaExpanded() {
-  if (!menuButton || !navList) return;
-  const isHidden = navList.classList.contains('hide');
-  menuButton.setAttribute('aria-expanded', String(!isHidden));
+  nav.classList.toggle("is-open", open);
+  menuButton.setAttribute("aria-expanded", String(open));
 }
 
-// Toggle menu visibility on small screens
-function toggleMenu() {
-  if (!navList) return;
-  navList.classList.toggle('hide');
-  updateAriaExpanded();
+function shouldUseDesktopMenu() {
+  return window.matchMedia(`(min-width: ${MENU_BREAKPOINT}px)`).matches;
 }
 
-if (menuButton) {
-  menuButton.addEventListener('click', toggleMenu);
-}
+function syncMenuToViewport() {
+  if (!menuButton || !nav) return;
 
-// ===== Window resize handling =====
-function handleResize() {
-  if (!navList) return;
-  if (window.innerWidth > BREAKPOINT) {
-    // Ensure visible on large screens
-    navList.classList.remove('hide');
+  if (shouldUseDesktopMenu()) {
+    setMenuState(true);
   } else {
-    // Default to hidden on small screens
-    navList.classList.add('hide');
+    setMenuState(false);
   }
-  updateAriaExpanded();
 }
 
-window.addEventListener('resize', handleResize);
-window.addEventListener('DOMContentLoaded', handleResize);
+function onMenuButtonClick() {
+  if (!menuButton || !nav) return;
 
-// ===== Image viewer (modal) =====
+  const isOpen = nav.classList.contains("is-open");
+  setMenuState(!isOpen);
+}
 
-// Template function (Rubric: Viewer Template Function)
 function viewerTemplate(imgUrl, altText) {
+  const safeAlt = altText || "Expanded image";
   return `
-    <div class="viewer-content">
-      <img src="${imgUrl}" alt="${altText ?? ''}">
-      <button class="close-viewer" aria-label="Close viewer" title="Close">&times;</button>
+    <div class="viewer-overlay" role="dialog" aria-modal="true" aria-label="Image viewer">
+      <div class="viewer-dialog">
+        <button class="viewer-close" type="button" aria-label="Close image viewer">X</button>
+        <img class="viewer-image" src="${imgUrl}" alt="${safeAlt}">
+      </div>
     </div>
   `;
 }
 
-const gallery = document.querySelector('.gallery');
-let modal = null;
+function openViewer(imgUrl, altText) {
+  if (!viewerRoot) return;
 
-function computeFullImageSrcFromSmall(src) {
-  // Swap '-sm.ext' → '-full.ext' (if pattern matches)
-  // Example: norris-sm.jpeg → norris-full.jpeg
-  return src.replace(/-sm(\.\w+)$/i, '-full$1');
+  viewerRoot.innerHTML = viewerTemplate(imgUrl, altText);
+  viewerRoot.hidden = false;
+
+  const overlay = viewerRoot.querySelector(".viewer-overlay");
+  const closeBtn = viewerRoot.querySelector(".viewer-close");
+
+  if (closeBtn) closeBtn.focus();
+
+  function closeViewer() {
+    viewerRoot.hidden = true;
+    viewerRoot.innerHTML = "";
+    document.removeEventListener("keydown", onKeyDown, true);
+  }
+
+  function onKeyDown(e) {
+    if (e.key === "Escape") closeViewer();
+  }
+
+  function onOverlayClick(e) {
+    if (e.target === overlay) closeViewer();
+  }
+
+  document.addEventListener("keydown", onKeyDown, true);
+
+  if (overlay) overlay.addEventListener("click", onOverlayClick);
+  if (closeBtn) closeBtn.addEventListener("click", closeViewer);
 }
 
-function openViewer(event) {
-  if (!gallery) return;
-
-  // If the click came from inside an anchor (<a>), prevent navigation
-  const anchor = event.target.closest('a');
-  if (anchor && gallery.contains(anchor)) {
-    event.preventDefault();
-  }
-
-  // Find the IMG that was clicked (works whether or not it's wrapped in <a>)
-  const clickedImg = event.target.closest('img');
-  if (!clickedImg || !gallery.contains(clickedImg)) return;
-
-  const alt = clickedImg.getAttribute('alt') || '';
-
-  // Prefer data-full if provided; otherwise transform -sm → -full.
-  const dataFull = clickedImg.getAttribute('data-full');
-  const fullSrc = dataFull ? dataFull : computeFullImageSrcFromSmall(clickedImg.src);
-
-  // Create dialog and inject template
-  modal = document.createElement('dialog');
-  modal.classList.add('image-viewer');
-  modal.innerHTML = viewerTemplate(fullSrc, alt);
-  document.body.appendChild(modal);
-
-  // Close button
-  const closeBtn = modal.querySelector('.close-viewer');
-  if (closeBtn) closeBtn.addEventListener('click', closeViewer);
-
-  // Click outside the image closes the dialog
-  modal.addEventListener('click', (e) => {
-    if (e.target === modal) closeViewer();
-  });
-
-  // ESC handler
-  function onEsc(e) {
-    if (e.key === 'Escape') closeViewer();
-  }
-  document.addEventListener('keydown', onEsc);
-  modal._escHandler = onEsc;
-
-  // Show the dialog
-  if (typeof modal.showModal === 'function') {
-    modal.showModal();
-  } else {
-    modal.setAttribute('open', '');
-  }
+function getFullImageUrl(imgEl) {
+  const fromData = imgEl.getAttribute("data-full");
+  if (fromData) return fromData;
+  return imgEl.getAttribute("src");
 }
 
-function closeViewer() {
-  if (!modal) return;
+function onGalleryClick(e) {
+  const img = e.target.closest("img");
+  if (!img || !gallery.contains(img)) return;
 
-  try {
-    if (typeof modal.close === 'function') modal.close();
-  } catch (_) { /* ignore */ }
+  const fullUrl = getFullImageUrl(img);
+  const alt = img.getAttribute("alt") || "";
+  openViewer(fullUrl, alt);
+}
 
-  if (modal._escHandler) {
-    document.removeEventListener('keydown', modal._escHandler);
-    delete modal._escHandler;
-  }
+window.addEventListener("resize", () => {
+  syncMenuToViewport();
+});
 
-  modal.remove();
-  modal = null;
+if (menuButton) {
+  menuButton.addEventListener("click", onMenuButtonClick);
 }
 
 if (gallery) {
-  // Delegate clicks from the gallery root
-  gallery.addEventListener('click', openViewer);
+  gallery.addEventListener("click", onGalleryClick);
 }
+
+syncMenuToViewport();

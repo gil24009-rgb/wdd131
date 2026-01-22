@@ -1,98 +1,107 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <!-- Required metadata -->
-  <meta charset="utf-8" />
-  <title>Cool Pics 📷</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="A responsive photography gallery built for WDD 131 (Cool Pics - Part 2)." />
-  <meta name="author" content="Your Name" />
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Cool Pics gallery with a responsive menu and an image viewer modal." />
+    <title>Cool Pics</title>
+    <link rel="stylesheet" href="coolpics2.css" />
+    <script src="coolpics2.js" defer></script>
+  </head>
 
-  <!-- CSS -->
-  <link rel="stylesheet" href="coolpics2.css" />
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
 
-  <!-- JS (deferred) -->
-  <script src="coolpics2.js" defer></script>
-</head>
-<body>
-  <header class="site-header">
-    <div class="brand">
-      <a href="../index.html" class="site-root">Home</a>
-      <h1>Cool Pics</h1>
-    </div>
+    <header class="site-header">
+      <div class="header-inner">
+        <div class="brand">
+          <img
+            class="brand-logo"
+            src="images/byui-logo-white.png"
+            alt="BYU Idaho logo"
+            width="32"
+            height="32"
+            loading="eager"
+            decoding="async"
+          />
+          <div class="brand-text">
+            <h1 class="site-title">Cool Pics 📷</h1>
+            <p class="site-subtitle">Menu</p>
+          </div>
+        </div>
 
-    <!-- Accessible menu button for small screens -->
-    <button id="menuButton"
-            class="menu-button"
-            aria-controls="mainNav"
-            aria-expanded="false"
-            aria-label="Toggle navigation menu">
-      Menu
-    </button>
+        <button
+          id="menuButton"
+          class="menu-button"
+          type="button"
+          aria-label="Menu"
+          aria-controls="primary-nav"
+          aria-expanded="false"
+        >
+          ☰
+        </button>
 
-    <nav class="site-nav" id="site-nav">
-      <!-- The UL (links container) that we hide/show on small screens -->
-      <ul id="mainNav" class="nav-links hide">
-        <li><a href="#">Gallery</a></li>
-        <li><a href="#">Collections</a></li>
-        <li><a href="#">About</a></li>
-      </ul>
-    </nav>
-  </header>
+        <nav id="primary-nav" class="primary-nav" aria-label="Primary">
+          <a href="#" aria-current="page">Home</a>
+          <a href="#">People</a>
+          <a href="#">Places</a>
+          <a href="#">Contact</a>
+        </nav>
+      </div>
+    </header>
 
-  <main>
-    <!-- Gallery: small images use -sm; prefer adding data-full for exact full image -->
-    <section class="gallery" aria-label="Photo gallery">
-      <figure>
-        <img src="norris-sm.jpeg" alt="Norris Canyon" data-full="norris-full.jpeg" width="250" height="250" />
-        <figcaption>Norris Canyon</figcaption>
-      </figure>
+    <main id="main" class="page">
+      <section class="content" aria-labelledby="current-work">
+        <h2 id="current-work" class="section-title">Current Work</h2>
 
-      <figure>
-        <img src="ocean-sm.jpeg" alt="Ocean rock at sunset" data-full="ocean-full.jpeg" width="250" height="250" />
-        <figcaption>Ocean rock at sunset</figcaption>
-      </figure>
+        <div class="gallery" role="list" aria-label="Photo gallery">
+          <figure class="card" role="listitem">
+            <img src="images/pic01.jpg" alt="Photo 1" loading="lazy" decoding="async" />
+          </figure>
+          <figure class="card" role="listitem">
+            <img src="images/pic02.jpg" alt="Photo 2" loading="lazy" decoding="async" />
+          </figure>
+          <figure class="card" role="listitem">
+            <img src="images/pic03.jpg" alt="Photo 3" loading="lazy" decoding="async" />
+          </figure>
+          <figure class="card" role="listitem">
+            <img src="images/pic04.jpg" alt="Photo 4" loading="lazy" decoding="async" />
+          </figure>
+          <figure class="card" role="listitem">
+            <img src="images/pic05.jpg" alt="Photo 5" loading="lazy" decoding="async" />
+          </figure>
+          <figure class="card" role="listitem">
+            <img src="images/pic06.jpg" alt="Photo 6" loading="lazy" decoding="async" />
+          </figure>
+          <figure class="card" role="listitem">
+            <img src="images/pic07.jpg" alt="Photo 7" loading="lazy" decoding="async" />
+          </figure>
+          <figure class="card" role="listitem">
+            <img src="images/pic08.jpg" alt="Photo 8" loading="lazy" decoding="async" />
+          </figure>
+          <figure class="card" role="listitem">
+            <img src="images/pic09.jpg" alt="Photo 9" loading="lazy" decoding="async" />
+          </figure>
 
-      <figure>
-        <img src="forest-sm.jpeg" alt="Misty morning forest" data-full="forest-full.jpeg" width="250" height="250" />
-        <figcaption>Misty morning forest</figcaption>
-      </figure>
+          <!-- Part 2 requirement: at least one image that opens a high resolution view -->
+          <figure class="card" role="listitem">
+            <img
+              src="images/norris-full.jpg"
+              alt="Norris photo in high resolution"
+              loading="lazy"
+              decoding="async"
+              data-full="images/norris-full.jpg"
+            />
+          </figure>
+        </div>
+      </section>
+    </main>
 
-      <!-- If you omit data-full, JS will transform "-sm" → "-full" automatically -->
-      <figure>
-        <img src="mountain-sm.jpeg" alt="Mountain ridge at dawn" width="250" height="250" />
-        <figcaption>Mountain ridge at dawn</figcaption>
-      </figure>
+    <footer class="site-footer">
+      <p>©2026 Not a real site 😄</p>
+    </footer>
 
-      <figure>
-        <img src="lake-sm.jpeg" alt="Lake mirror view" width="250" height="250" />
-        <figcaption>Lake mirror view</figcaption>
-      </figure>
-
-      <figure>
-        <img src="desert-sm.jpeg" alt="Desert dunes" width="250" height="250" />
-        <figcaption>Desert dunes</figcaption>
-      </figure>
-
-      <figure>
-        <img src="valley-sm.jpeg" alt="Green valley" width="250" height="250" />
-        <figcaption>Green valley</figcaption>
-      </figure>
-
-      <figure>
-        <img src="cliff-sm.jpeg" alt="Coastal cliff" width="250" height="250" />
-        <figcaption>Coastal cliff</figcaption>
-      </figure>
-
-      <figure>
-        <img src="trail-sm.jpeg" alt="Forest trail" width="250" height="250" />
-        <figcaption>Forest trail</figcaption>
-      </figure>
-    </section>
-  </main>
-
-  <footer class="site-footer">
-    <p>&copy; 2025 Cool Pics</p>
-  </footer>
-</body>
+    <!-- Modal root, injected/controlled by JS -->
+    <div id="viewerRoot" class="viewer-root" hidden></div>
+  </body>
 </html>
