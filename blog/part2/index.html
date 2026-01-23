@@ -1,55 +1,44 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Book Review Blog</title>
+  <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="A simple, accessible book review blog with filters." />
-  <meta name="author" content="Your Name" />
+  <meta name="description" content="Kids Read For Fun book reviews. Build a Blog Part 2 dynamic content." />
+  <title>Kids Read For Fun</title>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Lora:wght@600;700&display=swap" rel="stylesheet" />
+  <link rel="preconnect" href="https://upload.wikimedia.org" />
+  <link rel="preconnect" href="https://books.google.com" />
+  <link rel="preconnect" href="https://images-na.ssl-images-amazon.com" />
 
-  <link rel="stylesheet" href="./blog.css" />
-  <script src="./blog.js" defer></script>
+  <link rel="stylesheet" href="./styles/blog.css" />
+  <script type="module" src="./scripts/main.js"></script>
 </head>
-<body>
-  <div class="skiptocontent">
-    <a href="#maincontent">Skip to main content</a>
-  </div>
 
-  <header class="site-header" role="banner">
-    <div class="container">
-      <h1 class="site-title">Book Review Blog</h1>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <div class="page">
+    <header class="site-header">
+      <h1 class="site-title">Kids Read For Fun</h1>
+
       <nav class="site-nav" aria-label="Primary">
-        <ul class="menu">
-          <li><a href="#">About</a></li>
+        <ul class="nav-list">
+          <li><a href="#" aria-current="page">About</a></li>
           <li><a href="#">Archive</a></li>
           <li><a href="#">Search</a></li>
         </ul>
       </nav>
-    </div>
-  </header>
+    </header>
 
-  <main id="maincontent" class="site-main container" role="main">
-    <section id="articles-container" class="articles" aria-label="Latest Reviews">
-      <!-- Articles will be injected here by JS -->
-    </section>
+    <main id="main" class="content" tabindex="-1">
+      <section class="reviews" aria-label="Book reviews">
+        <!-- Articles will be injected here by JavaScript -->
+      </section>
+    </main>
 
-    <aside class="filters" aria-label="Filter Reviews">
-      <h2 class="filters-title">Filters</h2>
-      <p class="filters-placeholder">Filter form will go here (added next unit).</p>
-    </aside>
-  </main>
-
-  <footer class="site-footer" role="contentinfo">
-    <div class="container">
-      <p>&copy; <span id="year"></span> Book Review Blog</p>
-    </div>
-    <script>
-      document.getElementById('year').textContent = new Date().getFullYear();
-    </script>
-  </footer>
+    <footer class="site-footer">
+      <p>Jane Doe</p>
+    </footer>
+  </div>
 </body>
 </html>

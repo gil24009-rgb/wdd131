@@ -1,0 +1,183 @@
+:root{
+  --ink: #1f1f1f;
+  --muted: #5a5a5a;
+  --accent: #b00020;
+  --rule: #d6a46a;
+  --frame: #111;
+  --bg: #ffffff;
+  --stars: #c28a2d;
+}
+
+*{ box-sizing: border-box; }
+
+body{
+  margin: 0;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  color: var(--ink);
+  background: var(--bg);
+  line-height: 1.5;
+}
+
+.skip-link{
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  padding: 0.75rem 1rem;
+  background: #000;
+  color: #fff;
+  z-index: 10;
+}
+.skip-link:focus{
+  left: 0.75rem;
+  top: 0.75rem;
+  outline: 3px solid #fff;
+  outline-offset: 2px;
+}
+
+.page{
+  width: min(980px, 92vw);
+  margin: 2rem auto;
+  border: 2px solid var(--frame);
+  background: var(--bg);
+}
+
+.site-header{
+  padding: 1rem 1.25rem 0.75rem;
+  border-bottom: 2px solid var(--rule);
+}
+
+.site-title{
+  margin: 0;
+  text-align: center;
+  font-size: clamp(1.6rem, 2.2vw, 2.1rem);
+  letter-spacing: 0.2px;
+}
+
+.site-nav{
+  margin-top: 0.65rem;
+}
+
+.nav-list{
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: flex-end;
+  gap: 1.75rem;
+}
+
+.nav-list a{
+  color: var(--accent);
+  text-decoration: none;
+  font-size: 0.92rem;
+}
+.nav-list a:hover,
+.nav-list a:focus-visible{
+  text-decoration: underline;
+  outline: none;
+}
+
+.content{
+  padding: 2.25rem 1.25rem 1.5rem;
+}
+
+.reviews{
+  border-top: 2px solid var(--rule);
+  border-bottom: 2px solid var(--rule);
+}
+
+.review{
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  padding: 2rem 0;
+}
+.review + .review{
+  border-top: 2px solid var(--rule);
+}
+
+.review-details{
+  text-align: right;
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+.detail{
+  margin: 0 0 0.35rem 0;
+}
+
+.rating{
+  margin-top: 0.35rem;
+  color: var(--stars);
+  letter-spacing: 1px;
+  font-size: 1rem;
+}
+
+.review-body{
+  text-align: center;
+}
+
+.book-title{
+  margin: 0 0 1rem 0;
+  color: var(--accent);
+  font-size: clamp(1.25rem, 2vw, 1.6rem);
+  text-align: left;
+}
+
+.cover{
+  margin: 0;
+  display: grid;
+  place-items: center;
+}
+
+.cover img{
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+.blurb{
+  margin: 1rem 0 0;
+  font-size: 0.95rem;
+  color: var(--ink);
+  text-align: left;
+  max-width: 62ch;
+}
+
+.site-footer{
+  padding: 0.75rem 1.25rem 1rem;
+  text-align: center;
+  border-top: 2px solid var(--rule);
+}
+.site-footer p{
+  margin: 0;
+  font-size: 0.95rem;
+  color: var(--ink);
+}
+
+@media (min-width: 760px){
+  .content{
+    padding: 2.5rem 1.5rem 1.75rem;
+  }
+
+  .review{
+    grid-template-columns: 170px 1fr;
+    align-items: start;
+    gap: 0;
+  }
+
+  .review-details{
+    padding-right: 1.25rem;
+    padding-top: 0.5rem;
+  }
+
+  .review-body{
+    border-left: 2px solid var(--rule);
+    padding-left: 1.75rem;
+    padding-right: 0.25rem;
+  }
+
+  .book-title{
+    text-align: left;
+  }
+}
