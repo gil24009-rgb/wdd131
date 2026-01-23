@@ -1,165 +1,123 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Meta -->
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="WDD 131 • Credit Card Form activity — accessible, validated, and grid-based layout." />
-  <meta name="author" content="Your Name" />
+  <meta name="description" content="WDD 131 Unit 04 Credit Card Form" />
+  <title>Credit Card Form</title>
 
-  <title>WDD 131 • Credit Card</title>
-
-  <!-- Favicon: place favicon.png in this same folder -->
-  <link rel="icon" type="image/png" href="favicon.png" />
-
-  <!-- Styles -->
-  <link rel="preload" href="styles.css" as="style" />
+  <link rel="icon" type="image/x-icon" href="favicon.ico" />
   <link rel="stylesheet" href="styles.css" />
-
 </head>
 <body>
-  <a class="skip-link" href="#main">Skip to main content</a>
+  <main class="page">
+    <form id="ccForm" class="ccForm" novalidate>
+      <div class="stackGrid" aria-label="Credit card form layout">
+        <!-- Card back -->
+        <section class="card cardBack" aria-label="Card back">
+          <div class="magStripe" aria-hidden="true"></div>
 
-  <header class="site-header" role="banner">
-    <div class="branding">
-      <span class="course">WEB • DYNAMIC FUNDAMENTALS • WDD 131</span>
-      <h1 class="title">Credit Card Submission Form</h1>
-      <p class="subtitle">Working with Forms • Grid • Validation • Accessibility</p>
-    </div>
-    <nav aria-label="Breadcrumb">
-      <ol class="breadcrumb">
-        <li><a href="../index.html">Home</a></li>
-        <li aria-current="page">creditcard</li>
-      </ol>
-    </nav>
-  </header>
-
-  <main id="main" class="container" role="main">
-    <!--
-      RUBRIC ALIGNMENT (brief):
-      • Structure: front/back/submit clearly separated.
-      • CSS Grid: outer overlap + inner grids for precise placement.
-      • Styling: rounded corners, backgrounds, optional shadow.
-      • Validation: required + length/pattern constraints + helpful hints.
-    -->
-    <form class="card-form" action="#" method="post" novalidate onsubmit="return true">
-      <!-- Main grid that overlaps the two “card faces” -->
-      <section class="form-grid" aria-label="Credit card visual and inputs">
-        <!-- Card Back (behind) -->
-        <fieldset class="card card--back" aria-label="Card back">
-          <legend class="visually-hidden">Card Back</legend>
-
-          <!-- Magnetic strip (decorative) -->
-          <div class="mag-strip" aria-hidden="true"></div>
-
-          <!-- CVC -->
-          <div class="back-grid">
-            <div class="cvc-field">
-              <label for="cvc">CVC</label>
+          <div class="backInner">
+            <div class="cvcBlock">
+              <label for="cvc">CVC/CVV</label>
               <input
                 id="cvc"
                 name="cvc"
                 type="text"
                 inputmode="numeric"
+                autocomplete="cc-csc"
+                placeholder="xxx"
+                required
                 pattern="\\d{3}"
                 minlength="3"
                 maxlength="3"
-                placeholder="123"
-                required
-                aria-describedby="cvc-help"
-                autocomplete="cc-csc"
               />
-              <small id="cvc-help" class="help">3 digits on the back of your card.</small>
+              <p class="hint" id="cvcHint">3 digits</p>
             </div>
           </div>
-        </fieldset>
+        </section>
 
-        <!-- Card Front (in front) -->
-        <fieldset class="card card--front" aria-label="Card front">
-          <legend class="visually-hidden">Card Front</legend>
+        <!-- Card front -->
+        <section class="card cardFront" aria-label="Card front">
+          <div class="frontTop">
+            <p class="total">TOTAL: $199</p>
+            <div class="chip" aria-hidden="true"></div>
+          </div>
 
-          <div class="front-grid">
-
-            <div class="brand">
-              <!-- Provided orange card SVG (as data URL), height 55px -->
-              <img
-                class="card-image"
-                src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjxzdmcgZGF0YS1uYW1lPSJMYXllciAxIiBpZD0iTGF5ZXJfMSIgdmlld0JveD0iMCAwIDYwIDYwIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIj48ZGVmcz48c3R5bGU+LmNscy0xLC5jbHMtMTAsLmNscy0xMSwuY2xzLTIsLmNscy02LC5jbHMtN3tmaWxsOm5vbmU7fS5jbHMtMXtjbGlwLXJ1bGU6ZXZlbm9kZDt9LmNscy0yLC5jbHMtNXtmaWxsLXJ1bGU6ZXZlbm9kZDt9LmNscy0ze2NsaXAtcGF0aDp1cmwoI2NsaXAtcGF0aCk7fS5jbHMtNHtjbGlwLXBhdGg6dXJsKCNjbGlwLXBhdGgtMik7fS5jbHMtNXtmaWxsOiNmZTg2NTc7fS5jbHMtMTAsLmNscy0xMSwuY2xzLTZ7c3Ryb2tlOiNmZTg2NTc7fS5jbHMtMTAsLmNscy02e3N0cm9rZS1saW5lY2FwOnJvdW5kO30uY2xzLTEwLC5jbHMtMTEsLmNscy02LC5jbHMtN3tzdHJva2UtbGluZWpvaW46cm91bmQ7fS5jbHMtNntzdHJva2Utd2lkdGg6NHB4O30uY2xzLTd7c3Ryb2tlOiNlMDZjM2U7fS5jbHMtMTEsLmNscy03e3N0cm9rZS1saW5lY2FwOnNxdWFyZTt9LmNscy0xMCwuY2xzLTExLC5jbHMtN3tzdHJva2Utd2lkdGg6MnB4O30uY2xzLTh7Y2xpcC1wYXRoOnVybCgjY2xpcC1wYXRoLTQpO30uY2xzLTl7ZmlsbDojZmZkYzgyO308L3N0eWxlPjxjbGlwUGF0aCBpZD0iY2xpcC1wYXRoIj48cGF0aCBjbGFzcz0iY2xzLTEiIGQ9Ik0xLDQ2VjE4YTUsNSwwLDAsMSw1LTVINTRhNSw1LDAsMCwxLDUsNVY0NmE1LDUsMCwwLDEtNSw1SDZBNSw1LDAsMCwxLDEsNDZabTIsMGEzLDMsMCwwLDAsMywzSDU0YTMsMywwLDAsMCwzLTNWMThhMywzLDAsMCwwLTMtM0g2YTMsMywwLDAsMC0zLDNWNDZaTS0xOSw3MUg3OVYtN0gtMTlWNzFaIi8+PC9jbGlwUGF0aD48Y2xpcFBhdGggaWQ9ImNsaXAtcGF0aC0yIj48cGF0aCBjbGFzcz0iY2xzLTEiIGQ9Ik0yLDQ2YTQsNCwwLDAsMCw0LDRINTRhNCw0LDAsMCwwLDQtNFYxOGE0LDQsMCwwLDAtNC00SDZhNCw0LDAsMCwwLTQsNFY0NloiLz48L2NsaXBQYXRoPjxjbGlwUGF0aCBpZD0iY2xpcC1wYXRoLTQiPjxwYXRoIGNsYXNzPSJjbHMtMSIgZD0iTTksMjlhMiwyLDAsMCwwLDIsMkgyMmEyLDIsMCwwLDAsMi0yVjIzYTIsMiwwLDAsMC0yLTJIMTFhMiwyLDAsMCwwLTIsMnY2WiIvPjwvY2xpcFBhdGg+PC9kZWZzPjx0aXRsZS8+PGcgY2xhc3M9ImNscy0zIj48ZyBjbGFzcz0iY2xzLTQiPjxwYXRoIGNsYXNzPSJjbHMtNSIgZD0iTTIsNDZhNCw0LDAsMCwwLDQsNEg1NGE0LDQsMCwwLDAsNC00VjE4YTQsNCwwLDAsMC00LTRINmE0LDQsMCwwLDAtNCw0VjQ2WiIvPjwvZz48L2c+PGcgY2xhc3M9ImNscy00Ij48cGF0aCBjbGFzcz0iY2xzLTYiIGQ9Ik0yLDQ2YTQsNCwwLDAsMCw0LDRINTRhNCw0LDAsMCwwLDQtNFYxOGE0LDQsMCwwLDAtNC00SDZhNCw0LDAsMCwwLTQsNFY0NloiLz48L2c+PGxpbmUgY2xhc3M9ImNscy03IiB4MT0iOSIgeDI9IjI4IiB5MT0iMzkiIHkyPSIzOSIvPjxsaW5lIGNsYXNzPSJjbHMtNyIgeDE9IjMyIiB4Mj0iNTEiIHkxPSIzOSIgeTI9IjM5Ii8+PGcgY2xhc3M9ImNscy04Ij48cmVjdCBjbGFzcz0iY2xzLTkiIGhlaWdodD0iMjAiIHdpZHRoPSIyNSIgeD0iNCIgeT0iMTYiLz48L2c+PHBhdGggY2xhc3M9ImNscy0xMCIgZD0iTTksMjlhMiwyLDAsMCwwLDIsMkgyMmEyLDIsMCwwLDAsMi0yVjIzYTIsMiwwLDAsMC0yLTJIMTFhMiwyLDAsMCwwLTIsMnY2WiIvPjxsaW5lIGNsYXNzPSJjbHMtMTEiIHgxPSIxOCIgeDI9IjE4IiB5MT0iMzEiIHkyPSIyMSIvPjxsaW5lIGNsYXNzPSJjbHMtMTEiIHgxPSI5IiB4Mj0iMTciIHkxPSIyNyIgeTI9IjI3Ii8+PGxpbmUgY2xhc3M9ImNscy0xMSIgeDE9IjE4IiB4Mj0iMjQiIHkxPSIyNSIgeTI9IjI1Ii8+PC9zdmc+"
-                height="55" alt="" />
+          <div class="frontFields">
+            <div class="field fieldNumber">
+              <label for="cardNumber">CARD NUMBER</label>
+              <input
+                id="cardNumber"
+                name="cardNumber"
+                type="text"
+                inputmode="numeric"
+                autocomplete="cc-number"
+                placeholder="1234 5678 9101 1020"
+                required
+                pattern="(\\d{4}\\s?){3}\\d{4}"
+                minlength="16"
+                maxlength="19"
+              />
             </div>
 
-            <!-- Cardholder -->
-            <div class="field holder">
-              <label for="cardholder">Cardholder Name</label>
+            <div class="field fieldHolder">
+              <label for="cardHolder">CARD HOLDER</label>
               <input
-                id="cardholder"
-                name="cardholder"
+                id="cardHolder"
+                name="cardHolder"
                 type="text"
-                placeholder="Jane Doe"
                 autocomplete="cc-name"
+                placeholder="John Doe"
+                required
                 minlength="2"
                 maxlength="40"
-                required
               />
             </div>
 
-            <!-- Card Number -->
-            <div class="field number">
-              <label for="cardnumber">Card Number</label>
-              <input
-                id="cardnumber"
-                name="cardnumber"
-                type="text"
-                inputmode="numeric"
-                placeholder="1234 5678 9012 3456"
-                pattern="\\d{4}\\s\\d{4}\\s\\d{4}\\s\\d{4}"
-                minlength="19"
-                maxlength="19"
-                autocomplete="cc-number"
-                required
-                aria-describedby="cardnumber-help"
-              />
-              <small id="cardnumber-help" class="help">Format: 1234 5678 9012 3456</small>
+            <div class="field fieldExp" id="cardExpiration">
+              <span id="expirationDate" class="expLabel">EXPIRATION</span>
+              <div class="expInputs">
+                <input
+                  type="text"
+                  id="month"
+                  name="expMonth"
+                  placeholder="MM"
+                  inputmode="numeric"
+                  required
+                  pattern="(0[1-9]|1[0-2])"
+                  minlength="2"
+                  maxlength="2"
+                  aria-labelledby="expirationDate"
+                  autocomplete="cc-exp-month"
+                />
+                <input
+                  type="text"
+                  id="year"
+                  name="expYear"
+                  placeholder="YY"
+                  inputmode="numeric"
+                  required
+                  pattern="\\d{2}"
+                  minlength="2"
+                  maxlength="2"
+                  aria-labelledby="expirationDate"
+                  autocomplete="cc-exp-year"
+                />
+              </div>
             </div>
-
-            <!-- Expiry -->
-            <div class="field expiry">
-              <label for="exp">Expiry (MM/YY)</label>
-              <input
-                id="exp"
-                name="exp"
-                type="text"
-                inputmode="numeric"
-                placeholder="08/28"
-                pattern="(0[1-9]|1[0-2])\\/\\d{2}"
-                minlength="5"
-                maxlength="5"
-                autocomplete="cc-exp"
-                required
-                aria-describedby="exp-help"
-              />
-              <small id="exp-help" class="help">Use two-digit month and year.</small>
-            </div>
-
           </div>
-        </fieldset>
+        </section>
 
-        <!-- Submit Button (placed by the same grid) -->
-        <div class="actions">
-          <button class="btn" type="submit">Submit Payment</button>
-          <p class="disclaimer" role="note">This is a practice form for coursework only.</p>
+        <!-- Submit area -->
+        <div class="submitArea">
+          <button type="submit" class="submitBtn">Submit</button>
+          <p id="formMsg" class="formMsg" aria-live="polite"></p>
         </div>
-      </section>
+      </div>
     </form>
   </main>
 
-  <footer class="site-footer" role="contentinfo">
-    <p>&copy; <span id="year"></span> WDD 131 • Credit Card Activity</p>
-  </footer>
-
-  <script>
-    // Small progressive enhancement: current year (no dependency on JS for the rubric).
-    document.getElementById('year').textContent = new Date().getFullYear();
-  </script>
+  <script src="main.js" defer></script>
 </body>
 </html>
