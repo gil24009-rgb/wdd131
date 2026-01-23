@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Checkout Form</title>
+
+    <link rel="icon" type="image/x-icon" href="./images/favicon.ico" />
+    <link rel="stylesheet" href="./form.css" />
+    <script src="./form.js" defer></script>
+  </head>
+
+  <body>
+    <header>
+      <h1>Checkout</h1>
+    </header>
+
+    <main>
+      <section class="errors" aria-live="polite"></section>
+
+      <form id="checkoutForm" action="./completed.html" method="get" novalidate>
+        <label for="fullName">Full Name:</label>
+        <input type="text" id="fullName" name="fullName" autocomplete="name" required />
+
+        <label for="email">Email:</label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          placeholder="email@email.com"
+          autocomplete="email"
+          required
+        />
+
+        <label for="address">Address:</label>
+        <textarea id="address" name="address" rows="4" autocomplete="street-address" required></textarea>
+
+        <label for="paymentMethod">Payment Method:</label>
+        <select
+          id="paymentMethod"
+          name="paymentMethod"
+          required
+          aria-expanded="false"
+          aria-controls="creditCardNumberContainer paypalUsernameContainer"
+        >
+          <option value="">Select Payment Method</option>
+          <option value="creditCard">Credit Card</option>
+          <option value="paypal">PayPal</option>
+        </select>
+
+        <p id="creditCardNumberContainer" class="hide" role="region" aria-labelledby="creditCardLabel">
+          <label id="creditCardLabel" for="creditCardNumber">Credit Card Number:</label>
+          <input
+            type="text"
+            id="creditCardNumber"
+            name="creditCardNumber"
+            inputmode="numeric"
+            autocomplete="cc-number"
+            placeholder="Enter 16 digits"
+          />
+
+          <span id="expirationDate" class="sr-only">Expiration Date</span>
+          <label class="sr-only" for="month">Expiration Month</label>
+          <input
+            type="text"
+            id="month"
+            name="expMonth"
+            inputmode="numeric"
+            autocomplete="cc-exp-month"
+            placeholder="MM"
+            aria-labelledby="expirationDate"
+          />
+
+          <label class="sr-only" for="year">Expiration Year</label>
+          <input
+            type="text"
+            id="year"
+            name="expYear"
+            inputmode="numeric"
+            autocomplete="cc-exp-year"
+            placeholder="YY"
+            aria-labelledby="expirationDate"
+          />
+        </p>
+
+        <p id="paypalUsernameContainer" class="hide" role="region" aria-labelledby="paypalLabel">
+          <label id="paypalLabel" for="paypalUsername">PayPal Username:</label>
+          <input type="text" id="paypalUsername" name="paypalUsername" placeholder="Enter PayPal username" />
+        </p>
+
+        <button type="submit">Place Order</button>
+      </form>
+    </main>
+  </body>
+</html>
