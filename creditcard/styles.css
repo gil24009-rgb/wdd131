@@ -123,6 +123,12 @@ body{
   box-shadow: 0 2px 4px rgba(0,0,0,0.18);
 }
 
+.cardEmoji{
+  font-size: 40px;
+  line-height: 1;
+  user-select: none;
+}
+
 .frontFields{
   padding: 18px 28px 28px;
   display:grid;
