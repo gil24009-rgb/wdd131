@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Ponder - Objects | WDD 131</title>
+
+  <link rel="stylesheet" href="styles/base.css" />
+</head>
+<body>
+  <main class="page">
+    <header class="header">
+      <div class="header__brand" aria-label="Course header">
+        <div class="header__text">
+          <h1 id="courseName" class="header__title"></h1>
+          <p id="courseCode" class="header__subtitle"></p>
+        </div>
+      </div>
+    </header>
+
+    <section class="card" aria-label="Enrollment controls">
+      <h2 class="card__title">Enroll a student</h2>
+
+      <form id="enrollForm" class="form" novalidate>
+        <label for="sectionNumber" class="form__label">Section Number</label>
+        <input
+          id="sectionNumber"
+          name="sectionNumber"
+          class="form__input"
+          inputmode="numeric"
+          autocomplete="off"
+          placeholder="1 or 2"
+          aria-describedby="sectionHelp"
+          required
+        />
+        <p id="sectionHelp" class="form__help">아래 표에 있는 섹션 번호를 입력하세요.</p>
+
+        <button id="enrollStudent" class="button" type="submit">Enroll Student</button>
+        <p id="formMessage" class="form__message" role="status" aria-live="polite"></p>
+      </form>
+    </section>
+
+    <section class="card" aria-label="Sections table">
+      <h2 class="card__title">Sections</h2>
+
+      <div class="table-wrap" role="region" aria-label="Course sections table" tabindex="0">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Section#</th>
+              <th scope="col">Room#</th>
+              <th scope="col">#Enrolled</th>
+              <th scope="col">Days</th>
+              <th scope="col">Instructor</th>
+            </tr>
+          </thead>
+          <tbody id="sections"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <p>Brigham Young University - Idaho 2026</p>
+    </footer>
+  </main>
+
+  <script src="scripts/main.js" defer></script>
+</body>
+</html>
