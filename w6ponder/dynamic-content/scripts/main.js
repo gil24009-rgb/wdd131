@@ -46,9 +46,6 @@ const movies = [
 ];
 
 const movieListEl = document.getElementById("movie_list");
-const yearEl = document.getElementById("year");
-const navToggle = document.querySelector(".nav_toggle");
-const siteNav = document.getElementById("site_nav");
 
 function escapeHtml(value) {
   return String(value)
@@ -59,77 +56,77 @@ function escapeHtml(value) {
     .replaceAll("'", "&#039;");
 }
 
-function starsAriaLabel(stars) {
-  const count = Array.from(stars).filter((c) => c === "⭐").length;
-  return `${count} out of 5 stars`;
+function getStarCount(starsString) {
+  return Array.from(String(starsString)).filter((c) => c === "⭐").length;
 }
 
-function renderMovieCard(movie, index) {
-  const safeTitle = escapeHtml(movie.title);
-  const safeDate = escapeHtml(movie.date);
-  const safeAges = escapeHtml(movie.ages);
-  const safeGenre = escapeHtml(movie.genre);
-  const safeDesc = escapeHtml(movie.description);
-  const safeAlt = escapeHtml(movie.imgAlt);
-  const safeStars = movie.stars;
+function renderStars(count) {
+  const clamped = Math.max(0, Math.min(5, count));
+  let html = "";
 
-  const titleId = `m${index + 1}_title`;
+  for (let i = 1; i <= 5; i += 1) {
+    const filled = i <= clamped ? "filled" : "";
+    html += `<span class="star ${filled}" aria-hidden="true">★</span>`;
+  }
 
   return `
-    <article class="movie_card" aria-labelledby="${titleId}">
-      <div class="movie_layout">
+    <span class="stars" role="img" aria-label="${clamped} out of 5 stars">
+      ${html}
+    </span>
+  `;
+}
+
+function renderMovie(movie) {
+  const title = escapeHtml(movie.title);
+  const date = escapeHtml(movie.date);
+  const ages = escapeHtml(movie.ages);
+  const genre = escapeHtml(movie.genre);
+  const desc = escapeHtml(movie.description);
+  const alt = escapeHtml(movie.imgAlt);
+
+  const starCount = getStarCount(movie.stars);
+
+  return `
+    <article class="movie_card">
+      <div class="movie_grid">
         <figure class="movie_media">
-          <img
-            src="${movie.imgSrc}"
-            alt="${safeAlt}"
-            loading="lazy"
-            width="700"
-            height="900" />
+          <img class="movie_poster" src="${movie.imgSrc}" alt="${alt}" loading="lazy" />
         </figure>
 
-        <div class="movie_title_area">
-          <h2 id="${titleId}" class="movie_title">${safeTitle}</h2>
+        <div class="movie_right">
+          <h2 class="movie_title">${title}</h2>
+
+          <div class="meta" role="group" aria-label="Movie details">
+            <div class="meta_row">
+              <span class="meta_label">Release Date:</span>
+              <span>${date}</span>
+            </div>
+            <div class="meta_row">
+              <span class="meta_label">Recommended Age:</span>
+              <span>${ages}</span>
+            </div>
+            <div class="meta_row">
+              <span class="meta_label">Genre:</span>
+              <span>${genre}</span>
+            </div>
+            <div class="meta_row">
+              <span class="meta_label">Rating:</span>
+              <span>${renderStars(starCount)}</span>
+            </div>
+          </div>
         </div>
 
-        <div class="movie_info" role="group" aria-label="Movie details">
-          <p class="meta_row"><span class="meta_label">Release Date:</span> ${safeDate}</p>
-          <p class="meta_row"><span class="meta_label">Recommended Age:</span> ${safeAges}</p>
-          <p class="meta_row"><span class="meta_label">Genre:</span> ${safeGenre}</p>
-          <p class="meta_row">
-            <span class="meta_label">Rating:</span>
-            <span class="stars" role="img" aria-label="${starsAriaLabel(safeStars)}">${safeStars}</span>
-          </p>
-        </div>
-
-        <p class="movie_desc">${safeDesc}</p>
+        <p class="movie_desc">${desc}</p>
       </div>
     </article>
   `;
 }
 
-function renderMovies(list) {
-  if (!movieListEl) return;
+function renderAll() {
   movieListEl.innerHTML = "";
-  list.forEach((movie, index) => {
-    movieListEl.insertAdjacentHTML("beforeend", renderMovieCard(movie, index));
+  movies.forEach((movie) => {
+    movieListEl.insertAdjacentHTML("beforeend", renderMovie(movie));
   });
 }
 
-function setYear() {
-  if (!yearEl) return;
-  yearEl.textContent = String(new Date().getFullYear());
-}
-
-function setupNavToggle() {
-  if (!navToggle || !siteNav) return;
-
-  navToggle.addEventListener("click", () => {
-    const isOpen = navToggle.getAttribute("aria-expanded") === "true";
-    navToggle.setAttribute("aria-expanded", String(!isOpen));
-    siteNav.toggleAttribute("data-open", !isOpen);
-  });
-}
-
-setYear();
-setupNavToggle();
-renderMovies(movies);
+renderAll();
