@@ -1,142 +1,129 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <title>Recipe Book | WDD 131</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="A simple, responsive recipe book page built for WDD 131 using accessible HTML, CSS Flexbox, and JavaScript.">
-  <meta name="author" content="Your Name">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <!-- Favicon: uses recipe-book.png that you downloaded -->
-  <link rel="icon" href="images/recipe-book.png" type="image/png">
+    <title>Recipebook</title>
+    <meta
+      name="description"
+      content="A simple recipe book layout built with Flexbox."
+    />
 
-  <!-- Main stylesheet -->
-  <link rel="stylesheet" href="recipes.css">
+    <!-- Open Graph (Facebook, LinkedIn, etc.) -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Recipebook" />
+    <meta
+      property="og:description"
+      content="A simple recipe book layout built with Flexbox."
+    />
+    <meta property="og:url" content="https://yourgithubusername.github.io/wdd131/recipes/" />
+    <meta property="og:image" content="images/social_preview_image.png" />
 
-  <!-- Social Media / Open Graph meta -->
-  <meta property="og:title" content="Recipe Book">
-  <meta property="og:type" content="website">
-  <meta property="og:description" content="Browse a delicious featured recipe on this responsive recipe book page.">
-  <!-- Replace YOUR_GITHUB_USERNAME with your real GitHub username -->
-  <meta property="og:image" content="https://gil24009-rgb.github.io/wdd131/recipes/images/chocolate-chip-cookies.jpg">
-  <meta property="og:url" content="https://gil24009-rgb.github.io/wdd131/recipes/">
-  <meta name="twitter:card" content="summary_large_image">
-</head>
-<body>
-  <header class="site-header">
-    <div class="branding">
-      <!-- Logo image from your images folder -->
-      <img src="images/recipe-book.png" alt="Recipe book logo" class="logo">
-      <div class="branding-text">
-        <p class="tagline">Family Favorites</p>
-        <h1 class="site-title">Recipe Book</h1>
+    <!-- X Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Recipebook" />
+    <meta
+      name="twitter:description"
+      content="A simple recipe book layout built with Flexbox."
+    />
+    <meta name="twitter:image" content="images/social_preview_image.png" />
+
+    <!-- One favicon (ICO works everywhere) -->
+    <link rel="icon" href="favicon.ico" />
+
+    <!-- One Apple Touch Icon (iOS home screen) -->
+    <link rel="apple-touch-icon" href="images/apple_touch_icon.png" />
+
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+
+  <body>
+    <header class="site-header">
+      <div class="brand">
+        <img
+          class="brand-mark"
+          src="images/recipebook_logo.png"
+          alt=""
+          width="56"
+          height="56"
+          aria-hidden="true"
+        />
+        <h1 class="brand-title">Recipebook</h1>
       </div>
-    </div>
 
-    <form class="search-form" role="search">
-      <label class="visually-hidden" for="search">Search recipes</label>
-      <input
-        id="search"
-        name="search"
-        type="search"
-        placeholder="Search recipes"
-        autocomplete="off"
-      >
-      <button type="submit">Search</button>
-      <!--
-      만약 search.svg 아이콘을 버튼 안에 쓰고 싶다면 위 버튼 대신 아래처럼 사용 가능:
-      <button type="submit">
-        <img src="images/search.svg" alt="" aria-hidden="true">
-        <span class="visually-hidden">Search</span>
-      </button>
-      -->
-    </form>
-  </header>
-
-  <main id="main-content">
-    <section class="featured-recipe" aria-labelledby="featured-heading">
-      <h2 id="featured-heading" class="section-title">Featured Recipe</h2>
-
-      <article class="recipe-card">
-        <div class="recipe-media">
-          <!-- Hero recipe image: chocolate-chip-cookies.jpg from your folder -->
+      <form class="search" role="search" aria-label="Find a recipe">
+        <label class="sr-only" for="q">Find a recipe</label>
+        <input id="q" name="q" type="search" placeholder="Find a recipe" />
+        <button type="submit" class="search-button" aria-label="Search">
           <img
-            src="images/chocolate-chip-cookies.jpg"
-            alt="A plate of chocolate chip cookies"
-            class="recipe-image"
-          >
-        </div>
+            src="images/search_icon.svg"
+            alt=""
+            width="22"
+            height="22"
+            aria-hidden="true"
+          />
+        </button>
+      </form>
+    </header>
 
-        <div class="recipe-content">
-          <header class="recipe-header">
-            <h3 class="recipe-title" data-recipe-title>Chocolate Chip Cookies</h3>
-            <p class="recipe-meta" data-recipe-meta>30 min • 24 cookies</p>
+    <main class="page">
+      <section class="recipes" aria-label="Recipes">
+        <article class="card" aria-label="Apple Crisp recipe">
+          <img
+            class="card-image"
+            src="images/apple_crisp.jpg"
+            alt="Apple crisp served with vanilla ice cream"
+            width="900"
+            height="600"
+            loading="lazy"
+          />
 
-            <span
-              class="rating"
-              role="img"
-              aria-label="Rating: 4 out of 5 stars"
-            >
+          <div class="card-body">
+            <span class="tag" aria-label="Category: dessert">dessert</span>
+
+            <h2 class="card-title">
+              <a class="card-link" href="#">Apple Crisp</a>
+            </h2>
+
+            <span class="rating" role="img" aria-label="Rating: 4 out of 5 stars">
               <span aria-hidden="true" class="icon-star">⭐</span>
               <span aria-hidden="true" class="icon-star">⭐</span>
               <span aria-hidden="true" class="icon-star">⭐</span>
               <span aria-hidden="true" class="icon-star">⭐</span>
               <span aria-hidden="true" class="icon-star-empty">☆</span>
             </span>
-          </header>
 
-          <p class="recipe-description" data-recipe-description>
-            Soft, chewy chocolate chip cookies with crisp edges and lots of melty chocolate chips—perfect for sharing with family and friends.
-          </p>
-
-          <div class="recipe-details">
-            <div class="info-group">
-              <h4>Ingredients</h4>
-              <ul class="ingredients-list" data-recipe-ingredients>
-                <li>2 1/4 cups all-purpose flour</li>
-                <li>1 cup butter, softened</li>
-                <li>3/4 cup brown sugar</li>
-                <li>3/4 cup white sugar</li>
-                <li>2 eggs</li>
-                <li>2 cups chocolate chips</li>
-              </ul>
-            </div>
-
-            <div class="info-group">
-              <h4>Directions</h4>
-              <ol class="instructions-list" data-recipe-instructions>
-                <li>Preheat oven to 350°F (175°C).</li>
-                <li>Cream butter and sugars together, then add eggs.</li>
-                <li>Stir in dry ingredients and fold in chocolate chips.</li>
-                <li>Scoop onto a baking sheet and bake until golden around the edges.</li>
-              </ol>
-            </div>
+            <p class="card-desc">
+              This apple crisp recipe is a simple yet delicious fall dessert that is
+              great served warm with vanilla ice cream.
+            </p>
           </div>
-        </div>
-      </article>
-    </section>
-  </main>
+        </article>
+      </section>
+    </main>
 
-  <footer class="site-footer">
-    <div class="social">
-      <!-- Social media icons provided under CC from https://www.iconfinder.com/AlfredoCreates  -->
-      <a href="#"><img src="images/instagram_icon.svg" alt="Instagram icon"></a>
-      <a href="#"><img src="images/youtube_icon.svg" alt="YouTube icon"></a>
-      <a href="#"><img src="images/pinterest_icon.svg" alt="Pinterest icon"></a>
-    </div>
-
-    <p class="icon-credit">
-      <a href="https://www.flaticon.com/free-icons/recipe" title="recipe icons">
+    <footer class="site-footer">
+      <a
+        class="attribution"
+        href="https://www.flaticon.com/free-icons/recipe"
+        title="recipe icons"
+      >
         Recipe icons created by Freepik - Flaticon
       </a>
-    </p>
 
-    <p class="copyright">
-      &copy; 2025 Recipe Book. All rights reserved.
-    </p>
-  </footer>
-
-  <!-- Main JavaScript module -->
-  <script type="module" src="main.js"></script>
-</body>
+      <div class="social">
+        <!-- Social media icons provided under CC from https://www.iconfinder.com/AlfredoCreates -->
+        <a href="#" aria-label="Instagram">
+          <img src="images/instagram_icon.svg" alt="" width="28" height="28" aria-hidden="true" />
+        </a>
+        <a href="#" aria-label="YouTube">
+          <img src="images/youtube_icon.svg" alt="" width="28" height="28" aria-hidden="true" />
+        </a>
+        <a href="#" aria-label="Pinterest">
+          <img src="images/pinterest_icon.svg" alt="" width="28" height="28" aria-hidden="true" />
+        </a>
+      </div>
+    </footer>
+  </body>
 </html>
