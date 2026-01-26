@@ -1,0 +1,144 @@
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  --max-width: 1280px;
+  --border: 2px solid #000;
+  --space-1: 0.5rem;
+  --space-2: 1rem;
+  --space-3: 1.5rem;
+  --space-4: 2.5rem;
+}
+
+body {
+  margin: 0;
+  padding: var(--space-3);
+  font-family: Georgia, "Times New Roman", Times, serif;
+  font-size: 20px;
+  line-height: 1.4;
+  color: #000;
+  background: #fff;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+.site-header {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  border: var(--border);
+  padding: var(--space-3);
+}
+
+.site-header h1 {
+  margin: 0 0 var(--space-2);
+  font-size: 1.6rem;
+}
+
+.main-nav {
+  list-style: none;
+  display: flex;
+  justify-content: flex-end;
+  gap: 20px;
+  padding: 0;
+  margin: 0;
+}
+
+.main-nav a {
+  color: #00f;
+  text-decoration: underline;
+  font-size: 0.85rem;
+}
+
+.page {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  border: var(--border);
+  border-top: 0;
+  padding: var(--space-3);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+h2 {
+  margin: 0 0 var(--space-2);
+  font-size: 1.1rem;
+}
+
+.media-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  margin: 0;
+}
+
+.media-card-image img {
+  width: 100%;
+}
+
+.media-card-content h3 {
+  margin: 0 0 var(--space-1);
+  font-size: 0.95rem;
+}
+
+.media-card-content p {
+  margin: 0;
+  font-size: 0.85rem;
+}
+
+hr {
+  margin: var(--space-4) 0 0;
+  border: 0;
+  border-top: 1px solid #bbb;
+}
+
+.gallery {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+@media (min-width: 900px) {
+  .media-card--feature {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: var(--space-3);
+  }
+
+  .media-card--feature .media-card-image {
+    flex: 0 0 56%;
+    max-width: 56%;
+  }
+
+  .media-card--feature .media-card-content {
+    flex: 1;
+    padding-top: var(--space-1);
+  }
+
+  .gallery {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+  }
+
+  .media-card--gallery {
+    flex: 1 1 calc(50% - var(--space-3));
+    flex-direction: row;
+    align-items: flex-start;
+    gap: var(--space-2);
+  }
+
+  .media-card--gallery .media-card-image {
+    flex: 0 0 38%;
+    max-width: 38%;
+  }
+
+  .media-card--gallery .media-card-content {
+    flex: 1;
+  }
+}
