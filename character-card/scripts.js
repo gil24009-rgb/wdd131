@@ -1,78 +1,94 @@
 "use strict";
 
-const ui = {
-  name: document.querySelector("#characterName"),
-  className: document.querySelector("#characterClass"),
-  level: document.querySelector("#characterLevel"),
-  health: document.querySelector("#characterHealth"),
-  image: document.querySelector("#characterImage"),
-  status: document.querySelector("#statusMsg"),
-  attackBtn: document.querySelector("#attackBtn"),
-  levelBtn: document.querySelector("#levelBtn"),
-};
+/* ================================
+   DOM REFERENCES
+================================ */
+
+const nameEl = document.getElementById("characterName");
+const classEl = document.getElementById("characterClass");
+const levelEl = document.getElementById("characterLevel");
+const healthEl = document.getElementById("characterHealth");
+const statusEl = document.getElementById("statusMsg");
+
+const attackBtn = document.getElementById("attackBtn");
+const levelBtn = document.getElementById("levelBtn");
+
+/* ================================
+   CHARACTER OBJECT
+================================ */
 
 const character = {
   name: "Snortleblat",
   className: "Swamp Beast Diplomat",
   level: 8,
   health: 100,
-  imageSrc: "./images/swamp_beast.webp",
-  imageAlt: "Swamp creature standing in shallow water",
 
   attacked() {
-    if (this.health <= 0) return;
-
-    this.health -= 20;
-    if (this.health < 0) this.health = 0;
-
-    if (this.health === 0) {
-      setStatus(`${this.name} has died.`);
-      disableActions(true);
+    if (this.health <= 0) {
       return;
     }
 
-    setStatus(`${this.name} took damage.`);
+    this.health = this.health - 20;
+
+    if (this.health <= 0) {
+      this.health = 0;
+      updateStatus("The character has died.");
+      disableButtons();
+    } else {
+      updateStatus("Character was attacked. -20 health.");
+    }
+
+    render();
   },
 
   levelUp() {
     if (this.health <= 0) {
-      setStatus(`${this.name} cannot level up because the character is dead.`);
+      updateStatus("Dead characters cannot level up.");
       return;
     }
 
-    this.level += 1;
-    setStatus(`${this.name} leveled up.`);
+    this.level = this.level + 1;
+
+    updateStatus("Level increased by 1.");
+    render();
   },
 };
 
-function setStatus(message) {
-  ui.status.textContent = message;
-}
-
-function disableActions(disabled) {
-  ui.attackBtn.disabled = disabled;
-  ui.levelBtn.disabled = disabled;
-}
+/* ================================
+   UI FUNCTIONS
+================================ */
 
 function render() {
-  ui.name.textContent = character.name;
-  ui.className.textContent = character.className;
-  ui.level.textContent = String(character.level);
-  ui.health.textContent = String(character.health);
-
-  ui.image.src = character.imageSrc;
-  ui.image.alt = character.imageAlt;
+  nameEl.textContent = character.name;
+  classEl.textContent = character.className;
+  levelEl.textContent = character.level;
+  healthEl.textContent = character.health;
 }
 
-ui.attackBtn.addEventListener("click", () => {
+function updateStatus(message) {
+  statusEl.textContent = message;
+}
+
+function disableButtons() {
+  attackBtn.disabled = true;
+  levelBtn.disabled = true;
+}
+
+/* ================================
+   EVENT LISTENERS
+================================ */
+
+attackBtn.addEventListener("click", function () {
   character.attacked();
-  render();
 });
 
-ui.levelBtn.addEventListener("click", () => {
+levelBtn.addEventListener("click", function () {
   character.levelUp();
-  render();
 });
+
+/* ================================
+   INITIAL RENDER
+================================ */
 
 render();
-setStatus("Ready.");
+updateStatus("Ready for battle.");
