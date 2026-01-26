@@ -1,7 +1,5 @@
 "use strict";
 
-/* DOM */
-
 const classEl = document.getElementById("characterClass");
 const levelEl = document.getElementById("characterLevel");
 const healthEl = document.getElementById("characterHealth");
@@ -10,61 +8,52 @@ const statusEl = document.getElementById("statusMsg");
 const attackBtn = document.getElementById("attackBtn");
 const levelBtn = document.getElementById("levelBtn");
 
-/* CHARACTER OBJECT */
-
 const character = {
-  name: "Snortleblat",
   className: "Swamp Beast Diplomat",
-  level: 8,
+  level: 3,
   health: 100,
+  isDead: false,
 
   attacked() {
-    if (this.health === 0) return;
+    if (this.isDead) return;
 
-    this.health -= 20;
+    this.health = this.health - 20;
 
     if (this.health <= 0) {
       this.health = 0;
-      updateStatus("The character has died.");
-      disableButtons();
+      this.isDead = true;
+      setStatus("Monster died");
+      lockActions();
     } else {
-      updateStatus("Character attacked. Health -20.");
+      setStatus("Attacked");
     }
 
     render();
   },
 
   levelUp() {
-    if (this.health === 0) {
-      updateStatus("Dead characters cannot level up.");
-      return;
-    }
+    if (this.isDead) return;
 
-    this.level += 1;
-
-    updateStatus("Level increased.");
+    this.level = this.level + 1;
+    setStatus("Level up");
     render();
   },
 };
 
-/* UI FUNCTIONS */
-
 function render() {
   classEl.textContent = character.className;
-  levelEl.textContent = character.level;
-  healthEl.textContent = character.health;
+  levelEl.textContent = String(character.level);
+  healthEl.textContent = String(character.health);
 }
 
-function updateStatus(message) {
+function setStatus(message) {
   statusEl.textContent = message;
 }
 
-function disableButtons() {
+function lockActions() {
   attackBtn.disabled = true;
   levelBtn.disabled = true;
 }
-
-/* EVENTS */
 
 attackBtn.addEventListener("click", () => {
   character.attacked();
@@ -74,7 +63,5 @@ levelBtn.addEventListener("click", () => {
   character.levelUp();
 });
 
-/* INIT */
-
 render();
-updateStatus("Ready.");
+setStatus("Ready");
