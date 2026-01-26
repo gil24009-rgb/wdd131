@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Character Card</title>
+    <meta
+      name="description"
+      content="A simple character card using a JavaScript object with attacked and levelUp methods."
+    />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Character Card" />
+    <meta
+      property="og:description"
+      content="A simple character card using a JavaScript object with attacked and levelUp methods."
+    />
+    <meta property="og:url" content="https://yourgithubusername.github.io/wdd131/charactercard/" />
+    <meta
+      property="og:image"
+      content="https://yourgithubusername.github.io/wdd131/charactercard/images/social_preview.png"
+    />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Character Card" />
+    <meta
+      name="twitter:description"
+      content="A simple character card using a JavaScript object with attacked and levelUp methods."
+    />
+    <meta
+      name="twitter:image"
+      content="https://yourgithubusername.github.io/wdd131/charactercard/images/social_preview.png"
+    />
+
+    <!-- Icons -->
+    <link rel="icon" href="./favicon.ico" />
+    <link rel="apple-touch-icon" href="./images/apple_touch_icon.png" />
+
+    <link rel="stylesheet" href="./styles.css" />
+    <script src="./script.js" defer></script>
+  </head>
+
+  <body>
+    <main class="page">
+      <section class="card" aria-labelledby="characterName">
+        <img
+          class="image"
+          id="characterImage"
+          src="./images/swamp_beast.webp"
+          alt="Swamp creature standing in shallow water"
+          width="400"
+          height="260"
+          loading="eager"
+        />
+
+        <h1 class="name" id="characterName">Snortleblat</h1>
+
+        <div class="content">
+          <div class="stats" aria-label="Character stats">
+            <p>
+              <span class="label">Class:</span>
+              <span id="characterClass">Swamp Beast Diplomat</span>
+            </p>
+            <p>
+              <span class="label">Level:</span>
+              <span id="characterLevel">8</span>
+            </p>
+            <p>
+              <span class="label">Health:</span>
+              <span id="characterHealth">100</span>
+            </p>
+          </div>
+
+          <div class="buttons" aria-label="Actions">
+            <button type="button" id="attackBtn">Attacked</button>
+            <button type="button" id="levelBtn">Level Up</button>
+          </div>
+
+          <p class="status" id="statusMsg" aria-live="polite"></p>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>1
