@@ -1,66 +1,98 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Find Your Major – Quiz</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="A simple interactive quiz that helps students discover a major category that matches their interests.">
-  <link rel="stylesheet" href="styles/main.css">
-</head>
-<body>
-  <header class="site-header">
-    <div class="logo-block">
-      <img src="images/Startpage_potatos.png" alt="Six potato characters logo" class="logo-potatoes">
-      <div class="logo-text-group">
-        <img src="images/Title.png" alt="Find your major title" class="logo-title">
-      </div>
-    </div>
-    <p class="subtitle">
-      Answer ten quick questions and see which major category fits you best.
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>[Park Name]</title>
+    <link rel="stylesheet" href="styles/styles.css" />
+    <script type="module" src="scripts/main.js"></script>
+  </head>
+  <body>
+    <p class="disclaimer">
+      This is not a real NPS website. It is an educational exercise. If you
+      landed here by accident, to find the real website visit
+      <a href="parkUrl">[park name]</a>
     </p>
-  </header>
-
-  <main class="main-layout">
-    <!-- Hero / Intro section -->
-    <section class="intro-card" aria-label="Quiz introduction">
-      <div class="intro-text">
-        <h1 class="intro-heading">Find Your Major</h1>
-        <p class="intro-body">
-          This small quiz uses simple questions and friendly potato characters to suggest one of twelve major
-          categories. You can retake the quiz as many times as you like.
-        </p>
-        <ol class="intro-steps">
-          <li>Start the quiz.</li>
-          <li>Answer ten yes / no questions.</li>
-          <li>Watch the potatoes “dig”.</li>
-          <li>See your suggested major category.</li>
-        </ol>
-        <button type="button" class="primary-button" id="start-quiz">
-          Start the quiz
-        </button>
-      </div>
-      <figure class="intro-figure">
-        <img src="images/Start page_background.png" alt="Illustration used on the start page" class="intro-image">
-        <figcaption class="visually-hidden">
-          Background illustration used on the quiz start screen.
-        </figcaption>
-      </figure>
-    </section>
-
-    <!-- App container that JavaScript will control -->
-    <section class="app-shell" aria-label="Quiz application">
-      <div id="app" class="app-container">
-        <p class="placeholder-text">
-          Press “Start the quiz” above to begin.
-        </p>
-      </div>
-    </section>
-  </main>
-
-  <footer class="site-footer">
-    <p>Find Your Major – Personal Web Application · WDD 131</p>
-  </footer>
-
-  <script src="scripts/main.js" type="module"></script>
-</body>
+    <div class="skip-links" aria-label="short-cut links" role="navigation">
+      <ul>
+        <li>
+          <a
+            href="#global-nav-toggle"
+            aria-label="Skip to global NPS navigation"
+            >Skip to global NPS navigation</a
+          >
+        </li>
+        <li>
+          <a href="#local-nav" aria-label="Skip to this park navigation"
+            >Skip to this park navigation</a
+          >
+        </li>
+        <li>
+          <a href="#main" aria-label="Skip to the main content"
+            >Skip to the main content</a
+          >
+        </li>
+        <li>
+          <a
+            href="#park-footer"
+            aria-label="Skip to this park information section"
+            >Skip to this park information section</a
+          >
+        </li>
+      </ul>
+    </div>
+    <header>
+      <section class="global-header">
+        <a href="index.html" class="site-title"
+          ><span class="logo" role="presentation"></span>
+          <span>National Park Service</span></a
+        >
+        <div class="global-header__right">
+          <a class="search-icon" href="#park-footer">
+            <svg class="icon">
+              <use xlink:href="/images/sprite.symbol.svg#search"></use>
+            </svg>
+            <span class="visually-hidden">Search</span>
+          </a>
+          <button id="global-nav-toggle">
+            <svg class="icon">
+              <use xlink:href="/images/sprite.symbol.svg#menu"></use>
+            </svg>
+            <span class="visually-hidden">Open</span> Menu
+          </button>
+        </div>
+        <nav class="global-nav">
+          <h2 class="global-nav__section-heading">Explore this Park</h2>
+          <ul class="global-nav__list">
+            <li>
+              <div class="global-nav__split-button">
+                <a href="#">Plan Your Visit</a>
+                <button class="global-nav__split-button__toggle">
+                  <span class="visually-hidden"
+                    >Toggle submenu for Plan Your Visit</span
+                  >
+                  <svg class="icon" role="presentation" focusable="false">
+                    <use xlink:href="/images/sprite.symbol.svg#arrow"></use>
+                  </svg>
+                </button>
+              </div>
+            </li>
+          </ul>
+        </nav>
+      </section>
+      <section id="park-header">
+        <a href="#">
+          <span>Info</span>
+          <svg class="icon" role="presentation" focusable="false">
+            <use xlink:href="/images/sprite.symbol.svg#info"></use>
+          </svg>
+        </a>
+        <svg class="icon" role="presentation" focusable="false">
+          <use xlink:href="/images/sprite.symbol.svg#alert"></use>
+        </svg>
+      </section>
+    </header>
+    <main id="main"></main>
+    <footer id="park-footer"></footer>
+  </body>
 </html>
