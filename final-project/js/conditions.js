@@ -4,13 +4,13 @@ import {
   getParkData,
   getParkAlerts,
   getParkVisitorCenters
-} from "./parkService.mjs";
+} from "parkService.mjs";
 import {
   activityListTemplate,
   alertTemplate,
   visitorCenterTemplate
-} from "./templates.mjs";
-import setHeaderFooter from "./setHeaderFooter.mjs";
+} from "templates.mjs";
+import setHeaderFooter from "setHeaderFooter.mjs";
 
 function setAlerts(alerts) {
   const alertsContainer = document.querySelector(".alerts > ul");

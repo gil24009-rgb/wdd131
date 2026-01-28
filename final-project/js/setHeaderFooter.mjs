@@ -1,5 +1,5 @@
-import { parkInfoTemplate, footerTemplate } from "./templates.mjs";
-import enableNavigation from "./navigation.mjs";
+import { parkInfoTemplate, footerTemplate } from "templates.mjs";
+import enableNavigation from "navigation.mjs";
 
 function setHeaderInfo(data) {
   // insert data into disclaimer section

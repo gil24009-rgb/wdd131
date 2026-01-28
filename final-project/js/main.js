@@ -1,8 +1,8 @@
 import "../css/style.css"; // we can do this because we are using Vite...
 import "../css/home.css";
-import { getParkData, getInfoLinks } from "./parkService.mjs";
-import setHeaderFooter from "./setHeaderFooter.mjs";
-import { mediaCardTemplate } from "./templates.mjs";
+import { getParkData, getInfoLinks } from "parkService.mjs";
+import setHeaderFooter from "setHeaderFooter.mjs";
+import { mediaCardTemplate } from "templates.mjs";
 
 function setParkIntro(data) {
   const introEl = document.querySelector(".intro");
