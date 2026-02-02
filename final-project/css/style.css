@@ -280,7 +280,7 @@ main#main {
 /* Footer styling */
 #park-footer {
   background-color: var(--bs-light-green);
-  background-image: url("/images/topo_pattern.png");
+  background-image: url("../images/topo_pattern.png");
   background-repeat: repeat;
   background-size: 420px auto;
   padding: 28px 16px 40px;
