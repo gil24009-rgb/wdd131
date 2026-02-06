@@ -1,0 +1,61 @@
+/* Global header */
+.global-header {
+  background: var(--bs-black);
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+}
+
+.global-header a:link,
+.global-header a:visited,
+#park-header a:link,
+#park-header a:visited {
+  color: white;
+  text-decoration: none;
+}
+
+.site-title {
+  display: flex;
+  align-items: center;
+  padding: 10px 14px;
+  gap: 10px;
+}
+
+.logo {
+  height: 0;
+  width: 0;
+  border-top: 26px solid var(--bs-light-green);
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+}
+
+.global-header__right {
+  display: flex;
+  align-items: center;
+}
+
+.search-icon {
+  padding: 0 14px;
+  display: inline-flex;
+  align-items: center;
+}
+
+#global-nav-toggle {
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 1rem;
+  padding: 14px 16px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  text-transform: uppercase;
+  border-left: 1px solid var(--bs-grey-5);
+  cursor: pointer;
+}
+
+#global-nav-toggle:focus {
+  outline: 2px solid white;
+  outline-offset: -2px;
+}

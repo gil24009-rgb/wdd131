@@ -1,0 +1,76 @@
+/* Unit 2: Main content layout */
+main#main {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 28px 16px 50px;
+}
+
+.intro h1 {
+  font-family: Georgia, "Times New Roman", Times, serif;
+  font-size: 2.25rem;
+  line-height: 1.15;
+  margin: 18px 0 12px;
+  color: var(--bs-black);
+}
+
+.intro p {
+  margin: 0 0 26px;
+  max-width: 72ch;
+  color: var(--bs-grey-4);
+}
+
+/* Media cards */
+.info {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 26px;
+  align-items: start;
+  margin-top: 10px;
+}
+
+.media-card__link {
+  display: block;
+  color: var(--bs-black);
+  text-decoration: none;
+}
+
+.media-card__img {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  background: #eee;
+}
+
+.media-card__title {
+  font-size: 1.25rem;
+  line-height: 1.2;
+  margin: 12px 0 8px;
+  color: var(--bs-black);
+}
+
+.media-card__desc {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--bs-grey-2);
+}
+
+.media-card__link:hover .media-card__title {
+  text-decoration: underline;
+}
+
+/* Responsive */
+@media (max-width: 800px) {
+  .info {
+    grid-template-columns: 1fr;
+    gap: 22px;
+  }
+
+  main#main {
+    padding-top: 18px;
+  }
+
+  .intro h1 {
+    font-size: 2rem;
+  }
+}
