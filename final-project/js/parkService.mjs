@@ -59,7 +59,7 @@ export function getInfoLinks(images = []) {
 
     return {
       ...item,
-      image: imageObj?.url || "/images/topo_pattern.png",
+      image: imageObj?.url || "./images/topo_pattern.png",
       alt: imageObj?.altText || "Park information image"
     };
   });
