@@ -1,139 +1,319 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>NPS Site Plan</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="site-plan.css">
-</head>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Site Plan | NPS Park Explorer</title>
+    <link rel="stylesheet" href="site-plan.css" />
+  </head>
 
-<body>
+  <body>
+    <header class="sp-header">
+      <div class="sp-wrap sp-header__grid">
+        <div class="sp-brand">
+          <div class="sp-logo" aria-label="NPS Park Explorer logo">
+            <svg viewBox="0 0 140 64" role="img" aria-label="NPS Park Explorer logo">
+              <g transform="translate(0,2)">
+                <path
+                  d="M30 4c10 0 18 5 23 13 4 6 5 13 3 21-2 11-9 19-18 23-8 4-16 4-24 0-9-4-16-12-18-23-2-8-1-15 3-21C12 9 20 4 30 4Z"
+                  fill="#0f4f7e"
+                />
+                <path
+                  d="M18 40c6-9 12-15 19-18 9-4 18-3 27 3-7 12-17 20-31 23-6 1-11 1-15-2Z"
+                  fill="#eaf0dc"
+                />
+                <path
+                  d="M40 16c7 1 12 6 14 15"
+                  fill="none"
+                  stroke="#ffffff"
+                  stroke-width="3"
+                  stroke-linecap="round"
+                  opacity="0.9"
+                />
+              </g>
+              <g transform="translate(70,20)">
+                <text
+                  x="0"
+                  y="14"
+                  font-size="16"
+                  font-family="Helvetica Neue, Helvetica, Arial, sans-serif"
+                  fill="#ffffff"
+                >
+                  NPS Park Explorer
+                </text>
+                <text
+                  x="0"
+                  y="34"
+                  font-size="11"
+                  font-family="Helvetica Neue, Helvetica, Arial, sans-serif"
+                  fill="#ced4da"
+                >
+                  Site plan document
+                </text>
+              </g>
+            </svg>
+          </div>
 
-<header class="global-header">
-  <div class="site-title">
-    <div class="logo"></div>
-    <span>NPS Park Explorer – Site Plan</span>
-  </div>
-</header>
+          <div class="sp-brand__text">
+            <p class="sp-kicker">Personal Site Plan</p>
+            <h1>NPS Park Explorer</h1>
+            <p class="sp-sub">
+              A simplified multi page park information experience for Yellowstone using the National Park Service API.
+            </p>
+          </div>
+        </div>
 
-<main class="container">
+        <div class="sp-meta">
+          <div class="sp-meta__card">
+            <p class="sp-meta__label">Project type</p>
+            <p class="sp-meta__value">Multi page informational website</p>
+          </div>
+          <div class="sp-meta__card">
+            <p class="sp-meta__label">Primary park</p>
+            <p class="sp-meta__value">Yellowstone, park code yell</p>
+          </div>
+          <div class="sp-meta__card">
+            <p class="sp-meta__label">Core capability</p>
+            <p class="sp-meta__value">Live API driven rendering</p>
+          </div>
+        </div>
+      </div>
+    </header>
 
-<section class="card">
-  <h1>Purpose</h1>
-  <p>
-    This site provides a simplified, responsive interface for exploring Yellowstone National Park
-    using live data from the National Park Service API. The goal is to present critical information
-    such as alerts, visitor services, and activities in a clean and structured layout.
-  </p>
-</section>
+    <main class="sp-wrap sp-main">
+      <section class="sp-card">
+        <h2>Folder structure and required files</h2>
+        <p>The site plan includes the required files in a dedicated personal site folder.</p>
 
-<section class="card">
-  <h1>Target Audience</h1>
-  <ul>
-    <li>Visitors planning a trip to Yellowstone</li>
-    <li>Families checking current conditions</li>
-    <li>Mobile users needing quick park updates</li>
-    <li>Students reviewing API driven web development</li>
-  </ul>
-</section>
+        <pre class="sp-code" aria-label="Folder structure">
+personal site folder
+  site-plan.html
+  site-plan.css
+  images
+    topo_pattern.png
+        </pre>
 
-<section class="card">
-  <h1>Dynamic Elements Description</h1>
-  <p>The site uses JavaScript modules and the NPS API to dynamically render content.</p>
+        <p class="sp-note">
+          The images folder is optional unless you want the topo pattern background on the footer. If you omit it, remove the
+          footer background image rule in CSS.
+        </p>
+      </section>
 
-  <ul>
-    <li>Fetch park data using async and await</li>
-    <li>Fetch alerts using park code parameter</li>
-    <li>Render visitor centers dynamically</li>
-    <li>Render activities list from API data</li>
-    <li>Mobile navigation toggle with aria-expanded updates</li>
-    <li>Accordion behavior using details element</li>
-  </ul>
-</section>
+      <section class="sp-grid sp-grid--2">
+        <section class="sp-card">
+          <h2>Purpose</h2>
+          <p>
+            The purpose of NPS Park Explorer is to provide a clear, fast overview of Yellowstone National Park. It prioritizes
+            information that visitors need right before or during a trip: park intro, alerts, visitor services, and activities.
+            Data is fetched from the official NPS API so content stays current.
+          </p>
 
-<section class="card">
-  <h1>Logo</h1>
-  <p>
-    The logo uses a geometric triangular shape inspired by the existing site styling.
-    It reflects the National Park theme through minimal structure and strong contrast.
-  </p>
-  <div class="logo-preview">
-    <div class="logo large"></div>
-  </div>
-</section>
+          <h3>Primary goals</h3>
+          <ul class="sp-list">
+            <li>Reduce time to find critical information</li>
+            <li>Highlight safety and closure alerts</li>
+            <li>Use expandable sections to prevent mobile overwhelm</li>
+            <li>Keep content current through live API data</li>
+          </ul>
+        </section>
 
-<section class="card">
-  <h1>Colors and Fonts</h1>
+        <section class="sp-card">
+          <h2>Audience</h2>
+          <p>This site is designed for visitors who want essential park info without scanning a large official site.</p>
 
-  <h2>Primary Colors</h2>
-  <ul>
-    <li>Black: var(--bs-black)</li>
-    <li>Chathams Blue: var(--bs-chathams-blue)</li>
-    <li>Light Green: var(--bs-light-green)</li>
-    <li>Gray 800: var(--bs-gray-800)</li>
-  </ul>
+          <h3>Primary audience</h3>
+          <ul class="sp-list">
+            <li>First time visitors planning a trip</li>
+            <li>Families and groups checking current conditions</li>
+            <li>Mobile users on the go</li>
+          </ul>
 
-  <h2>Alert Colors</h2>
-  <ul>
-    <li>Closure: var(--alert-closure)</li>
-    <li>Caution: var(--alert-caution)</li>
-    <li>Information: var(--alert-information)</li>
-    <li>Danger: var(--alert-danger)</li>
-  </ul>
+          <h3>Secondary audience</h3>
+          <ul class="sp-list">
+            <li>Students and instructors reviewing API driven work</li>
+            <li>Anyone needing quick alert visibility</li>
+          </ul>
+        </section>
+      </section>
 
-  <h2>Typography</h2>
-  <ul>
-    <li>Body Font: var(--bs-body-font-family)</li>
-    <li>Serif Headings: var(--bs-font-serif)</li>
-  </ul>
-</section>
+      <section class="sp-card">
+        <h2>Dynamic elements description</h2>
+        <p>
+          JavaScript is used to fetch live data from the NPS API and render content dynamically. The codebase is modular to
+          separate data access, templates, and page behavior.
+        </p>
 
-<section class="card">
-  <h1>Content Plan</h1>
-  <h2>Home Page</h2>
-  <ul>
-    <li>Hero image and park name</li>
-    <li>Quick navigation icons</li>
-    <li>Intro text pulled from API</li>
-  </ul>
+        <div class="sp-grid sp-grid--2">
+          <div>
+            <h3>Data driven rendering</h3>
+            <ul class="sp-list">
+              <li>Fetch park details from the parks endpoint with async and await</li>
+              <li>Fetch alerts from the alerts endpoint using parkCode</li>
+              <li>Fetch visitor centers from the visitorcenters endpoint using parkCode</li>
+              <li>Render lists using map and join</li>
+            </ul>
+          </div>
 
-  <h2>Conditions Page</h2>
-  <ul>
-    <li>Alerts list</li>
-    <li>Visitor centers accordion</li>
-    <li>Activities accordion</li>
-  </ul>
-</section>
+          <div>
+            <h3>Interactive behaviors</h3>
+            <ul class="sp-list">
+              <li>Mobile global menu toggle with aria-expanded updates</li>
+              <li>Accordion sections using details for progressive enhancement</li>
+              <li>Alert icon mapping based on alert category</li>
+              <li>Production safe asset paths for SVG sprite usage</li>
+            </ul>
+          </div>
+        </div>
+      </section>
 
-<section class="card">
-  <h1>Wireframes</h1>
+      <section class="sp-grid sp-grid--2">
+        <section class="sp-card">
+          <h2>Logo</h2>
+          <p>
+            The logo uses a shield inspired base and a simple landscape shape to communicate parks and exploration. It is designed
+            to remain readable at small sizes and to work on dark headers.
+          </p>
 
-  <div class="wireframe">
-    <h2>Home Page Wireframe</h2>
-    <div class="box">Global Header</div>
-    <div class="box">Hero Banner</div>
-    <div class="box">Navigation Icons</div>
-    <div class="box">Intro Content</div>
-    <div class="box">Footer</div>
-  </div>
+          <div class="sp-logo-preview" aria-label="Logo preview">
+            <svg viewBox="0 0 220 90" role="img" aria-label="NPS Park Explorer logo preview">
+              <rect x="0" y="0" width="220" height="90" rx="12" fill="#ffffff" stroke="#ced4da" />
+              <g transform="translate(14,12)">
+                <path
+                  d="M34 2c12 0 22 6 28 16 5 7 6 16 4 25-2 13-10 23-22 28-9 5-20 5-30 0-11-5-19-15-22-28-2-9-1-18 4-25C12 8 22 2 34 2Z"
+                  fill="#0f4f7e"
+                />
+                <path
+                  d="M20 55c7-11 15-18 24-22 11-5 22-4 33 4-9 15-22 25-39 29-8 2-14 2-18-3Z"
+                  fill="#eaf0dc"
+                />
+                <path
+                  d="M46 16c8 2 14 9 16 20"
+                  fill="none"
+                  stroke="#ffffff"
+                  stroke-width="4"
+                  stroke-linecap="round"
+                  opacity="0.9"
+                />
+              </g>
 
-  <div class="wireframe">
-    <h2>Conditions Page Wireframe</h2>
-    <div class="box">Global Header</div>
-    <div class="box">Page Title</div>
-    <div class="box">Alerts Section</div>
-    <div class="box">Visitor Services Accordion</div>
-    <div class="box">Activities Accordion</div>
-    <div class="box">Footer</div>
-  </div>
+              <g transform="translate(92,28)">
+                <text
+                  x="0"
+                  y="16"
+                  font-size="18"
+                  font-family="Helvetica Neue, Helvetica, Arial, sans-serif"
+                  fill="#0f4f7e"
+                >
+                  NPS Park Explorer
+                </text>
+                <text
+                  x="0"
+                  y="38"
+                  font-size="12"
+                  font-family="Helvetica Neue, Helvetica, Arial, sans-serif"
+                  fill="#4f4f4f"
+                >
+                  Minimal, responsive, API driven
+                </text>
+              </g>
+            </svg>
+          </div>
+        </section>
 
-</section>
+        <section class="sp-card">
+          <h2>Colors and fonts</h2>
+          <p>
+            This site plan uses the same color tokens and typography choices as the implemented project. Values are listed
+            explicitly for standalone deployment.
+          </p>
 
-</main>
+          <h3>Fonts</h3>
+          <ul class="sp-list">
+            <li>Body font family: Helvetica Neue, Helvetica, Arial, sans-serif</li>
+            <li>Serif heading option: Times New Roman, Times, serif</li>
+            <li>Monospace option: SFMono Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace</li>
+          </ul>
 
-<footer class="park-footer">
-  <p>Site Plan Document – NPS Park Explorer</p>
-</footer>
+          <h3>Core colors</h3>
+          <ul class="sp-list">
+            <li>Chathams Blue: #0f4f7e</li>
+            <li>Chathams Blue 2: #005999</li>
+            <li>Madison: #093058</li>
+            <li>Pampas background: #f6f5f0</li>
+            <li>White: #fff</li>
+            <li>Black: #000</li>
+            <li>Gray 400: #ced4da</li>
+            <li>Gray 500: #adb5bd</li>
+          </ul>
 
-</body>
+          <h3>Alert colors</h3>
+          <ul class="sp-list">
+            <li>Closure: #cb2027</li>
+            <li>Caution: #ed7e31</li>
+            <li>Information: #2451a9</li>
+            <li>Danger: #720f04</li>
+          </ul>
+        </section>
+      </section>
+
+      <section class="sp-card">
+        <h2>Content</h2>
+        <p>This section includes planned page content. Live data fields are populated from the NPS API.</p>
+
+        <div class="sp-grid sp-grid--2">
+          <div class="sp-content">
+            <h3>Home page</h3>
+            <ul class="sp-list">
+              <li>Hero image and park title</li>
+              <li>Icon navigation: Info, Alerts, Maps, Calendar, Fees</li>
+              <li>Intro text from the park description field</li>
+              <li>Footer contact information from API contacts</li>
+            </ul>
+          </div>
+
+          <div class="sp-content">
+            <h3>Child page, Current Conditions</h3>
+            <ul class="sp-list">
+              <li>Alerts list with category icon, title, and description</li>
+              <li>Visitor services list in an accordion section</li>
+              <li>Activities list in an accordion section</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="sp-card">
+        <h2>Wireframes</h2>
+        <p>Two wireframes are provided below. One for the home page and one for the child page.</p>
+
+        <div class="sp-wireframes">
+          <section class="sp-wireframe">
+            <h3>Home page wireframe</h3>
+            <div class="sp-wfbox">Global header with mobile menu</div>
+            <div class="sp-wfbox">Hero banner and park title</div>
+            <div class="sp-wfbox">Icon navigation row</div>
+            <div class="sp-wfbox">Intro block and link cards</div>
+            <div class="sp-wfbox">Footer</div>
+          </section>
+
+          <section class="sp-wireframe">
+            <h3>Current Conditions wireframe</h3>
+            <div class="sp-wfbox">Global header with mobile menu</div>
+            <div class="sp-wfbox">Page title</div>
+            <div class="sp-wfbox">Alerts list</div>
+            <div class="sp-wfbox">Visitor services accordion</div>
+            <div class="sp-wfbox">Activities accordion</div>
+            <div class="sp-wfbox">Footer</div>
+          </section>
+        </div>
+      </section>
+    </main>
+
+    <footer class="sp-footer">
+      <div class="sp-wrap sp-footer__inner">
+        <p>Site Plan Document, NPS Park Explorer</p>
+        <p>Prepared for course submission</p>
+      </div>
+    </footer>
+  </body>
 </html>
