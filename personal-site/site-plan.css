@@ -96,7 +96,7 @@ h1 {
 .sp-sub {
   margin: 0;
   color: var(--c-gray-400);
-  max-width: 75ch;
+  max-width: 90ch;
 }
 
 .sp-meta {
