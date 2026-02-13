@@ -249,6 +249,54 @@ p {
     grid-template-columns: 1fr;
   }
 
+  .sp-palette {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.sp-swatch {
+  display: grid;
+  grid-template-columns: 46px 1fr;
+  gap: 12px;
+  align-items: center;
+  border: 1px solid var(--c-gray-400);
+  border-radius: 12px;
+  padding: 12px;
+  background: var(--c-white);
+}
+
+.sp-chip {
+  width: 46px;
+  height: 38px;
+  border-radius: 10px;
+}
+
+.sp-swatch__name {
+  font-weight: 700;
+  color: var(--c-madison);
+}
+
+.sp-swatch__value {
+  color: var(--c-emperor);
+  font-family: var(--font-mono);
+  font-size: 0.92rem;
+  margin-top: 2px;
+}
+
+.sp-swatch__usage {
+  color: var(--c-emperor);
+  font-size: 0.92rem;
+  margin-top: 2px;
+}
+
+@media (max-width: 900px) {
+  .sp-palette {
+    grid-template-columns: 1fr;
+  }
+}
+
   .sp-footer__inner {
     flex-direction: column;
   }
